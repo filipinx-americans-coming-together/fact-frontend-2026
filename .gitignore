@@ -9,3 +9,18 @@
 
 # Keep the assets folder safe (optional: only if you have compressed web images there)
 !assets/
+
+# Claude Code local/agent scratch — machine-specific, regenerated per session
+.claude/worktrees/
+.claude/*.lock
+
+# impeccable local state/history — not shared config
+.impeccable/critique/
+.impeccable/asset-backups/
+.impeccable/hook.cache.json
+.impeccable/live/
+
+# graphify caches and dated snapshots — regenerate via `graphify update .`
+graphify-out/cache/
+graphify-out/cost.json
+graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
