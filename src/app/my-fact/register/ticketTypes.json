@@ -1,0 +1,6 @@
+{
+    "ticketTypes": [
+        { "label": "Sessions Only", "price": "15" },
+        { "label": "BUNDLE: Sessions + Variety Show", "price": "20" }
+    ]
+}

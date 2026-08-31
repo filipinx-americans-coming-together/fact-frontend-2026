@@ -1,14 +1,16 @@
-# Ignore raw photos and videos
-*.mov
-*.mp4
+# Next.js
+/node_modules
+/.next/
+/out/
+/build
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+
+# Raw/original photo backups — not the compressed web copies in public/
 *.CR3
 *.RW2
-*.JPG
-*.jpg
-*.png
-
-# Keep the assets folder safe (optional: only if you have compressed web images there)
-!assets/
 
 # Claude Code local/agent scratch — machine-specific, regenerated per session
 .claude/worktrees/
@@ -24,3 +26,6 @@
 graphify-out/cache/
 graphify-out/cost.json
 graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+
+# vitest / coverage
+/coverage
