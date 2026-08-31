@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import '../styles/live-fonts.css';
+@import '../styles/live-base.css';
+@import '../styles/live-sections.css';
+
+@theme {
+  /* --- 2025's original tokens (admin/facilitator/my-fact/gallery/etc rely on these) --- */
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+  --background-image-noise-base: repeating-linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2) 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2));
+  --background-image-gradient-radial:
+    radial-gradient(
+      circle,
+      rgba(239, 156, 115, 0.5) 0%,
+      rgba(242, 47, 115, 0.5) 100%
+    ),
+    url('/noise.svg'),
+    radial-gradient(
+      circle,
+      rgba(239, 156, 115, 1) 0%,
+      rgba(242, 47, 115, 1) 100%
+    );
+  --background-image-gradient-2:
+    linear-gradient(158deg,rgba(66, 64, 145, 1) 0%, rgba(123, 42, 108, 1) 50%, rgba(163, 73, 46,1) 100%);
+  --background-image-gradient-3:
+    linear-gradient(180deg,rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(158deg,rgba(66, 64, 145, 1) 0%, rgba(123, 42, 108, 1) 50%, rgba(163, 73, 46,1) 100%);
+  --background-image-grad-filter:
+    radial-gradient(20% 17% at 40% 35%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255,255,255,0) 60%);
+
+  --background-image-blurry-1:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 1100 950'%3E%3Cdefs%3E%3Cfilter id='bbblurry-filter' x='-100%25' y='-100%25' width='400%25' height='400%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='44' x='0%25' y='0%25' width='100%25' height='100%25' in='SourceGraphic' edgeMode='none' result='blur'%3E%3C/feGaussianBlur%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%2300000033'/%3E%3Cg filter='url(%23bbblurry-filter)'%3E%3Cellipse rx='150' ry='120' cx='838.3569854546436' cy='716.1106294127057' fill='hsla(0, 0%25, 0%25, 0.31)'%3E%3C/ellipse%3E%3Cellipse rx='170' ry='155' cx='403.8255978260629' cy='224.1087023167589' fill='hsla(0, 0%25, 0%25, 0.4)'%3E%3C/ellipse%3E%3Cellipse rx='147.5' ry='132' cx='231.20967032294345' cy='592.7224718480089' fill='hsla(0, 0%25, 0%25, 0.25)'%3E%3C/ellipse%3E%3C/g%3E%3C/svg%3E");
+  --background-image-blurry-2:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 1100 950'%3E%3Cdefs%3E%3Cfilter id='bbblurry-filter' x='-100%25' y='-100%25' width='400%25' height='400%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='44' x='0%25' y='0%25' width='100%25' height='100%25' in='SourceGraphic' edgeMode='none' result='blur'%3E%3C/feGaussianBlur%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%2300000033'/%3E%3Cg filter='url(%23bbblurry-filter)'%3E%3Cellipse rx='150' ry='120' cx='838.3569854546436' cy='716.1106294127057' fill='hsla(0, 0%25, 0%25, 0.62)'%3E%3C/ellipse%3E%3Cellipse rx='170' ry='155' cx='403.8255978260629' cy='224.1087023167589' fill='hsla(0, 0%25, 0%25, 0.8)'%3E%3C/ellipse%3E%3Cellipse rx='147.5' ry='132' cx='231.20967032294345' cy='592.7224718480089' fill='hsla(0, 0%25, 0%25, 0.5)'%3E%3C/ellipse%3E%3C/g%3E%3C/svg%3E");
+  --background-image-blurry-3:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 1100 950'%3E%3Cdefs%3E%3Cfilter id='bbblurry-filter' x='-100%25' y='-100%25' width='400%25' height='400%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='44' x='0%25' y='0%25' width='100%25' height='100%25' in='SourceGraphic' edgeMode='none' result='blur'%3E%3C/feGaussianBlur%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%2300000055'/%3E%3Cg filter='url(%23bbblurry-filter)'%3E%3Cellipse rx='150' ry='120' cx='838.3569854546436' cy='716.1106294127057' fill='hsla(0, 0%25, 0%25, 0.62)'%3E%3C/ellipse%3E%3Cellipse rx='170' ry='155' cx='403.8255978260629' cy='224.1087023167589' fill='hsla(0, 0%25, 0%25, 0.8)'%3E%3C/ellipse%3E%3Cellipse rx='147.5' ry='132' cx='231.20967032294345' cy='592.7224718480089' fill='hsla(0, 0%25, 0%25, 0.5)'%3E%3C/ellipse%3E%3C/g%3E%3C/svg%3E");
+
+  --color-background-primary: #ffffff;
+  --color-text-primary: #000000;
+  --color-highlight-primary: #ffcd09;
+  --color-highlight-secondary: #f2b6af;
+  --color-highlight-third: #ffc885;
+  --color-highlight-2-primary: #f22f73;
+  --color-highlight-2-secondary: #ff7e64;
+
+  --animate-drop-down: dropDown 0.4s ease-in-out forwards;
+
+  @keyframes dropDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    20% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --- live's tokens (about/agenda/donate/faq/home/palengke/past-facts/team/workshops) --- */
+  --color-ink-900: #0e155e;
+  --color-violet-800: #4b1c71;
+  --color-blue-500: #3681ab;
+  --color-orchid-400: #b37ad4;
+  --color-cream-100: #ffffdd;
+  --color-silver: #e9e6f5;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui: 'Jost', 'Trebuchet MS', sans-serif;
+}
+
+@layer components {
+  .bg-gradient {
+    background-image: linear-gradient(
+      90deg,
+      rgba(242, 47, 115, 0.5) 0%,
+      rgba(239, 156, 115, 0.5) 50%,
+      rgba(242, 47, 115, 0.5) 100%
+    ),
+    url('/noise.svg'),
+    linear-gradient(
+      90deg,
+      rgba(242, 47, 115, 1) 0%,
+      rgba(239, 156, 115, 1) 50%,
+      rgba(242, 47, 115, 1) 100%
+    );
+    filter: saturate(2);
+  }
+  .bg-gradient-radial {
+    background-image: radial-gradient(
+      circle,
+      rgba(239, 156, 115, 0.5) 0%,
+      rgba(242, 47, 115, 0.5) 100%
+    ),
+    url('/noise.svg'),
+    radial-gradient(
+      circle,
+      rgba(239, 156, 115, 1) 0%,
+      rgba(242, 47, 115, 1) 100%
+    );
+    filter: saturate(2);
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-text-primary, currentcolor);
+  }
+}
+
+@layer base {  button:not(:disabled),  [role="button"]:not(:disabled) {    cursor: pointer;  }}
+@layer base {  input:disabled,  [role="input"]:disabled, [type="submit"]:disabled {    cursor: not-allowed;  }}
+
+body {
+  margin: 0;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+}
+
+/* live's decorative page chrome (cream ground, violet frame, Fraunces/Jost
+   type) is scoped to .live-page rather than bare `body` so it doesn't leak
+   onto 2025's untouched admin/facilitator/my-fact/gallery pages, which use
+   the plain body rule above instead. */
+.live-page {
+  min-height: 100vh;
+  font-family: var(--font-ui);
+  background: var(--color-cream-100);
+  border: clamp(8px, 1.1vw, 13px) solid rgba(75, 28, 113, 0.88);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
