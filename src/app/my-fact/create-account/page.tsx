@@ -1,7 +1,6 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Navbar from "@/components/navigation/Navbar";
 import SchoolSelect from "@/components/ui/SchoolSelect";
 import Select from "@/components/ui/Select";
 import TextInput from "@/components/ui/TextInput";
@@ -13,7 +12,6 @@ import { useRequestEmailVerification } from "@/hooks/api/useRequestEmailVerifica
 import { useVerifyEmail } from "@/hooks/api/useVerifyEmail";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/formatting/PageFooter";
 import { createAccountProps, useCreateAccount } from "@/hooks/api/useCreateAccount";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 
@@ -61,7 +59,7 @@ export default function CreateAccount() {
     }, [formData.school_id, isSuccess]);
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Create Account">
             {!emailVerified && (
                 <FormContainer
                     submitText={verificationRequested ? "Verify" : "Next"}
@@ -84,7 +82,7 @@ export default function CreateAccount() {
                             : requestError?.message
                     }
                 >
-                    <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Create Account</div>
+                    <h1 className="text-center pb-4 border-b w-full">Create Account</h1>
                     <TextInput
                         label="Email"
                         id="email"

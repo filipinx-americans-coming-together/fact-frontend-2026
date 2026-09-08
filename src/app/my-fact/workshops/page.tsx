@@ -1,10 +1,8 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Footer from "@/components/formatting/PageFooter";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import LoadingCircle from "@/components/icons/LoadingCircle";
-import Navbar from "@/components/navigation/Navbar";
 import WorkshopSelect from "@/components/ui/WorkshopSelect";
 import { UpdateUserProps, useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUser } from "@/hooks/api/useUser";
@@ -40,7 +38,7 @@ export default function Workshops() {
     }, [isSuccess, noUser, user]);
 
     return (
-        user?.registration && <RegPageContainer>
+        user?.registration && <RegPageContainer pageTitle="Edit Workshops">
             <FormContainer
                 submitText="Save Changes"
                 formName="updateWorkshops"
@@ -50,7 +48,7 @@ export default function Workshops() {
                 isLoading={isPending}
                 errorMessage={error?.message}
             >
-                <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Edit Workshops</div>
+                <h1 className="text-center pb-4 border-b w-full">Edit Workshops</h1>
 
                 {!user && <LoadingCircle />}
                 {user && (

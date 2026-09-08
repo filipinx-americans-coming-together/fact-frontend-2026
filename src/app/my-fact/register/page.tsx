@@ -1,36 +1,57 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Navbar from "@/components/navigation/Navbar";
 import SchoolSelect from "@/components/ui/SchoolSelect";
 import Select from "@/components/ui/Select";
 import TextInput from "@/components/ui/TextInput";
 import WorkshopSelect from "@/components/ui/WorkshopSelect";
 
 import { registrationProps, useRegister } from "@/hooks/api/useRegister";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { useRequestEmailVerification } from "@/hooks/api/useRequestEmailVerification";
 import { useVerifyEmail } from "@/hooks/api/useVerifyEmail";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Footer from "@/components/formatting/PageFooter";
+import { useRouter, useSearchParams } from "next/navigation";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import Script from "next/script";
 import LinkButton from "@/components/ui/LinkButton";
 import LoadingCircle from "@/components/icons/LoadingCircle";
 import { useUser } from "@/hooks/api/useUser";
+import { useVerifyPayment } from "@/hooks/api/useVerifyPayment";
 import InteractiveButton from "@/components/ui/InteractiveButton";
 import { PiArrowElbowRightDownBold } from "react-icons/pi";
+import { API_URL } from "@/util/constants";
+import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
+import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
 
 export default function Register() {
+    return (
+        <Suspense fallback={<div className="mx-auto w-fit p-4"><LoadingCircle /></div>}>
+            <RegisterForm />
+        </Suspense>
+    );
+}
+
+function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
     const { user, isLoading, error : userError } = useUser();
+    const { verifyPaymentAsync, isPending: verifyPending } = useVerifyPayment();
+    const { status: delegateStatus } = useDelegateStatus();
+    const {
+        getPromoCode,
+        data: promoCodeResult,
+        isPending: promoCodePending,
+        error: promoCodeError,
+    } = useUiucPromoCode();
+    const searchParams = useSearchParams();
+    const uiucError = searchParams.get("uiuc_error");
 
     const [checkoutComplete, setCheckoutComplete] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
     const [loadEB, setLoadEB] = useState(false);
     const [ticketType, setTicketType] = useState(false);
+    const currentTicketType = ticketType ? "workshop" : "bundle";
     // Load the Eventbrite widgets script
     const loadEventbriteScript = () => {
         const script = document.createElement("script");
@@ -108,6 +129,33 @@ export default function Register() {
             router.push("/my-fact/dashboard");
         }
     }, [isSuccess])
+
+    // Eventbrite's onOrderComplete passes the order it just created — we
+    // verify that order server-side (POST /registration/verify-payment/)
+    // before treating checkout as done, instead of trusting the client-side
+    // callback firing at all. This is the actual fix for last year's "anyone
+    // could get in for free" gap: payment_status is never set by anything
+    // the browser says, only by the backend confirming the order with
+    // Eventbrite itself.
+    const handleOrderComplete = async (orderData: any) => {
+        const orderId = orderData?.orderId ?? orderData?.order_id;
+
+        if (!orderId) {
+            setClientError(
+                "Could not read your Eventbrite order — please contact FACT IT."
+            );
+            return;
+        }
+
+        try {
+            await verifyPaymentAsync(orderId);
+            setCheckoutComplete(true);
+        } catch (e: any) {
+            setClientError(
+                e?.message || "Could not verify your payment with Eventbrite."
+            );
+        }
+    };
     useEffect(() => {
         if (userError) {
             router.push("/my-fact/login")
@@ -119,7 +167,7 @@ export default function Register() {
     }, [userError, user])
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Register for FACT">
 
             <FormContainer
                 submitText="Register"
@@ -136,7 +184,7 @@ export default function Register() {
                 isLoading={isPending}
                 errorMessage={clientError || error?.message}
             >
-                <h1 className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Register for FACT</h1>
+                <h1 className="text-center pb-4 border-b w-full">Register for FACT</h1>
 
                 
                 {/* <div className="text-center">Workshop Selection</div> */}
@@ -271,16 +319,74 @@ export default function Register() {
                         <button onClick={() => setTicketType(false)} type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops + Variety Show Bundle</button>
                     </div>
                     <br/>
+
+                    <div className="w-fit mx-auto max-w-md flex flex-col items-center gap-2 text-center p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
+                        {uiucError === "already_linked" && (
+                            <p className="text-red-600 text-sm">
+                                That UIUC NetID is already linked to a different FACT account.
+                            </p>
+                        )}
+
+                        {!delegateStatus?.is_uiuc_verified ? (
+                            <>
+                                <p className="text-sm">UIUC student? Verify your NetID for a discount code.</p>
+                                <a
+                                    href={`${API_URL}/saml/login/`}
+                                    className="pill pill--ink"
+                                >
+                                    Verify UIUC Status
+                                </a>
+                            </>
+                        ) : delegateStatus.has_unredeemed_promo?.[currentTicketType] ? (
+                            <>
+                                <p className="text-sm">Your UIUC discount code for this ticket:</p>
+                                <p className="text-lg font-bold">
+                                    {delegateStatus.has_unredeemed_promo[currentTicketType]}
+                                </p>
+                                <p className="text-xs text-slate-600">
+                                    Enter this code in the Eventbrite checkout below.
+                                </p>
+                            </>
+                        ) : promoCodeResult?.ticket_type === currentTicketType ? (
+                            <>
+                                <p className="text-sm">Your UIUC discount code for this ticket:</p>
+                                <p className="text-lg font-bold">{promoCodeResult.code}</p>
+                                <p className="text-xs text-slate-600">
+                                    Enter this code in the Eventbrite checkout below.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-sm">
+                                    For UIUC Students: Verify your status and get your discount code!
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={() => getPromoCode(currentTicketType)}
+                                    className="pill pill--ink"
+                                    disabled={promoCodePending}
+                                >
+                                    {promoCodePending ? "Getting code..." : "Get My Discount Code"}
+                                </button>
+                                {promoCodeError && (
+                                    <p className="text-red-600 text-xs">{promoCodeError.message}</p>
+                                )}
+                            </>
+                        )}
+                    </div>
+
+                    <br/>
+                    {verifyPending && (
+                        <div className="text-center text-sm text-slate-700">
+                            Verifying your payment with Eventbrite...
+                        </div>
+                    )}
                     {loadEB ?
                     <div className="mx-auto w-full">
                         {ticketType ? <EventbriteWidgetWks
-                        onComplete={() => {
-                            setCheckoutComplete(true);
-                        }}/> : 
-                        
-                        <div><div className="text-sm"> For Variety Show, you will not have to sit in your assigned seat (row & number), but you will have to sit in your assigned section (1-4). Please choose the seat for your ticket accordingly. The entire seat map of the Foellinger Auditorium floor is detailed for your visualization</div><br/><div className="w-fit mx-auto text-sm text-slate-700 flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={() => {
-                            setCheckoutComplete(true);
-                        }}/></div>} </div>
+                        onComplete={handleOrderComplete}/> :
+
+                        <div><div className="text-sm"> For Variety Show, you will not have to sit in your assigned seat (row & number), but you will have to sit in your assigned section (1-4). Please choose the seat for your ticket accordingly. The entire seat map of the Foellinger Auditorium floor is detailed for your visualization</div><br/><div className="w-fit mx-auto text-sm text-slate-700 flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
                     : <div className="w-fit mx-auto"><LoadingCircle/></div>}</div>
                 }
             </FormContainer>

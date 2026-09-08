@@ -3,7 +3,6 @@
 import UserAgenda from "@/components/formatting/UserAgenda";
 import WorkshopCard from "@/components/formatting/WorkshopCard";
 import LoadingCircle from "@/components/icons/LoadingCircle";
-import Navbar from "@/components/navigation/Navbar";
 import InteractiveButton from "@/components/ui/InteractiveButton";
 import LinkButton from "@/components/ui/LinkButton";
 import { useLogout } from "@/hooks/api/useLogout";
@@ -46,7 +45,7 @@ export default function Dashboard() {
 
     return (
         <div>
-        <RegPageContainer>
+        <RegPageContainer pageTitle="My Dashboard">
             {user ?
             <>
             {notifications && (
@@ -96,7 +95,7 @@ export default function Dashboard() {
                     </div>
                     <UserAgenda/>
                     </div> : <div className="flex flex-col gap-4 items-center">
-                        <Link href="/my-fact/register" className="py-4 px-6 shadow-lg hover:shadow-xl font-bold bg-[rgba(255,255,255,0.3)] rounded-xl w-fit mx-auto text-xl">Register for FACT 2025</Link>
+                        <Link href="/my-fact/register" className="py-4 px-6 shadow-lg hover:shadow-xl font-bold bg-[rgba(255,255,255,0.3)] rounded-xl w-fit mx-auto text-xl">Register for FACT 2026</Link>
                         <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center">Just finished registering? Refresh the page to load the dashboard <div className="text-lg"><IoMdRefresh /></div></div>
                         </div>
                      }

@@ -53,7 +53,7 @@ export default function Agenda() {
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-slate-50 text-black">
+            <div className="fact-form-page min-h-screen">
                 <div className="w-9/12 mx-auto text-center">
                     <h1 className="py-6 text-xl">Agenda</h1>
 

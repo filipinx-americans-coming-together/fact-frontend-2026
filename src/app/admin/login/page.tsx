@@ -1,10 +1,9 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Navbar from "@/components/navigation/Navbar";
+import RegPageContainer from "@/components/formatting/RegPageContainer";
 import TextInput from "@/components/ui/TextInput";
 import { useAdminLogin } from "@/hooks/api/useAdminLogin";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -24,45 +23,37 @@ export default function AdminLogin() {
     }, [isSuccess]);
 
     return (
-        <div className="min-h-screen bg-slate-50 text-black">
-            <div className="bg-background-primary w-full">
-                <Navbar />
-            </div>
-            <div className="w-9/12 mx-auto">
-                <br />
-                <FormContainer
-                    submitText="Log in"
-                    formName="loginForm"
-                    onSubmit={() => {
-                        login(
-                            formData as { username: string; password: string }
-                        );
-                    }}
-                    isLoading={isPending}
-                    errorMessage={error?.message}
-                >
-                    <div className="text-center">Admin Login</div>
-                    <TextInput
-                        label="Username"
-                        id="username"
-                        setState={setFormData}
-                    />
-                    <TextInput
-                        label="Password"
-                        id="password"
-                        showCharacters={false}
-                        setState={setFormData}
-                    />
-                    <Link
-                        href="/my-fact/forgot-password"
-                        className="underline text-highlight-secondary text-xs hover:text-highlight-primary"
-                    >
-                        Forgot Password
-                    </Link>
+        <RegPageContainer pageTitle="Admin Login" pageSubtitle="Access the FACT admin tools.">
+            <FormContainer
+                submitText="Log in"
+                formName="loginForm"
+                onSubmit={() => {
+                    login(
+                        formData as { username: string; password: string }
+                    );
+                }}
+                isLoading={isPending}
+                errorMessage={error?.message}
+            >
+                <h1 className="text-center pb-4 border-b w-full">Admin Login</h1>
+                <TextInput
+                    label="Username"
+                    id="username"
+                    setState={setFormData}
+                />
+                <TextInput
+                    label="Password"
+                    id="password"
+                    showCharacters={false}
+                    setState={setFormData}
+                />
+                <p className="text-center text-slate-700 text-xs">
+                    Forgot your password? Ask another admin to reset it for you
+                    from the Promote Admin page.
+                </p>
 
-                    <br />
-                </FormContainer>
-            </div>
-        </div>
+                <br />
+            </FormContainer>
+        </RegPageContainer>
     );
 }

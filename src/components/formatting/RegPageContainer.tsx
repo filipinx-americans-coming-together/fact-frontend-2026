@@ -1,30 +1,33 @@
 import { ReactNode } from "react";
-import PageHeader from "./PageHeader";
-import Navbar from "../navigation/Navbar";
-import Footer from "./PageFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 interface RegPageContainerProps {
     children: ReactNode;
+    pageTitle: string;
+    pageSubtitle?: string;
     background?: string;
 }
 
 /**
- * Formatting container for website pages
+ * Formatting container for the delegate/facilitator registration flow.
+ * Wraps pages in the same compact-hero + footer chrome as the confirmed
+ * 2026 marketing pages (About, Workshops, etc.) — see DESIGN.md.
  * @param children page content
  * @returns PageContainer
  */
-export default function RegPageContainer({ children, background="bg-gradient mask-(--background-image-blurry-3) mask-size-[1400px] mask-top" }: RegPageContainerProps) {
+export default function RegPageContainer({ children, pageTitle, pageSubtitle, background="bg-[var(--cream-100)]" }: RegPageContainerProps) {
     return (
-        <div className={`h-fit w-screen relative`}>
-            
+        <div className={`fact-form-page h-fit w-screen relative`}>
+
             <div className="flex flex-col min-h-screen justify-between gap-10 lg:gap-15">
-            <Navbar />
+            <SiteHeader compact pageTitle={pageTitle} pageSubtitle={pageSubtitle} />
             {background && <div className={`-z-10 absolute inset-0 w-full grow ${background}`}></div>}
                 {background && <div className="relative">
                         {children}
                 </div>}
                 {!background && <div>{children}</div>}
-            <Footer />
+            <SiteFooter />
             </div>
         </div>
     );

@@ -2,7 +2,6 @@
 
 import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
-import Navbar from "@/components/navigation/Navbar";
 import TextInput from "@/components/ui/TextInput";
 import { useRequestPasswordReset } from "@/hooks/api/useRequestPasswordReset";
 import { useState } from "react";
@@ -16,7 +15,7 @@ export default function ForgotPassword() {
     });
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Forgot Password">
 
             {isSuccess ? (
                 <div className="w-7/12 min-w-[460px] px-20 py-12 bg-[rgba(240,240,240,0.3)] m-auto rounded-lg">
@@ -40,7 +39,7 @@ export default function ForgotPassword() {
                     isLoading={isPending}
                     errorMessage={error?.message}
                 >
-                    <h1 className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Reset Password</h1>
+                    <h1 className="text-center pb-4 border-b w-full">Reset Password</h1>
                     <TextInput
                         label="Email"
                         id="email"

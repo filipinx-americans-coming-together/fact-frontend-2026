@@ -11,7 +11,7 @@ export default function Button({
 }) {
     return (
         <button
-            className="bg-slate-900 text-slate-50 px-8 py-1 rounded-sm hover:bg-slate-700"
+            className="pill pill--ink"
             type={isSubmit ? "submit" : "button"}
             onClick={(event) => {
                 onClick(event);

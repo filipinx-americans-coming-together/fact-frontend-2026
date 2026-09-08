@@ -31,7 +31,7 @@ export default function Workshops() {
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-slate-50 text-black">
+            <div className="fact-form-page min-h-screen">
                 <div className="w-9/12 mx-auto">
                     <h1 className="py-6 text-xl">Workshops</h1>
                     <br />

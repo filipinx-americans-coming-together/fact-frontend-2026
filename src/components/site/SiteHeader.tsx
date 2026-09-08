@@ -30,7 +30,7 @@ export function SiteHeader(props: SiteHeaderProps) {
       <div className="hero__topbar">
         <p className="hero__eventline">FACT 2026 · Oct. 16&nbsp;&ndash;&nbsp;18, 2026</p>
         <div className="countdown" id="countdown" role="timer" aria-live="polite" aria-label="Time until FACT 2026">
-          <span className="countdown__value" id="countdown-value">
+          <span className="countdown__value" id="countdown-value" suppressHydrationWarning>
             &mdash;
           </span>
           <span className="countdown__label">Until FACT</span>

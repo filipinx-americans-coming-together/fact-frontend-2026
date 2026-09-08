@@ -10,7 +10,9 @@ const LINKS: { label: string; url: string }[] = [
     { label: "Locations", url: "/admin/locations" },
     { label: "Schools", url: "/admin/schools" },
     { label: "Agenda", url: "/admin/agenda" },
-    { label: "Facilitator Accounts", url: "/admin/facilitator-accounts"}
+    { label: "Facilitator Accounts", url: "/admin/facilitator-accounts"},
+    { label: "Day-Of Registration", url: "/admin/day-of"},
+    { label: "Promote Admin", url: "/admin/accounts"},
 ];
 
 export default function Navbar() {
@@ -18,9 +20,21 @@ export default function Navbar() {
     const router = useRouter();
 
     return (
-        <div className="w-full bg-text-primary text-sm text-background-primary flex justify-evenly border-b-2 items-center p-4">
+        <div
+            className="w-full text-sm flex flex-wrap justify-evenly items-center gap-3 p-4"
+            style={{
+                background: "linear-gradient(180deg, var(--violet-800) 0%, var(--ink-900) 100%)",
+                color: "var(--cream-100)",
+                fontFamily: "var(--font-ui)",
+                borderBottom: "1px solid rgba(255,255,255,0.18)",
+            }}
+        >
             {LINKS.map((link) => (
-                <Link key={link.label} href={link.url}>
+                <Link
+                    key={link.label}
+                    href={link.url}
+                    className="hover:text-[var(--orchid-400)]"
+                >
                     {link.label}
                 </Link>
             ))}

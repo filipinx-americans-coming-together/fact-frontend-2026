@@ -37,7 +37,7 @@ export default function AdminDashboard() {
 
     // dashboard
     return (
-        <div className="min-h-screen bg-slate-50 text-black">
+        <div className="fact-form-page min-h-screen">
             <Navbar />
             <div className="w-9/12 mx-auto">
                 <br />

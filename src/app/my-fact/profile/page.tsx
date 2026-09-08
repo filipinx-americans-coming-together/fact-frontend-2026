@@ -1,10 +1,8 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Footer from "@/components/formatting/PageFooter";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import LoadingCircle from "@/components/icons/LoadingCircle";
-import Navbar from "@/components/navigation/Navbar";
 import SchoolSelect from "@/components/ui/SchoolSelect";
 import Select from "@/components/ui/Select";
 import TextInput from "@/components/ui/TextInput";
@@ -65,7 +63,7 @@ export default function Profile() {
     }, [isSuccess, noUser]);
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Edit Profile">
             <FormContainer
                 submitText="Save Changes"
                 formName="updateProfile"
@@ -75,7 +73,7 @@ export default function Profile() {
                 isLoading={isPending}
                 errorMessage={error?.message}
             >
-                <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Edit Profile</div>
+                <h1 className="text-center pb-4 border-b w-full">Edit Profile</h1>
 
                 {!user && <LoadingCircle />}
 
@@ -160,7 +158,7 @@ export default function Profile() {
                 isLoading={verificationPending || requestPending}
                 errorMessage={verificationError?.message}
             >
-                <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Update Email</div>
+                <h2 className="text-center pb-4 border-b w-full">Update Email</h2>
 
                 <TextInput
                     label="Email"
@@ -198,7 +196,7 @@ export default function Profile() {
                 isLoading={isPending}
                 errorMessage={error?.message}
             >
-                <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">Update Password</div>
+                <h2 className="text-center pb-4 border-b w-full">Update Password</h2>
                 <p className="text-center text-xs text-slate-700">
                     After updating your password you will be asked to log in
                     again.

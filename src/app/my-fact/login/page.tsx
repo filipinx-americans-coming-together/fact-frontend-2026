@@ -1,9 +1,7 @@
 "use client";
 
 import FormContainer from "@/components/formatting/FormContainer";
-import Footer from "@/components/formatting/PageFooter";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
-import Navbar from "@/components/navigation/Navbar";
 import TextInput from "@/components/ui/TextInput";
 import { useFacilitatorLogin } from "@/hooks/api/useFacilitatorLogin";
 import { useLogin } from "@/hooks/api/useLogin";
@@ -40,15 +38,15 @@ export default function Login() {
     }, [isSuccess, error, facilitatorSuccess]);
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Log In" pageSubtitle="Access your FACT account.">
 
             {/* toggle log in type */}
-            <div className="mx-auto p-2 border-2 border-highlight-2-secondary rounded-sm w-fit flex gap-4">
+            <div className="mx-auto p-2 border-2 border-[var(--violet-800)] rounded-sm w-fit flex gap-4">
                 <button
                     type="button"
                     className={
                         (isDelegate
-                            ? "bg-highlight-2-secondary text-background-primary rounded-sm"
+                            ? "bg-[var(--violet-800)] text-[var(--cream-100)] rounded-sm"
                             : "") + " py-2 px-4"
                     }
                     onClick={(event) => {
@@ -62,7 +60,7 @@ export default function Login() {
                     type="button"
                     className={
                         (!isDelegate
-                            ? "bg-highlight-2-secondary text-background-primary rounded-sm"
+                            ? "bg-[var(--violet-800)] text-[var(--cream-100)] rounded-sm"
                             : "") + " py-2 px-4"
                     }
                     onClick={(event) => {
@@ -108,7 +106,7 @@ export default function Login() {
 
                 <Link
                     href="/my-fact/forgot-password"
-                    className="underline text-slate-700 text-xs hover:text-highlight-2-primary"
+                    className="underline text-slate-700 text-xs hover:text-[var(--violet-800)]"
                 >
                     Forgot Password?
                 </Link>
@@ -120,7 +118,7 @@ export default function Login() {
                             New to FACT?{" "}
                             <a
                                 href="/my-fact/create-account"
-                                className="underline hover:text-highlight-2-primary"
+                                className="underline hover:text-[var(--violet-800)]"
                             >
                                 Create an account
                             </a>

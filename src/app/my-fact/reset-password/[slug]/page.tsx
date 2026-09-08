@@ -2,7 +2,6 @@
 
 import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
-import Navbar from "@/components/navigation/Navbar";
 import TextInput from "@/components/ui/TextInput";
 import { useResetPassword } from "@/hooks/api/useResetPassword";
 import { useRouter } from "next/navigation";
@@ -38,7 +37,7 @@ export default function ResetPassword({
     }, [isSuccess]);
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Reset Password">
             <FormContainer
                 submitText="Reset Password"
                 formName="setPassword"

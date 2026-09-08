@@ -1,12 +1,11 @@
 "use client";
-import Navbar from "@/components/navigation/Navbar";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import InteractiveButton from "@/components/ui/InteractiveButton";
 import FacilitatorRegistration from "../components/FacilitatorRegistration";
 import { useLogout } from "@/hooks/api/useLogout";
 import { useFacilitatorUser } from "@/hooks/api/useFacilitatorUser";
 import { useWorkshops } from "@/hooks/api/useWorkshops";
 import { useMemo, useState } from "react";
-import ForbiddenPage from "@/components/formatting/ForbiddenPage";
 import LoadingCircle from "@/components/icons/LoadingCircle";
 import WorkshopInfo from "../components/WorkshopInfo";
 import { useRouter } from "next/navigation";
@@ -73,7 +72,7 @@ export default function FacilitatorDashboard() {
     if (isLoading) {
         return (
             <>
-                <Navbar />
+                <SiteHeader compact pageTitle="Facilitator Dashboard" />
                 <div className="my-2 w-fit mx-auto">
                     <LoadingCircle />
                 </div>
@@ -82,17 +81,21 @@ export default function FacilitatorDashboard() {
     }
 
     if (!user) {
-        return <ForbiddenPage />;
+        return (
+            <RegPageContainer pageTitle="Facilitator Dashboard">
+                <p className="text-center">
+                    You are not permitted to view this page. If you think
+                    this is a mistake, please try logging in again.
+                </p>
+            </RegPageContainer>
+        );
     }
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle={user.facilitator.department_name}>
             <div className="bg-[rgba(240,240,240,0.3)] py-8 px-12 rounded-xl w-9/12 mx-auto flex flex-col items-left gap-10">
                 <div className="flex flex-col md:flex-row md:justify-between gap-2">
-                    <h1 className="text-4xl font-bold">
-                        {user.facilitator.department_name}
-                    </h1>
-                    <div className="w-fit">
+                    <div className="w-fit ml-auto">
                         <InteractiveButton
                             text="Log Out"
                             onClick={() => {
@@ -104,7 +107,7 @@ export default function FacilitatorDashboard() {
                 </div>
 
                 <div>
-                    <h1 className="text-xl font-bold w-full border-b-2 pb-2 border-highlight-2-secondary">
+                    <h1 className="text-xl font-bold w-full border-b-2 pb-2" style={{ borderColor: "var(--hairline-on-light)" }}>
                         Your Workshops
                     </h1>
                     <br />

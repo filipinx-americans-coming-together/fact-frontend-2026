@@ -2,7 +2,6 @@
 
 import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
-import Navbar from "@/components/navigation/Navbar";
 import TextInput from "@/components/ui/TextInput";
 import { useSetUpFacilitatorAccount } from "@/hooks/api/useSetUpFacilitatorAccount";
 import { useRouter } from "next/navigation";
@@ -38,7 +37,7 @@ export default function FacilitatorAccountSetUp({
     }, [isSuccess]);
 
     return (
-        <RegPageContainer>
+        <RegPageContainer pageTitle="Set Up Your Account">
             <FormContainer
                 submitText="Confirm"
                 formName="setUpFacilitatorAccount"

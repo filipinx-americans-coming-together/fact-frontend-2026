@@ -26,6 +26,13 @@ export function SiteFooter() {
             <Image src="/images/nav-mark.png" alt="" width={40} height={40} />
           </Link>
           <p className="footer__line">Made with love by the Philippine Student Association UIUC</p>
+          <Link
+            href="/admin/login"
+            className="text-xs"
+            style={{ color: "rgba(255,255,255,0.5)" }}
+          >
+            Admin
+          </Link>
         </div>
         <div className="footer__col footer__col--nav">
           <ul className="footer__links">
