@@ -3,12 +3,15 @@
 import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import TextInput from "@/components/ui/TextInput";
+import LoadingCircle from "@/components/icons/LoadingCircle";
 import { useAdminLogin } from "@/hooks/api/useAdminLogin";
+import { useAdminUser } from "@/hooks/api/useAdminUser";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function AdminLogin() {
     const { login, error, isPending, isSuccess } = useAdminLogin();
+    const { user: existingAdmin, isLoading: checkingExisting } = useAdminUser();
     const router = useRouter();
 
     const [formData, setFormData] = useState<Object>({
@@ -17,10 +20,21 @@ export default function AdminLogin() {
     });
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccess || existingAdmin) {
             router.push("/admin/dashboard");
         }
-    }, [isSuccess]);
+    }, [isSuccess, existingAdmin]);
+
+    // Already authenticated as an admin (e.g. logged in via /my-fact/login
+    // with an account that's in FACTAdmin — same shared session either way)
+    // — skip the form instead of asking to log in again.
+    if (checkingExisting || existingAdmin) {
+        return (
+            <div className="mx-auto w-fit p-4">
+                <LoadingCircle />
+            </div>
+        );
+    }
 
     return (
         <RegPageContainer pageTitle="Admin Login" pageSubtitle="Access the FACT admin tools.">

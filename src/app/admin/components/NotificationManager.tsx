@@ -50,13 +50,18 @@ export default function NotificationManager() {
                 errorMessage={error?.message}
             >
                 <div className="flex flex-col gap-2 justify-between md:flex-row">
-                    <TextInput
-                        label="Message"
-                        id="message"
-                        setState={setFormData}
-                        maxLength={180}
-                        showCharacters
-                    />
+                    <div className="flex flex-col gap-1">
+                        <TextInput
+                            label="Message"
+                            id="message"
+                            setState={setFormData}
+                            maxLength={180}
+                            showMaxLength
+                        />
+                        <p className="text-xs text-slate-600">
+                            10–180 characters
+                        </p>
+                    </div>
                     <DateTimeInput
                         label="Expiration"
                         id="expiration"
