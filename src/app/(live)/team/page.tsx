@@ -14,9 +14,9 @@ type Member = { name: string; photo?: string; photoPosition?: string; photoZoom?
 
 const GROUPS: { id: string; name: string; gloss?: string; role: string; groupPhoto?: string; members: Member[] }[] = [
   {
-    id: 'directors',
-    name: 'Directors',
-    role: 'Director',
+    id: 'coordinators',
+    name: 'Coordinators',
+    role: 'Coordinator',
     groupPhoto: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/team/group-directors.jpg',
     members: [
       {
