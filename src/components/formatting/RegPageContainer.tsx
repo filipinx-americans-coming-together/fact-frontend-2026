@@ -18,7 +18,7 @@ interface RegPageContainerProps {
  */
 export default function RegPageContainer({ children, pageTitle, pageSubtitle, background="bg-[var(--cream-100)]" }: RegPageContainerProps) {
     return (
-        <div className={`fact-form-page h-fit w-screen relative`}>
+        <div className={`fact-form-page h-fit w-full relative`}>
 
             <div className="flex flex-col min-h-screen justify-between gap-10 lg:gap-15">
             <SiteHeader compact pageTitle={pageTitle} pageSubtitle={pageSubtitle} />

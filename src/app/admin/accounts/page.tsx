@@ -46,7 +46,7 @@ export default function Accounts() {
                     <h1 className="text-xl">Promote to Admin</h1>
                     <p className="text-sm text-slate-600 max-w-2xl">
                         The person must already have a FACT account. They'll
-                        get an email with a link to accept — nothing changes
+                        get an email with a link to accept, and nothing changes
                         until they click it.
                     </p>
                     <br />
@@ -90,7 +90,7 @@ export default function Accounts() {
 
                     <h1 className="text-xl">Reset Another Admin's Password</h1>
                     <p className="text-sm text-slate-600 max-w-2xl">
-                        There's no self-service admin password reset — send a
+                        There's no self-service admin password reset, so send a
                         reset link to another admin's email instead. Nothing
                         changes until they click it and choose a new password.
                     </p>

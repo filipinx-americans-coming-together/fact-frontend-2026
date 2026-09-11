@@ -28,8 +28,8 @@ export default function PromoteConfirm({
                     <>
                         <p>
                             Someone at FACT has requested that your account be
-                            given admin access. Nothing has changed yet —
-                            click below to accept.
+                            given admin access. Nothing has changed yet.
+                            Click below to accept.
                         </p>
 
                         {isPending ? (

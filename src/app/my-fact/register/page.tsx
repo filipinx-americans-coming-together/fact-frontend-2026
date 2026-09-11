@@ -142,7 +142,7 @@ function RegisterForm() {
 
         if (!orderId) {
             setClientError(
-                "Could not read your Eventbrite order — please contact FACT IT."
+                "Could not read your Eventbrite order. Please contact FACT IT."
             );
             return;
         }

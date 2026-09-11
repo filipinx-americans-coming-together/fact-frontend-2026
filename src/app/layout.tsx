@@ -6,7 +6,7 @@ import { LiveSiteInteractions } from "@/components/LiveSiteInteractions";
 export const metadata: Metadata = {
     title: "FACT 2026 · Mahiwagahan",
     description:
-        "Filipinx Americans Coming Together — FACT 2026, Mahiwagahan (Enchanting Our Bright Minds). Oct. 16–18, 2026, University of Illinois Urbana–Champaign. Presented by the Philippine Student Association at UIUC.",
+        "FACT 2026: Filipinx Americans Coming Together, Mahiwagahan (Enchanting Our Bright Minds). Oct. 16–18, 2026, University of Illinois Urbana–Champaign. Presented by the Philippine Student Association at UIUC.",
 };
 
 export default function RootLayout({

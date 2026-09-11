@@ -56,6 +56,15 @@ export function SiteFooter() {
       </div>
       <div className="footer__legalrow">
         <p className="footer__legal">© 2026 Philippine Student Association, University of Illinois Urbana-Champaign.</p>
+        <a
+          className="footer__legal"
+          href="https://mailchi.mp/cfe8f7c8506d/fact-2026-newsletter-signup"
+          target="_blank"
+          rel="noopener"
+          style={{ display: 'block', marginTop: '0.5rem', textDecoration: 'underline' }}
+        >
+          Subscribe to our newsletter
+        </a>
       </div>
     </footer>
   );

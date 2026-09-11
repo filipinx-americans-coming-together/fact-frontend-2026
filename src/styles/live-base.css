@@ -632,10 +632,10 @@ main::before {
 
 /* ---------- Desktop nav ---------- */
 
-/* The nav has too little in it right now (one live link) to justify
-   hiding it behind a trigger. It sits inline in the topbar; the toggle
-   only exists for widths where the link row won't fit. */
-@media (min-width: 900px) {
+/* The nav sits inline in the topbar once there's room for the full row
+   (logo + links + social + Login + Donate); the toggle only exists for
+   widths where that row won't fit. */
+@media (min-width: 1150px) {
   .hero__navtoggle {
     display: none;
   }
@@ -673,11 +673,9 @@ main::before {
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 900px) {
-  /* Below 900px the docked drawer stays a compact anchored panel — with
-     one link in it today, a full-bleed sheet would read as mostly empty.
-     Kept small and deliberate; grows to a wider list again once more
-     pages are live without needing a rebuild. */
+@media (max-width: 1149px) {
+  /* Below 1150px the docked drawer stays a compact anchored panel rather
+     than a full-bleed sheet, since the link list is still short. */
   .hero__actions {
     flex-direction: row;
   }

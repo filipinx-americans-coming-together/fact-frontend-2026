@@ -7,7 +7,7 @@ import { InstagramIcon } from '@/components/site/SocialIcon';
 
 export const metadata: Metadata = {
   title: 'Palengke · FACT 2026',
-  description: "FACT's cultural night market — food, crafts, and community, right on campus.",
+  description: "FACT's cultural night market: food, crafts, and community, right on campus.",
 };
 
 const GROUPS: { name: string; vendors: { name: string; theme: string }[] }[] = [
@@ -44,7 +44,7 @@ export default function PalengkePage() {
       <SiteHeader
         compact
         pageTitle="Palengke"
-        pageSubtitle="FACT's cultural night market — food, crafts, and community, right on campus."
+        pageSubtitle="FACT's cultural night market: food, crafts, and community, right on campus."
       />
 
       <main id="below">
@@ -65,7 +65,7 @@ export default function PalengkePage() {
           </svg>
           <div className="section__inner">
             <p className="section__intro">
-              Vendors, themes, and social handles below are illustrative placeholders — the real Palengke lineup is
+              Vendors, themes, and social handles below are illustrative placeholders, and the real Palengke lineup is
               confirmed closer to FACT 2026 by the Palengke committee.
             </p>
 

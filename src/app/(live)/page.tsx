@@ -61,7 +61,7 @@ export default function Home() {
                 <h2 className="venue__heading">Discover FACT 2026</h2>
                 <p className="venue__meta">October 16&ndash;18 &middot; University of Illinois Urbana&ndash;Champaign</p>
                 <p className="venue__text">
-                  FACT &mdash; Filipinx Americans Coming Together &mdash; is three days on campus: workshops,
+                  FACT (Filipinx Americans Coming Together) is three days on campus: workshops,
                   culture, and community, at the heart of the Midwest&rsquo;s largest Filipinx-interest conference.
                 </p>
                 <a className="pill pill--ink venue__button" href="/about">
@@ -138,9 +138,17 @@ export default function Home() {
               <h2 className="section__heading">Ready for FACT 2026?</h2>
               <div className="section__rule" aria-hidden="true" />
               <p className="cta__text">
-                Registration opens soon &mdash; we&apos;re putting our newsletter together so you can be the first to
-                know when it does. Stay tuned.
+                Registration opens soon, so sign up for our newsletter to be the first to know when it does!
               </p>
+              <a
+                className="pill pill--solid"
+                href="https://mailchi.mp/cfe8f7c8506d/fact-2026-newsletter-signup"
+                target="_blank"
+                rel="noopener"
+                style={{ marginTop: '1.25rem' }}
+              >
+                Subscribe to our newsletter
+              </a>
             </div>
           </div>
         </section>

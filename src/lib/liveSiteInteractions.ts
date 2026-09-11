@@ -82,7 +82,7 @@ export function initLiveSiteInteractions(): () => void {
     const reason = el.getAttribute('title') || 'Not available yet';
     disabledAnnouncer.textContent = '';
     window.setTimeout(() => {
-      if (disabledAnnouncer) disabledAnnouncer.textContent = `${label} — ${reason}`;
+      if (disabledAnnouncer) disabledAnnouncer.textContent = `${label}: ${reason}`;
     }, 50);
   };
 
@@ -546,6 +546,84 @@ export function initLiveSiteInteractions(): () => void {
       trailerTrigger.removeEventListener('click', openTrailer);
       closeEls.forEach((el) => el.removeEventListener('click', closeTrailer));
       document.removeEventListener('keydown', onTrailerKeydown);
+    });
+  }
+
+  // ---------- Team member modal ----------
+  const teamModal = document.getElementById('team-modal');
+  const teamTriggers = Array.from(document.querySelectorAll<HTMLElement>('[data-team-open]'));
+
+  if (teamModal && teamTriggers.length) {
+    const teamPhoto = document.getElementById('team-modal-photo');
+    const teamPhotoPlaceholder = teamPhoto?.firstElementChild ?? null;
+    const teamName = document.getElementById('team-modal-name');
+    const teamRole = teamModal.querySelector('.team-modal__role');
+    const teamBio = teamModal.querySelector('.team-modal__bio');
+    let teamLastFocused: HTMLElement | null = null;
+    const teamInertTargets = Array.from(document.querySelectorAll<HTMLElement>('body > header, body > main'));
+
+    const setTeamInert = (isInert: boolean) => {
+      teamInertTargets.forEach((el) => {
+        if (isInert) el.setAttribute('inert', '');
+        else el.removeAttribute('inert');
+      });
+    };
+
+    const onTeamKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeTeam();
+    };
+
+    function openTeam(trigger: HTMLElement) {
+      teamLastFocused = document.activeElement as HTMLElement | null;
+      const name = trigger.getAttribute('data-team-name') || '';
+      const role = trigger.getAttribute('data-team-role') || '';
+      const photo = trigger.getAttribute('data-team-photo') || '';
+      const bio = trigger.getAttribute('data-team-bio') || 'Bio coming soon.';
+
+      if (teamName) teamName.textContent = name;
+      if (teamRole) teamRole.textContent = role;
+      if (teamBio) teamBio.textContent = bio;
+
+      if (teamPhoto) {
+        teamPhoto.replaceChildren();
+        if (photo) {
+          const img = document.createElement('img');
+          img.src = `/_next/image?url=${encodeURIComponent(photo)}&w=640&q=80`;
+          img.alt = '';
+          teamPhoto.appendChild(img);
+          teamPhoto.classList.add('has-photo');
+        } else {
+          if (teamPhotoPlaceholder) teamPhoto.appendChild(teamPhotoPlaceholder);
+          teamPhoto.classList.remove('has-photo');
+        }
+      }
+
+      teamModal!.hidden = false;
+      document.documentElement.classList.add('has-team-open');
+      document.addEventListener('keydown', onTeamKeydown);
+      setTeamInert(true);
+
+      const closeBtn = teamModal!.querySelector<HTMLElement>('.team-modal__close');
+      closeBtn?.focus();
+    }
+
+    function closeTeam() {
+      teamModal!.hidden = true;
+      document.documentElement.classList.remove('has-team-open');
+      document.removeEventListener('keydown', onTeamKeydown);
+      setTeamInert(false);
+      teamLastFocused?.focus();
+    }
+
+    const onTriggerClick = (event: Event) => openTeam(event.currentTarget as HTMLElement);
+    teamTriggers.forEach((trigger) => trigger.addEventListener('click', onTriggerClick));
+    const teamCloseEls = Array.from(teamModal.querySelectorAll('[data-team-close]'));
+    teamCloseEls.forEach((el) => el.addEventListener('click', closeTeam));
+
+    cleanups.push(() => {
+      teamTriggers.forEach((trigger) => trigger.removeEventListener('click', onTriggerClick));
+      teamCloseEls.forEach((el) => el.removeEventListener('click', closeTeam));
+      document.removeEventListener('keydown', onTeamKeydown);
     });
   }
 

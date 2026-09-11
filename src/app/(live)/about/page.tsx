@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 
@@ -54,7 +55,7 @@ export default function AboutPage() {
                   workshops cover a wide array of topics. FACT&apos;s mission is to build a community of leaders by
                   uniting, enlightening, and empowering the Filipinx, Fil-Am, and non-Filipinx youth nationwide. By
                   exploring our interests, culture, and identity as a rising generation, we hope our delegates can
-                  carry the knowledge they gain beyond their college years — as leaders in the professional world,
+                  carry the knowledge they gain beyond their college years, as leaders in the professional world,
                   ready to give back to their community.
                 </p>
               </div>
@@ -123,7 +124,7 @@ export default function AboutPage() {
                     promote personal growth and connections.
                   </span>
                 </p>
-                <cite className="quote-reveal__cite">— FACT Mission Statement</cite>
+                <cite className="quote-reveal__cite">FACT Mission Statement</cite>
               </blockquote>
             </div>
           </div>
@@ -257,6 +258,27 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        <nav className="crosslink" aria-label="More to explore">
+          <div className="crosslink__inner">
+            <p className="crosslink__label">Continue exploring</p>
+            <div className="crosslink__links">
+              <Link className="crosslink__link" href="/team">
+                <span>Team</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h13M13 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </nav>
 
         <SiteFooter />
       </main>

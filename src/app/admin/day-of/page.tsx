@@ -48,7 +48,7 @@ export default function DayOfRegistration() {
                     <p className="text-sm text-slate-600 max-w-2xl">
                         For creating a delegate account in person, at the door.
                         This trusts your own visual confirmation of a purchased
-                        ticket — it does not look anything up on Eventbrite.
+                        ticket. It does not look anything up on Eventbrite.
                         Only use this after confirming the ticket yourself.
                     </p>
                     <br />

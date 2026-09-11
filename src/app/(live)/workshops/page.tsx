@@ -71,7 +71,7 @@ export default function WorkshopsPage() {
             {!workshops ? (
               <p className="workshops__empty">Loading workshops&hellip;</p>
             ) : totalVisible === 0 ? (
-              <p className="workshops__empty">No workshops match your search — try a different word.</p>
+              <p className="workshops__empty">No workshops match your search. Try a different word.</p>
             ) : (
               <div className="workshops__sessions">
                 {sessions.map(([session, items]) => (

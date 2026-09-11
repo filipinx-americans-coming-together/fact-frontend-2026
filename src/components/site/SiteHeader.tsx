@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { InstagramIcon } from './SocialIcon';
 
 type SiteHeaderProps =
-  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: 'about' | null }
-  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: 'about' | null };
+  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: 'about' | 'team' | null }
+  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: 'about' | 'team' | null };
 
 // Mirrors live's .hero header exactly — full hero (home) vs .hero--compact
-// (every interior page). Only "About Us" is linked in nav today; per
+// (every interior page). "About Us" and "Team" are linked in nav today; per
 // DESIGN.md's confirmed rule, other pages don't get a nav link until
 // they're actually announced as live, even though the routes exist.
 export function SiteHeader(props: SiteHeaderProps) {
@@ -31,7 +31,7 @@ export function SiteHeader(props: SiteHeaderProps) {
         <p className="hero__eventline">FACT 2026 · Oct. 16&nbsp;&ndash;&nbsp;18, 2026</p>
         <div className="countdown" id="countdown" role="timer" aria-live="polite" aria-label="Time until FACT 2026">
           <span className="countdown__value" id="countdown-value" suppressHydrationWarning>
-            &mdash;
+            00d 00h 00m
           </span>
           <span className="countdown__label">Until FACT</span>
         </div>
@@ -57,6 +57,11 @@ export function SiteHeader(props: SiteHeaderProps) {
             <li>
               <Link href="/about" aria-current={active === 'about' ? 'page' : undefined}>
                 About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/team" aria-current={active === 'team' ? 'page' : undefined}>
+                Team
               </Link>
             </li>
           </ul>
@@ -93,7 +98,7 @@ export function SiteHeader(props: SiteHeaderProps) {
               <Image
                 className="hero__title"
                 src="/images/hero-title.png"
-                alt="FACT 2026 — Mahiwagahan: Enchanting Our Bright Minds"
+                alt="FACT 2026: Mahiwagahan, Enchanting Our Bright Minds"
                 width={1600}
                 height={400}
                 priority

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { PhotoPlaceholderIcon } from '@/components/site/PhotoPlaceholderIcon';
 
 export const metadata: Metadata = {
   title: 'Past FACTs · FACT 2026',
@@ -9,19 +10,10 @@ export const metadata: Metadata = {
 };
 
 const ENTRIES = [
-  { year: '2025', theme: '"Ipahayag nang Malakas" — Proclaim Loudly', flag: 'Photos and booklet coming soon' },
+  { year: '2025', theme: '"Ipahayag nang Malakas" (Proclaim Loudly)', flag: 'Photos and booklet coming soon' },
   { year: '2024', theme: 'Theme TBD', flag: 'Theme, photos, and booklet coming soon' },
   { year: '2023', theme: 'Theme TBD', flag: 'Theme, photos, and booklet coming soon' },
 ];
-
-function PhotoPlaceholderIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
-      <circle cx="12" cy="13" r="3.5" />
-    </svg>
-  );
-}
 
 export default function PastFactsPage() {
   return (
@@ -49,7 +41,7 @@ export default function PastFactsPage() {
           </svg>
           <div className="section__inner">
             <p className="section__intro">
-              Photos and booklet links are being gathered from past years — check back as this archive grows.
+              Photos and booklet links are being gathered from past years, so check back as this archive grows.
             </p>
 
             <div className="pastfacts__list">

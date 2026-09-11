@@ -5,7 +5,7 @@ import { SiteFooter } from '@/components/site/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Agenda · FACT 2026',
-  description: 'Three days at UIUC — the full FACT 2026 program.',
+  description: 'Three days at UIUC: the full FACT 2026 program.',
 };
 
 const DAYS = [
@@ -17,7 +17,7 @@ const DAYS = [
 export default function AgendaPage() {
   return (
     <>
-      <SiteHeader compact pageTitle="Agenda" pageSubtitle="Three days at UIUC — the full program." />
+      <SiteHeader compact pageTitle="Agenda" pageSubtitle="Three days at UIUC: the full program." />
 
       <main id="below">
         <section className="section section--agenda">

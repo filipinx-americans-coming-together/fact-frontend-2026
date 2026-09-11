@@ -34,7 +34,7 @@ const CATEGORIES: { name: string; items: { q: string; a: string; flag?: string }
       },
       {
         q: 'Will the conference be live streamed?',
-        a: "Yes — the Opening Ceremony will be livestreamed, and so will the Variety Show! Check out our YouTube and don't forget to subscribe, like, and comment.",
+        a: "Yes. The Opening Ceremony will be livestreamed, and so will the Variety Show! Check out our YouTube and don't forget to subscribe, like, and comment.",
       },
       {
         q: 'What can I bring into Variety Show?',
@@ -59,7 +59,7 @@ const CATEGORIES: { name: string; items: { q: string; a: string; flag?: string }
       },
       {
         q: 'What are the parking policies?',
-        a: 'Parking for non-UIUC faculty and staff is metered and/or limited to designated spaces. Meter payments may be processed by coin, Pay by Phone, or CashKey depending on posted instructions. Free weekend and overnight parking lots are listed by the university. Parking is strictly monitored by campus officials — those not adhering to policy may be subject to ticketing or towing. FACT is not responsible for any parking charges incurred by attendees.',
+        a: 'Parking for non-UIUC faculty and staff is metered and/or limited to designated spaces. Meter payments may be processed by coin, Pay by Phone, or CashKey depending on posted instructions. Free weekend and overnight parking lots are listed by the university. Parking is strictly monitored by campus officials, and those not adhering to policy may be subject to ticketing or towing. FACT is not responsible for any parking charges incurred by attendees.',
       },
       {
         q: 'What wifi services are available?',
@@ -81,7 +81,7 @@ const CATEGORIES: { name: string; items: { q: string; a: string; flag?: string }
       {
         q: 'How much are registration fees?',
         a: 'Early Registration: V-Show $15 · Workshops $20 · Bundle $30.\nLate Registration: V-Show $20 · Workshops $25 · Bundle $35.',
-        flag: 'Figures shown are from the 2025 conference — confirm current pricing for FACT 2026.',
+        flag: 'Figures shown are from the 2025 conference; confirm current pricing for FACT 2026.',
       },
       {
         q: 'Where can I find information regarding workshops?',
@@ -89,25 +89,25 @@ const CATEGORIES: { name: string; items: { q: string; a: string; flag?: string }
       },
       {
         q: 'How can I change my workshop choice?',
-        a: 'If other workshops haven\'t reached capacity, you may log into your dashboard, click "Update Workshops," then confirm — your choice will update.',
+        a: 'If other workshops haven\'t reached capacity, you may log into your dashboard, click "Update Workshops," then confirm, and your choice will update.',
       },
       {
         q: 'Are there refunds?',
         a: "Refunds can be requested via a request form, up until the end of the Early Registration period. Please secure your availability and confirm you'll attend the events paid for prior to registering.",
       },
       {
-        q: "I wasn't able to register early — can I still attend?",
+        q: "I wasn't able to register early. Can I still attend?",
         a: 'Yes. If you missed early registration, you can still register online at the Late Registration price until the week prior to the conference. In-person late registration is also typically offered on campus in the days before FACT.',
-        flag: 'Specific in-person registration dates, times, and location are from the 2025 conference — confirm details for FACT 2026.',
+        flag: 'Specific in-person registration dates, times, and location are from the 2025 conference; confirm details for FACT 2026.',
       },
       {
         q: 'Can I upgrade to the bundle?',
-        a: "After completing your purchase, upgrading to the bundle isn't allowed — you may purchase an additional session or Variety Show ticket separately.",
+        a: "After completing your purchase, upgrading to the bundle isn't allowed, but you may purchase an additional session or Variety Show ticket separately.",
       },
       {
         q: 'What is the delegate commitments Instagram, and how do I participate?',
-        a: 'PSA runs a companion Instagram page featuring delegate profiles, similar to a college commitment page — a way for delegates to connect with each other and make new friendships. Watch our main Instagram (@psa_fact) for the current page handle and participation form.',
-        flag: 'The 2025 conference used a season-specific handle (@factcommitments2025) — confirm the current handle for 2026.',
+        a: 'PSA runs a companion Instagram page featuring delegate profiles, similar to a college commitment page: a way for delegates to connect with each other and make new friendships. Watch our main Instagram (@psa_fact) for the current page handle and participation form.',
+        flag: 'The 2025 conference used a season-specific handle (@factcommitments2025); confirm the current handle for 2026.',
       },
     ],
   },
