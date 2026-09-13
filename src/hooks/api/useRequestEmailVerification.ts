@@ -20,13 +20,7 @@ async function fetchRequestEmailVerification(email: string): Promise<void> {
     try {
         json = await response.json();
     } catch {
-        // console.log("JSON", json);
-        if (response.type == "cors") {
-            throw new Error("Please disable \"Prevent Cross-Site Tracking\" on your browser and try again")
-        }
-        else {
-            throw new Error("Server error, please try again later");
-        }
+        throw new Error("Server error, please try again later");
     }
 
     if (!response.ok) {

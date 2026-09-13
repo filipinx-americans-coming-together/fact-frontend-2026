@@ -18,10 +18,6 @@ async function fetchResetPassword(
     try {
         json = await response.json();
     } catch {
-        if (response.type == "cors") {
-            throw new Error("Please disable \"Prevent Cross-Site Tracking\" on your browser and try again");
-        }
-
         throw new Error("Server error, please try again later");
     }
 
