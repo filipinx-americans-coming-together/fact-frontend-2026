@@ -39,9 +39,7 @@ async function fetchUser(): Promise<{
     const facilitator = {
         id: json.facilitator[0].pk,
         department_name: json.facilitator[0].fields.department_name,
-        facilitator_names: json.facilitator[0].fields.facilitators
-            .split(",")
-            .map((name: string) => name.trim()),
+        facilitator_names: json.facilitator[0].fields.facilitators,
         image_url: json.facilitator[0].fields.image_url,
         position: json.facilitator[0].fields.position,
         bio: json.facilitator[0].fields.bio,

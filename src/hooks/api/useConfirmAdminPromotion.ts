@@ -2,11 +2,14 @@ import { API_URL } from "@/util/constants";
 import fetchWithCredentials from "@/util/fetchWithCredentials";
 import { useMutation } from "@tanstack/react-query";
 
-async function fetchConfirmAdminPromotion(token: string): Promise<{ message: string }> {
+async function fetchConfirmAdminPromotion(
+    token: string,
+    password?: string
+): Promise<{ message: string }> {
     const response = await fetchWithCredentials({
         url: `${API_URL}/fact-admin/accounts/promote/confirm/`,
         method: "POST",
-        body: JSON.stringify({ token }),
+        body: JSON.stringify({ token, password }),
     });
 
     let json;
@@ -38,7 +41,8 @@ export function useConfirmAdminPromotion() {
         mutate: confirmPromotion,
         isSuccess,
     } = useMutation({
-        mutationFn: (token: string) => fetchConfirmAdminPromotion(token),
+        mutationFn: ({ token, password }: { token: string; password?: string }) =>
+            fetchConfirmAdminPromotion(token, password),
     });
 
     return { data, error, isPending, confirmPromotion, isSuccess };

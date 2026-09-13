@@ -45,9 +45,10 @@ export default function Accounts() {
                 <div className="w-9/12 mx-auto py-6">
                     <h1 className="text-xl">Promote to Admin</h1>
                     <p className="text-sm text-slate-600 max-w-2xl">
-                        The person must already have a FACT account. They'll
-                        get an email with a link to accept, and nothing changes
-                        until they click it.
+                        If they already have a FACT account, they'll get a
+                        link to accept admin access. If not, they'll get a
+                        link to create one — either way nothing changes until
+                        they click it.
                     </p>
                     <br />
 
