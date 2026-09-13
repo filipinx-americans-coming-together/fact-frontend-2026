@@ -6,7 +6,7 @@ import { ResponseData } from "./util/types";
 // TODO: have conditionals for the different states this file should be in (reg open, reg closed, database off)
 
 export async function middleware(request: NextRequest) {
-    if (request.nextUrl.pathname.startsWith("/refund") || request.nextUrl.pathname.startsWith("/variety-show")) {
+    if (request.nextUrl.pathname.startsWith("/refund")) {
         return NextResponse.rewrite(new URL('/not-found', request.url));
     }
     
@@ -46,7 +46,8 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        "/refund", "/variety-show",
+        "/refund",
+        "/variety-show",
         "/my-fact/:path*",
         // "/workshops/:path*",
         "/facilitators/:path*",

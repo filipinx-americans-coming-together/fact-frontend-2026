@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import PageContainer from "@/components/formatting/PageContainer";
+import RegPageContainer from "@/components/formatting/RegPageContainer";
 import LoadingCircle from "@/components/icons/LoadingCircle";
 import Image from "next/image";
 import { useWorkshop } from "@/hooks/api/useWorkshop";
@@ -161,7 +161,7 @@ function WorkshopDetailContent({
         : "Facilitators";
 
     return (
-        <PageContainer title={sessionLabel} background="bg-gradient mask-(--background-image-blurry-3) mask-size-[1400px] mask-top">
+        <RegPageContainer pageTitle={sessionLabel}>
             <div className="flex flex-col items-center w-full mx-auto 
                             p-4 md:p-8 rounded-2xl bg-[rgba(240,240,240,0.4)] shadow-xl">
                 <h1 className="text-3xl font-bold text-center p-2 md:p-4">{title}</h1>
@@ -211,7 +211,7 @@ function WorkshopDetailContent({
                     <FacilitatorDetail facilitator={selectedFacilitator} />
                 </Modal>
             )}
-        </PageContainer>
+        </RegPageContainer>
     );
 }
 

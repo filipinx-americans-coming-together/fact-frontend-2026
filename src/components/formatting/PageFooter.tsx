@@ -31,7 +31,7 @@ export const Footer = () => {
                     Brought to you by the Philippine Student Association UIUC.
                 </Link>
             </p>
-            <p className="text-center mt-2">Copyright © 2025 PSA UIUC</p>
+            <p className="text-center mt-2">Copyright © 2026 PSA UIUC</p>
         </footer>
         </div>
     );

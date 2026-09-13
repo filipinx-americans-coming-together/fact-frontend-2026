@@ -1,24 +1,31 @@
 'use client';
 
-import PageContainer from "@/components/formatting/PageContainer";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import RegPageContainer from '@/components/formatting/RegPageContainer';
 
 export default function RegistrationMaintenance() {
     const router = useRouter();
     const [seconds, setSeconds] = useState(10);
-    
-    seconds > 0 ? setTimeout(() => setSeconds(seconds-1), 1000) : router.push('/')
+
+    useEffect(() => {
+        if (seconds <= 0) {
+            router.push('/');
+            return;
+        }
+        const timer = setTimeout(() => setSeconds(seconds - 1), 1000);
+        return () => clearTimeout(timer);
+    }, [seconds, router]);
 
     return (
-        <PageContainer title="FACT registration is currently under maintenance. Check back in at a later time." maintainCase={true}>
-        <div className="flex flex-col justify-between gap-4 items-center mb-[-32px]">
-                <div className="p-8 font-bold text-3xl rounded-3xl bg-highlight-secondary w-fit">
-                    {`Redirecting to home page in ${seconds} seconds`}
-                </div>
-                <Link href='/' className="underline">Go To Home Now</Link>
+        <RegPageContainer pageTitle="Under Maintenance" pageSubtitle="FACT registration is temporarily unavailable while we perform maintenance.">
+            <div className="flex flex-col justify-center items-center gap-4 py-12 text-center">
+                <p className="text-sm">Redirecting to the home page in {seconds} second{seconds === 1 ? '' : 's'}.</p>
+                <Link href="/" className="pill pill--ink">
+                    &larr; Back Home
+                </Link>
             </div>
-        </PageContainer>
+        </RegPageContainer>
     );
 }

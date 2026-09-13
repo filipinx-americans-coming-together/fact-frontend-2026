@@ -41,36 +41,36 @@ export default function Carousel({ title, src, length, numImages }: CarouselProp
                 >
                     <IoIosArrowBack />
                 </div>
-                <div className="">
+                <div className="flex-1 min-w-0">
                     <Image
                         key={currentIndex}
                         src={`/${src}/${currentIndex}.jpg`}
                         height={IMG_HEIGHT}
                         width={IMG_WIDTH}
-                        className="aspect-3/2 object-cover"
+                        className="w-full h-auto aspect-3/2 object-cover"
                         alt=""
                         placeholder={PLACEHOLDER_URL}
                     />
                 </div>
-				{numImages > 1 && <div className="">
+				{numImages > 1 && <div className="flex-1 min-w-0">
                     <Image
                         key={currentIndex + 1}
                         src={currentIndex + 1 > length ? TRANSPARENT_URL : `/${src}/${currentIndex + 1}.jpg`}
                         height={currentIndex + 1 > length ? 1 : IMG_HEIGHT}
                         width={currentIndex + 1 > length ? 1 : IMG_WIDTH}
-                        className="aspect-3/2 object-cover"
+                        className="w-full h-auto aspect-3/2 object-cover"
                         alt=""
                         placeholder={currentIndex + 1 > length ? TRANSPARENT_URL : PLACEHOLDER_URL}
                     />
                 </div>}
-                
-                {numImages === 3 && <div className="">
+
+                {numImages === 3 && <div className="flex-1 min-w-0">
                     <Image
                         key={currentIndex + 2}
                         src={currentIndex + 2 > length ? TRANSPARENT_URL : `/${src}/${currentIndex + 2}.jpg`}
                         height={currentIndex + 2 > length ? 1 : IMG_HEIGHT}
                         width={currentIndex + 2 > length ? 1 : IMG_WIDTH}
-                        className="aspect-3/2 object-cover"
+                        className="w-full h-auto aspect-3/2 object-cover"
                         alt=""
                         placeholder={currentIndex + 1 > length ? TRANSPARENT_URL : PLACEHOLDER_URL}
                     />

@@ -98,7 +98,7 @@ function UserAgenda() {
     ) {
         const pdf = new jsPDF("p", "mm", "a4", true);
 
-        const textLines = [`${name}'s FACT 2025 Agenda`, ""];
+        const textLines = [`${name}'s FACT 2026 Agenda`, ""];
 
         [FRIDAY, SATURDAY, SUNDAY].forEach((day) => {
             textLines.push(day);

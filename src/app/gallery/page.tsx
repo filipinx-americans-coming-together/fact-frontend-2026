@@ -1,5 +1,5 @@
 "use client";
-import PageContainer from "@/components/formatting/PageContainer";
+import RegPageContainer from "@/components/formatting/RegPageContainer";
 import Carousel from "@/components/ui/Carousel";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import dynamic from "next/dynamic";
@@ -12,7 +12,7 @@ const Gallery = () => {
     );
 
     return (
-        <PageContainer title="Gallery" background="bg-gradient mask-(--background-image-blurry-2) mask-size-[1400px] mask-top">
+        <RegPageContainer pageTitle="Gallery">
             <Carousel title="Delegate Day" src="delegate-day" length={12} numImages={isSmallDevice ? 1 : (isMediumDevice ? 2 : 3)} />
             <div className="border-b-2 h-4 w-full mb-6 lg:mb-10"></div>
             <Carousel title="Workshops" src="workshop-pics" length={27} numImages={isSmallDevice ? 1 : (isMediumDevice ? 2 : 3)} />
@@ -20,7 +20,7 @@ const Gallery = () => {
             <Carousel title="Palengke" src="palengke" length={24} numImages={isSmallDevice ? 1 : (isMediumDevice ? 2 : 3)} />
             <div className="border-b-2 h-4 w-full mb-6 lg:mb-10"></div>
             <Carousel title="Variety Show" src="variety-show" length={39} numImages={isSmallDevice ? 1 : (isMediumDevice ? 2 : 3)} />
-        </PageContainer>
+        </RegPageContainer>
     );
 };
 

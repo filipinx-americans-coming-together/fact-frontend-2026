@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="live-page">
-      <SiteHeader compact pageTitle="Page Not Found" pageSubtitle="This page wandered off somewhere in the Palengke." />
+      <SiteHeader compact pageTitle="Page Not Found" />
 
       <main id="below">
         <section className="section section--about" aria-label="Page not found">
