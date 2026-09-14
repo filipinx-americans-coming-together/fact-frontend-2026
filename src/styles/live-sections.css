@@ -1917,6 +1917,174 @@ html.has-team-open {
   height: 14px;
 }
 
+/* ---------- Auth (login / create account / forgot password) ---------- */
+
+/* Second confirmed No-Card exception, alongside .vendor__card: a lone
+   form is a distinct, comparable-to-nothing-else surface with no other
+   content on the page competing for attention. Hard-edged (no radius),
+   same white/shadow/hairline recipe as .vendor__card — a system fit,
+   not a new device. */
+.authshell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authtabs {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  border: 1px solid rgba(75, 28, 113, 0.35);
+  border-radius: 999px;
+}
+
+.authtabs__radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.authtabs__tab {
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--accent-on-light);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+#tab-delegate:checked ~ .authtabs label[for='tab-delegate'],
+#tab-facilitator:checked ~ .authtabs label[for='tab-facilitator'] {
+  background: linear-gradient(180deg, var(--violet-800) 0%, var(--ink-900) 100%);
+  color: var(--cream-100);
+}
+
+#tab-delegate:focus-visible ~ .authtabs label[for='tab-delegate'],
+#tab-facilitator:focus-visible ~ .authtabs label[for='tab-facilitator'] {
+  outline: 2px solid var(--accent-on-light);
+  outline-offset: 3px;
+}
+
+.authcard {
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--white);
+  box-shadow: 0 10px 28px rgba(14, 21, 94, 0.12), inset 0 0 0 1px var(--hairline-on-light);
+  text-align: center;
+}
+
+.authcard__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
+
+.authcard__divider {
+  height: 1px;
+  margin: 1.5rem 0 1.75rem;
+  background: var(--hairline-on-light);
+}
+
+#tab-facilitator:checked ~ .authcard .authpanel--delegate,
+#tab-delegate:checked ~ .authcard .authpanel--facilitator {
+  display: none;
+}
+
+.field {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-900);
+}
+
+.field__required {
+  color: var(--accent-on-light);
+}
+
+.field input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--ink-900);
+  background: var(--white);
+  border: 1px solid rgba(14, 21, 94, 0.22);
+  border-radius: 10px;
+  transition: border-color 0.25s ease;
+}
+
+.field input::placeholder {
+  color: rgba(14, 21, 94, 0.35);
+}
+
+.field input:hover {
+  border-color: rgba(14, 21, 94, 0.4);
+}
+
+.authcard__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.9rem;
+}
+
+.authcard__links a {
+  color: var(--accent-on-light);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.authcard__links p {
+  margin: 0;
+  color: var(--ink-on-light-dim);
+}
+
+.authcard__links--after {
+  margin-top: 1.75rem;
+  margin-bottom: 0;
+}
+
+.authcard__links a:hover,
+.authcard__links a:focus-visible {
+  color: var(--violet-800);
+  text-decoration: underline;
+}
+
+.authcard .pill--ink {
+  width: 100%;
+  justify-content: center;
+}
+
+.authcard__note {
+  margin: 1.75rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-on-light-dim);
+}
+
 /* ---------- Mobile ---------- */
 
 @media (max-width: 900px) {
