@@ -22,14 +22,20 @@ export default async function fetchWithCredentials({
         console.log("cooke", document.cookie);
     }
 
+    const headers: Record<string, string> = { "X-CSRFToken": csrf };
+    // FormData bodies must NOT get an explicit Content-Type — the browser
+    // needs to set its own with the multipart boundary. Setting this key to
+    // undefined still sends a literal "Content-Type: undefined" header
+    // (fetch coerces it to a string), which breaks multipart parsing
+    // server-side, so the key has to be omitted entirely, not just nulled.
+    if (!(body instanceof FormData)) {
+        headers["Content-Type"] = "application/json";
+    }
+
     let args: any = {
         method: method,
         credentials: "include",
-        headers: {
-            "Content-Type":
-                body instanceof FormData ? undefined : "application/json",
-            "X-CSRFToken": csrf,
-        },
+        headers,
     };
 
     if (body) args.body = body;
