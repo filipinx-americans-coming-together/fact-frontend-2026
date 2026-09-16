@@ -25,9 +25,9 @@ const TIME_OPTIONS: Intl.DateTimeFormatOptions = {
     timeZone: "America/Chicago",
 };
 
-const SATURDAY = "Saturday, November 15";
-const FRIDAY = "Friday, November 14";
-const SUNDAY = "Sunday, November 16";
+const SATURDAY = "Saturday, October 17";
+const FRIDAY = "Friday, October 16";
+const SUNDAY = "Sunday, October 18";
 
 /**
  * Agenda for individual user

@@ -142,7 +142,7 @@ export default function Agenda() {
                         </div>
                         <br />
                         {/* TODO hard-coded conference dates rn */}
-                        <h1 className="text-left">Friday, November 14</h1>
+                        <h1 className="text-left">Friday, October 16</h1>
                         <br />
                         <AgendaList
                             displayItems={
@@ -157,7 +157,7 @@ export default function Agenda() {
 
                         <br />
                         <br />
-                        <h1 className="text-left">Saturday, November 15</h1>
+                        <h1 className="text-left">Saturday, October 17</h1>
                         <br />
                         <AgendaList
                             displayItems={
@@ -171,7 +171,7 @@ export default function Agenda() {
                         />
                         <br />
                         <br />
-                        <h1 className="text-left">Sunday, November 16</h1>
+                        <h1 className="text-left">Sunday, October 18</h1>
                         <br />
                         <AgendaList
                             displayItems={

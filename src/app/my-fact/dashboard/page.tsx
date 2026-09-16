@@ -13,7 +13,6 @@ import { useRegistrationFlag } from "@/hooks/api/useRegistrationFlag";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
-import { GiGClef } from "react-icons/gi";
 import Link from "next/link";
 import { IoMdRefresh } from "react-icons/io";
 
@@ -57,7 +56,7 @@ export default function Dashboard() {
             )} {user.registration && <div className="bg-[rgba(240,240,240,0.3)] py-8 px-12 rounded-xl min-w-9/12 w-fit flex justify-evenly flex-col text-left mx-auto gap-10 md:gap-16">
 
                 <div className="font-bold text-4xl my-2 flex items-center">
-                            Welcome, {user.user.first_name} {user.user.last_name} <span className="text-5xl"><GiGClef /></span>
+                            Welcome, {user.user.first_name} {user.user.last_name}
                         </div>
                         {user.registration.length ? 
                 <div className="flex justify-between flex-col xl:flex-row">

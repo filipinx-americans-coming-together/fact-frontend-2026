@@ -76,9 +76,9 @@ export function SiteHeader(props: SiteHeaderProps) {
             >
               <InstagramIcon />
             </a>
-            <Link className="pill pill--ghost" href="/my-fact/login">
+            <span className="pill pill--ghost" aria-disabled="true" title="Opening soon">
               Login
-            </Link>
+            </span>
             <Link className="pill pill--solid" href="/donate">
               Donate
             </Link>
