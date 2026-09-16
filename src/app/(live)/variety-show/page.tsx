@@ -10,8 +10,9 @@ import LoadingCircle from '@/components/icons/LoadingCircle';
 // venue's seat inventory lives on that one event, and this promo code is
 // what restricts checkout to the Variety-Show-only ticket class instead of
 // the bundle. Keeping both event IDs in sync is on us until this is fetched
-// from the backend instead of hardcoded (see EVENTBRITE_EVENT_ID server-side).
-const EVENTBRITE_EVENT_ID = '1816702820039';
+// from the backend instead of hardcoded (see EVENTBRITE_EVENT_IDS.variety_show
+// server-side).
+const EVENTBRITE_EVENT_ID = '2001120979719';
 const PROMO_CODE = 'VSHOWONLY';
 
 export default function VarietyShow() {

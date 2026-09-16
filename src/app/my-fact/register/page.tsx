@@ -75,8 +75,8 @@ function RegisterForm() {
                 // Required
                 
                 widgetType: 'checkout',
-                eventId: '1817643172659',
-                iframeContainerId: 'eventbrite-widget-container-1817643172659',
+                eventId: '2001126216382',
+                iframeContainerId: 'eventbrite-widget-container-2001126216382',
                 iframeContainerHeight: 800,
                 onOrderComplete: onComplete
             });
@@ -86,8 +86,8 @@ function RegisterForm() {
         }}, [loadEB]);
 
         return (
-            // <button id="eventbrite-widget-modal-trigger-1817643172659" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops Only</button>
-            <div id="eventbrite-widget-container-1817643172659"></div>
+            // <button id="eventbrite-widget-modal-trigger-2001126216382" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops Only</button>
+            <div id="eventbrite-widget-container-2001126216382"></div>
         );
     };
 
@@ -97,21 +97,20 @@ function RegisterForm() {
             // @ts-ignore
             try {window.EBWidgets.createWidget({
             widgetType: 'checkout',
-            eventId: '1816702820039',
-            iframeContainerId: 'eventbrite-widget-container-1816702820039',
+            eventId: '2001120979719',
+            iframeContainerId: 'eventbrite-widget-container-2001120979719',
             iframeContainerHeight: 800,
             onOrderComplete: onComplete,
-            promoCode: "VSHOWBUNDLE"
         })} catch {
             setTimeout(()=>{setLoadEB(true)}, 3000);
         }
-        } 
-            
+        }
+
         }, [loadEB]);
 
         return (
-            <div id="eventbrite-widget-container-1816702820039"></div>
-            // <button id="eventbrite-widget-modal-trigger-1816702820039" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops + Variety Show Bundle</button>
+            <div id="eventbrite-widget-container-2001120979719"></div>
+            // <button id="eventbrite-widget-modal-trigger-2001120979719" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops + Variety Show Bundle</button>
         );
     };
 
@@ -321,6 +320,11 @@ function RegisterForm() {
                     <br/>
 
                     <div className="w-fit mx-auto max-w-md flex flex-col items-center gap-2 text-center p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
+                        {/*
+                          UIUC discount code flow temporarily disabled (shown
+                          as "coming soon" below) — not a removal. Re-enable by
+                          restoring this block; nothing else on the backend or
+                          in useUiucPromoCode/useDelegateStatus needs to change.
                         {uiucError === "already_linked" && (
                             <p className="text-red-600 text-sm">
                                 That UIUC NetID is already linked to a different FACT account.
@@ -373,6 +377,8 @@ function RegisterForm() {
                                 )}
                             </>
                         )}
+                        */}
+                        <p className="text-sm">UIUC student discount codes coming soon.</p>
                     </div>
 
                     <br/>
@@ -386,7 +392,7 @@ function RegisterForm() {
                         {ticketType ? <EventbriteWidgetWks
                         onComplete={handleOrderComplete}/> :
 
-                        <div><div className="text-sm"> For Variety Show, you will not have to sit in your assigned seat (row & number), but you will have to sit in your assigned section (1-4). Please choose the seat for your ticket accordingly. The entire seat map of the Foellinger Auditorium floor is detailed for your visualization</div><br/><div className="w-fit mx-auto text-sm text-slate-700 flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
+                        <div><div className="w-fit mx-auto text-sm text-slate-700 flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
                     : <div className="w-fit mx-auto"><LoadingCircle/></div>}</div>
                 }
             </FormContainer>
