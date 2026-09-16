@@ -14,11 +14,15 @@ interface WorkshopProps {
  * @returns WorkshopCard component
  */
 export default function WorkshopCard(props: WorkshopProps) {
-    const { workshop } = useWorkshop({ id: props.id });
+    const { workshop, error } = useWorkshop({ id: props.id });
 
     return (
         <>
-            {workshop ? (
+            {error ? (
+                <div className="bg-[rgba(250,250,250,0.3)] text-red-700 text-xs px-8 py-4 m-4 rounded-md w-80 shadow-lg text-center">
+                    Couldn&#39;t load this workshop. Please refresh, or contact FACT IT if it persists.
+                </div>
+            ) : workshop ? (
                 <div className="bg-[rgba(250,250,250,0.3)] text-black text-xs px-8 py-4 m-4 rounded-md w-80 shadow-lg">
                     <div>Session {workshop.workshop.session}</div>
                     <div className="text-center">

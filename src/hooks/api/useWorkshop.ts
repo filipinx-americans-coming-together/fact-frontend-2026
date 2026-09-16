@@ -70,9 +70,13 @@ async function fetchWorkshop({ id }: { id: number }): Promise<{
     const formattedFacilitators: FacilitatorData[] = facilitatorData.map((facilitator: any) => ({
         id: facilitator.pk,
         department_name: facilitator.fields.department_name,
-        facilitator_names: facilitator.fields.facilitators
-            .split(",")
-            .map((name: string) => name.trim()),
+        // Facilitator.facilitators is a JSONField (a real array once
+        // deserialized) — not a comma-separated string. Handle both shapes
+        // defensively since a raw Django-admin edit could still enter a
+        // plain string into that JSON field.
+        facilitator_names: Array.isArray(facilitator.fields.facilitators)
+            ? facilitator.fields.facilitators.map((name: string) => name.trim())
+            : facilitator.fields.facilitators.split(",").map((name: string) => name.trim()),
         image_url: facilitator.fields.image_url,
         position: facilitator.fields.position,
         bio: facilitator.fields.bio,
