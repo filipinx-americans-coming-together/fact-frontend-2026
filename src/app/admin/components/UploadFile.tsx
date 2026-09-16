@@ -45,7 +45,7 @@ export default function UploadFile({
             <br />
 
             {file ? (
-                <p className="border-2 p-2">{file.name} uploaded</p>
+                <p className="border-2 p-2">{file.name} selected</p>
             ) : (
                 <div
                     className="hidden md:flex items-center justify-center w-7/12 aspect-video border-4 rounded-sm border-dashed"

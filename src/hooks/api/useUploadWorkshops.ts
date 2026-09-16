@@ -8,8 +8,8 @@ async function fetchUploadWorkshops(file: File): Promise<WorkshopData[]> {
     formData.append("workshops", file);
 
     // request
-    const response = await fetch(`${API_URL}/registration/workshops/bulk/`, {
-        credentials: "include",
+    const response = await fetchWithCredentials({
+        url: `${API_URL}/registration/workshops/bulk/`,
         method: "POST",
         body: formData,
     });
