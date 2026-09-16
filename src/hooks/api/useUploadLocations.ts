@@ -60,7 +60,7 @@ export function useUploadLocations() {
             return fetchUploadLocations(file);
         },
 
-        onSuccess: (data) => queryClient.setQueryData(["workshops"], data),
+        onSuccess: (data) => queryClient.setQueryData(["locations"], data),
     });
 
     console.log("isSuccess", isSuccess);
