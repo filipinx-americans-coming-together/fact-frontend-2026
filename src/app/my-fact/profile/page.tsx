@@ -10,6 +10,7 @@ import { useRequestEmailVerification } from "@/hooks/api/useRequestEmailVerifica
 import { UpdateUserProps, useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUser } from "@/hooks/api/useUser";
 import { useVerifyEmail } from "@/hooks/api/useVerifyEmail";
+import { getErrorCode } from "@/util/apiError";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -72,6 +73,7 @@ export default function Profile() {
                 }}
                 isLoading={isPending}
                 errorMessage={error?.message}
+                errorCode={getErrorCode(error)}
             >
                 <h1 className="text-center pb-4 border-b w-full">Edit Profile</h1>
 
@@ -79,7 +81,7 @@ export default function Profile() {
 
                 {user && (
                     <>
-                        <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+                        <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
                         <TextInput
                             label="First Name"
                             id="f_name"
@@ -128,7 +130,7 @@ export default function Profile() {
                 )}
 
                 <Link
-                    className="text-center text-sm hover:text-highlight-2-primary underline"
+                    className="text-center text-sm hover:text-[var(--violet-800)] underline"
                     href="/my-fact/dashboard"
                 >
                     Back to Dashboard
@@ -156,7 +158,8 @@ export default function Profile() {
                     }
                 }}
                 isLoading={verificationPending || requestPending}
-                errorMessage={verificationError?.message}
+                errorMessage={requestError?.message || verificationError?.message}
+                errorCode={getErrorCode(requestError || verificationError)}
             >
                 <h2 className="text-center pb-4 border-b w-full">Update Email</h2>
 
@@ -195,9 +198,10 @@ export default function Profile() {
                 }}
                 isLoading={isPending}
                 errorMessage={error?.message}
+                errorCode={getErrorCode(error)}
             >
                 <h2 className="text-center pb-4 border-b w-full">Update Password</h2>
-                <p className="text-center text-xs text-slate-700">
+                <p className="text-center text-xs text-[var(--ink-on-light-dim)]">
                     After updating your password you will be asked to log in
                     again.
                 </p>

@@ -4,6 +4,7 @@ import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import TextInput from "@/components/ui/TextInput";
 import { useResetPassword } from "@/hooks/api/useResetPassword";
+import { getErrorCode } from "@/util/apiError";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -58,6 +59,7 @@ export default function ResetPassword({
                 }}
                 isLoading={isPending}
                 errorMessage={clientError ? clientError : error?.message}
+                errorCode={clientError ? undefined : getErrorCode(error)}
             >
                 <h1>Reset Password</h1>
                 <TextInput

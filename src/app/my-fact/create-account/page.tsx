@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createAccountProps, useCreateAccount } from "@/hooks/api/useCreateAccount";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
+import { getErrorCode } from "@/util/apiError";
 
 
 export default function CreateAccount() {
@@ -66,7 +67,6 @@ export default function CreateAccount() {
                     formName="emailVerification"
                     onSubmit={() => {
                         if (verificationRequested) {
-                            console.log(formData);
                             verifyEmail({
                                 email: formData.email,
                                 code: formData.code,
@@ -81,6 +81,7 @@ export default function CreateAccount() {
                             ? verificationError.message
                             : requestError?.message
                     }
+                    errorCode={getErrorCode(verificationError || requestError)}
                 >
                     <h1 className="text-center pb-4 border-b w-full">Create Account</h1>
                     <TextInput
@@ -96,7 +97,7 @@ export default function CreateAccount() {
                                 maxLength={6}
                                 setState={setFormData}
                             />
-                            <p className="text-xs text-slate-700">
+                            <p className="text-xs text-[var(--ink-on-light-dim)]">
                                 {
                                     "A temporary 6-digit code has been sent to your email. Can't find the code? Check your spam folder or search for emails from 'no-reply@psauiuc.org'"
                                 }
@@ -123,6 +124,7 @@ export default function CreateAccount() {
                     }}
                     isLoading={isPending}
                     errorMessage={clientError || error?.message}
+                    errorCode={getErrorCode(error)}
                 >
                     {/* <h1 className="text-center text-3xl font-bold pb-4 border-b-2">Create Account</h1> */}
 
@@ -130,7 +132,7 @@ export default function CreateAccount() {
                         <div>Verified Email: <span className="font-bold">{formData.email}</span></div>
                         <a
                             href=""
-                            className="text-xs underline text-slate-700 hover:text-highlight-2-primary"
+                            className="text-xs underline text-[var(--ink-on-light-dim)] hover:text-[var(--violet-800)]"
                         >
                             Use a different email
                         </a>
@@ -159,7 +161,7 @@ export default function CreateAccount() {
                         setState={setFormData}
                         required={false}
                     />
-                    <p className="text-xs text-slate-600 mt-2 w-fit mx-auto">
+                    <p className="text-xs text-[var(--ink-on-light-dim)] mt-2 w-fit mx-auto">
                         The pronouns provided will appear on your name tag
                     </p>
                     </div>

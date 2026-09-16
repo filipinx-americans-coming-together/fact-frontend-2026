@@ -1,5 +1,6 @@
 import { API_URL } from "@/util/constants";
 import fetchWithCredentials from "@/util/fetchWithCredentials";
+import { parseApiResponse } from "@/util/apiError";
 import { useMutation } from "@tanstack/react-query";
 
 export interface VerifyPaymentResult {
@@ -8,31 +9,15 @@ export interface VerifyPaymentResult {
 }
 
 async function fetchVerifyPayment(orderId: string): Promise<VerifyPaymentResult> {
+    const endpoint = `${API_URL}/registration/verify-payment/`;
+
     const response = await fetchWithCredentials({
-        url: `${API_URL}/registration/verify-payment/`,
+        url: endpoint,
         method: "POST",
         body: JSON.stringify({ order_id: orderId }),
     });
 
-    let json;
-
-    try {
-        json = await response.json();
-    } catch {
-        throw new Error("Server error, please try again later");
-    }
-
-    if (!response.ok) {
-        let message = "Server error, please try again later";
-
-        if (json.message && response.status !== 500) {
-            message = json.message;
-        }
-
-        throw new Error(message);
-    }
-
-    return json;
+    return parseApiResponse(response, endpoint, "POST");
 }
 
 export function useVerifyPayment() {

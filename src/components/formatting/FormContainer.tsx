@@ -9,6 +9,8 @@ interface FormProps {
     submitText: string;
     isLoading: boolean;
     errorMessage: string | undefined | null;
+    /** Short code identifying which API call failed (see util/apiError.ts) — shown so a delegate can report it and we can trace it straight to the failing endpoint. */
+    errorCode?: string;
 }
 
 function FormContainer(props: FormProps) {
@@ -26,7 +28,14 @@ function FormContainer(props: FormProps) {
                 >
                     {props.children}
                     {props.errorMessage && (
-                        <p className="text-red-600 text-center">{props.errorMessage}</p>
+                        <div className="text-red-600 text-center">
+                            <p>{props.errorMessage}</p>
+                            {props.errorCode && (
+                                <p className="text-xs mt-1 text-[var(--ink-on-light-dim)]">
+                                    Error code: <span className="font-mono">{props.errorCode}</span> — include this if you report the issue.
+                                </p>
+                            )}
+                        </div>
                     )}
 
                     {props.isLoading ? (

@@ -24,6 +24,7 @@ import { PiArrowElbowRightDownBold } from "react-icons/pi";
 import { API_URL } from "@/util/constants";
 import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
 import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
+import { ApiError, getErrorCode } from "@/util/apiError";
 
 export default function Register() {
     return (
@@ -49,6 +50,7 @@ function RegisterForm() {
 
     const [checkoutComplete, setCheckoutComplete] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
+    const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
     const [loadEB, setLoadEB] = useState(false);
     const [ticketType, setTicketType] = useState(false);
     const currentTicketType = ticketType ? "workshop" : "bundle";
@@ -143,6 +145,7 @@ function RegisterForm() {
             setClientError(
                 "Could not read your Eventbrite order. Please contact FACT IT."
             );
+            setClientErrorCode(undefined);
             return;
         }
 
@@ -153,6 +156,7 @@ function RegisterForm() {
             setClientError(
                 e?.message || "Could not verify your payment with Eventbrite."
             );
+            setClientErrorCode(e instanceof ApiError ? e.code : undefined);
         }
     };
     useEffect(() => {
@@ -161,7 +165,6 @@ function RegisterForm() {
         }
         if (user?.registration?.length) {
             router.push("/my-fact/dashboard")
-            console.log("user", user)
         }
     }, [userError, user])
 
@@ -173,6 +176,7 @@ function RegisterForm() {
                 formName="registerForm"
                 onSubmit={() => {
                     setClientError(null);
+                    setClientErrorCode(undefined);
 
                     if (checkoutComplete) {
                         register({ f_name : user?.user.first_name, l_name: user?.user.last_name, email: user?.user.email, workshop_1_id: formData.workshop_1_id, workshop_2_id:formData.workshop_2_id, workshop_3_id:formData.workshop_3_id } as registrationProps);
@@ -182,6 +186,7 @@ function RegisterForm() {
                 }}
                 isLoading={isPending}
                 errorMessage={clientError || error?.message}
+                errorCode={clientErrorCode || getErrorCode(error)}
             >
                 <h1 className="text-center pb-4 border-b w-full">Register for FACT</h1>
 
@@ -190,7 +195,7 @@ function RegisterForm() {
                 <Link
                     href="/workshops"
                     target="_blank"
-                    className="underline hover:text-highlight-2-primary"
+                    className="underline hover:text-[var(--violet-800)]"
                 >Browse Workshops</Link>
 
                 <WorkshopSelect
@@ -314,8 +319,8 @@ function RegisterForm() {
                     <div className="text-center text-sm font-[550]">Note: you must press the Register button at the bottom of the page after completing checkout for your registration to be processed.</div>
                     <br/>
                     <div className="flex justify-center gap-2 lg:gap-4">
-                        <button onClick={() => setTicketType(true)} type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops Only</button>
-                        <button onClick={() => setTicketType(false)} type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops + Variety Show Bundle</button>
+                        <button onClick={() => setTicketType(true)} type="button" className={`text-sm text-center w-fit p-4 rounded-xl hover:scale-105 transition-colors ${ticketType ? "pill pill--ink" : "text-[var(--ink-900)] bg-[var(--white)] shadow-lg hover:shadow-xl border border-[var(--hairline-on-light)]"}`}>Workshops Only</button>
+                        <button onClick={() => setTicketType(false)} type="button" className={`text-sm text-center w-fit p-4 rounded-xl hover:scale-105 transition-colors ${!ticketType ? "pill pill--ink" : "text-[var(--ink-900)] bg-[var(--white)] shadow-lg hover:shadow-xl border border-[var(--hairline-on-light)]"}`}>Workshops + Variety Show Bundle</button>
                     </div>
                     <br/>
 
@@ -347,7 +352,7 @@ function RegisterForm() {
                                 <p className="text-lg font-bold">
                                     {delegateStatus.has_unredeemed_promo[currentTicketType]}
                                 </p>
-                                <p className="text-xs text-slate-600">
+                                <p className="text-xs text-[var(--ink-on-light-dim)]">
                                     Enter this code in the Eventbrite checkout below.
                                 </p>
                             </>
@@ -383,7 +388,7 @@ function RegisterForm() {
 
                     <br/>
                     {verifyPending && (
-                        <div className="text-center text-sm text-slate-700">
+                        <div className="text-center text-sm text-[var(--ink-on-light-dim)]">
                             Verifying your payment with Eventbrite...
                         </div>
                     )}
@@ -392,7 +397,7 @@ function RegisterForm() {
                         {ticketType ? <EventbriteWidgetWks
                         onComplete={handleOrderComplete}/> :
 
-                        <div><div className="w-fit mx-auto text-sm text-slate-700 flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
+                        <div><div className="w-fit mx-auto text-sm text-[var(--ink-on-light-dim)] flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
                     : <div className="w-fit mx-auto"><LoadingCircle/></div>}</div>
                 }
             </FormContainer>

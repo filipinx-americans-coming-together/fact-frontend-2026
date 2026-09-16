@@ -1,5 +1,6 @@
 import { API_URL } from "@/util/constants";
 import fetchWithCredentials from "@/util/fetchWithCredentials";
+import { parseApiResponse } from "@/util/apiError";
 import { UserData } from "@/util/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -9,30 +10,16 @@ async function fetchLogin(
 ): Promise<{
     user: UserData;
 }> {
+    const endpoint = `${API_URL}/registration/facilitators/login/`;
+
     // request
     const response = await fetchWithCredentials({
-        url: `${API_URL}/registration/facilitators/login/`,
+        url: endpoint,
         method: "POST",
         body: JSON.stringify({ username: username, password: password }),
     });
 
-    let json;
-
-    try {
-        json = await response.json();
-    } catch {
-        throw new Error("Server error, please try again later");
-    }
-
-    if (!response.ok) {
-        let message = "Server error, please try again later";
-
-        if (json.message && response.status !== 500) {
-            message = json.message;
-        }
-
-        throw new Error(message);
-    }
+    const json = await parseApiResponse(response, endpoint, "POST");
 
     // user data
     const userData = json.user[0];
@@ -71,8 +58,6 @@ export function useFacilitatorLogin() {
 
         onSuccess: (data) => queryClient.setQueryData(["active-profile"], data),
     });
-
-    console.log("isSuccess", isSuccess);
 
     return { data, error, isPending, login, isSuccess };
 }

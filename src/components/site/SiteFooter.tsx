@@ -35,9 +35,13 @@ export function SiteFooter() {
           </Link>
         </div>
         <div className="footer__col footer__col--nav">
+          <p className="footer__heading">Navigate</p>
           <ul className="footer__links">
             <li>
               <Link href="/about">About Us</Link>
+            </li>
+            <li>
+              <Link href="/team">Team</Link>
             </li>
           </ul>
         </div>

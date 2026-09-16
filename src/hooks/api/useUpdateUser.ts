@@ -1,5 +1,6 @@
 import { API_URL } from "@/util/constants";
 import fetchWithCredentials from "@/util/fetchWithCredentials";
+import { parseApiResponse } from "@/util/apiError";
 import { DelegateData, RegistrationData, UserData } from "@/util/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -22,30 +23,16 @@ async function fetchUpdateUser(props: UpdateUserProps): Promise<{
     delegate: DelegateData;
     registration: RegistrationData[];
 }> {
+    const endpoint = `${API_URL}/registration/delegates/me/`;
+
     // request
     const response = await fetchWithCredentials({
-        url: `${API_URL}/registration/delegates/me/`,
+        url: endpoint,
         method: "PUT",
         body: JSON.stringify(props),
     });
 
-    let json;
-
-    try {
-        json = await response.json();
-    } catch {
-        throw new Error("Server error, please try again later");
-    }
-
-    if (!response.ok) {
-        let message = "Server error, please try again later";
-
-        if (json.message && response.status !== 500) {
-            message = json.message;
-        }
-
-        throw new Error(message);
-    }
+    const json = await parseApiResponse(response, endpoint, "PUT");
 
     // user data
     const userData = json.user[0];
@@ -103,8 +90,6 @@ export function useUpdateUser() {
 
         onSuccess: (data) => queryClient.setQueryData(["active-profile"], data),
     });
-
-    console.log("isSuccess", isSuccess);
 
     return { data, error, isPending, updateUser, isSuccess };
 }

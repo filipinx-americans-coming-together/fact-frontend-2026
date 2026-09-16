@@ -1,35 +1,22 @@
 import { API_URL } from "@/util/constants";
 import fetchWithCredentials from "@/util/fetchWithCredentials";
+import { parseApiResponse } from "@/util/apiError";
 import { useMutation } from "@tanstack/react-query";
 
 async function fetchResetPassword(
     password: string,
     token: string
 ): Promise<void> {
+    const endpoint = `${API_URL}/registration/users/reset-password/`;
+
     // request
     const response = await fetchWithCredentials({
-        url: `${API_URL}/registration/users/reset-password/`,
+        url: endpoint,
         method: "POST",
         body: JSON.stringify({ password: password, token: token }),
     });
 
-    let json;
-
-    try {
-        json = await response.json();
-    } catch {
-        throw new Error("Server error, please try again later");
-    }
-
-    if (!response.ok) {
-        let message = "Server error, please try again later";
-
-        if (json.message && response.status !== 500) {
-            message = json.message;
-        }
-
-        throw new Error(message);
-    }
+    await parseApiResponse(response, endpoint, "POST");
 }
 
 export function useResetPassword() {

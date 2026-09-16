@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 interface TextInputProps {
     label: string;
@@ -40,6 +41,8 @@ function TextInput({
     required = true,
 }: TextInputProps) {
     const [inputLength, setInputLength] = useState(0);
+    const [revealed, setRevealed] = useState(false);
+    const isPasswordField = !showCharacters;
 
     return (
         <div className="flex flex-col w-full">
@@ -58,25 +61,39 @@ function TextInput({
                 )}
             </div>
 
-            <input
-                type={showCharacters ? "text" : "password"}
-                id={id}
-                placeholder={placeholder}
-                defaultValue={value}
-                autoComplete={autoComplete}
-                className="py-1 px-2 rounded-sm border border-slate-700 w-full min-w-48 bg-[rgba(250,250,250,0.3)] shadow-lg"
-                onChange={(event) => {
-                    const value = event.currentTarget.value;
+            <div className="relative w-full">
+                <input
+                    type={isPasswordField && !revealed ? "password" : "text"}
+                    id={id}
+                    placeholder={placeholder}
+                    defaultValue={value}
+                    autoComplete={autoComplete}
+                    className={`py-1 px-2 rounded-sm border border-slate-700 w-full min-w-48 bg-[rgba(250,250,250,0.3)] shadow-lg${isPasswordField ? " pr-9" : ""}`}
+                    onChange={(event) => {
+                        const value = event.currentTarget.value;
 
-                    setInputLength(event.currentTarget.value.length);
-                    setState((prevState: Object) => ({
-                        ...prevState,
-                        [id]: value,
-                    }));
-                }}
-                required={required}
-                maxLength={maxLength}
-            />
+                        setInputLength(event.currentTarget.value.length);
+                        setState((prevState: Object) => ({
+                            ...prevState,
+                            [id]: value,
+                        }));
+                    }}
+                    required={required}
+                    maxLength={maxLength}
+                />
+                {isPasswordField && (
+                    <button
+                        type="button"
+                        onClick={() => setRevealed((prev) => !prev)}
+                        aria-label={revealed ? "Hide password" : "Show password"}
+                        aria-pressed={revealed}
+                        tabIndex={-1}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-900"
+                    >
+                        {revealed ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

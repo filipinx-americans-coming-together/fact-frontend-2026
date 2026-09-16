@@ -4,6 +4,7 @@ import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import TextInput from "@/components/ui/TextInput";
 import { useRequestPasswordReset } from "@/hooks/api/useRequestPasswordReset";
+import { getErrorCode } from "@/util/apiError";
 import { useState } from "react";
 
 export default function ForgotPassword() {
@@ -18,7 +19,7 @@ export default function ForgotPassword() {
         <RegPageContainer pageTitle="Forgot Password">
 
             {isSuccess ? (
-                <div className="w-7/12 min-w-[460px] px-20 py-12 bg-[rgba(240,240,240,0.3)] m-auto rounded-lg">
+                <div className="w-7/12 min-w-[460px] px-20 py-12 bg-[var(--white)] m-auto rounded-lg" style={{ boxShadow: "0 10px 28px rgba(14,21,94,0.12)", outline: "1px solid var(--hairline-on-light)" }}>
                     If an account with the email{" "}
                     <span className="font-bold whitespace-nowrap">{(formData as { email: string }).email}</span> exists, instructions
                     to reset your password have been sent there. If you can not
@@ -38,6 +39,7 @@ export default function ForgotPassword() {
                     }}
                     isLoading={isPending}
                     errorMessage={error?.message}
+                    errorCode={getErrorCode(error)}
                 >
                     <h1 className="text-center pb-4 border-b w-full">Reset Password</h1>
                     <TextInput

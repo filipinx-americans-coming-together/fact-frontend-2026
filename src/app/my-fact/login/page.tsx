@@ -5,6 +5,7 @@ import RegPageContainer from "@/components/formatting/RegPageContainer";
 import TextInput from "@/components/ui/TextInput";
 import { useFacilitatorLogin } from "@/hooks/api/useFacilitatorLogin";
 import { useLogin } from "@/hooks/api/useLogin";
+import { getErrorCode } from "@/util/apiError";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -88,6 +89,7 @@ export default function Login() {
                 }}
                 isLoading={isPending || facilitatorPending}
                 errorMessage={error ? error.message : facilitatorError?.message}
+                errorCode={getErrorCode(error || facilitatorError)}
             >
                 <div className="text-center text-3xl uppercase font-bold pb-4 border-b w-full">
                     {isDelegate ? "Delegate " : "Facilitator "}Login
@@ -106,7 +108,7 @@ export default function Login() {
 
                 <Link
                     href="/my-fact/forgot-password"
-                    className="underline text-slate-700 text-xs hover:text-[var(--violet-800)]"
+                    className="underline text-[var(--ink-on-light-dim)] text-xs hover:text-[var(--violet-800)]"
                 >
                     Forgot Password?
                 </Link>

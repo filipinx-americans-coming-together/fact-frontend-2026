@@ -6,6 +6,7 @@ import LoadingCircle from "@/components/icons/LoadingCircle";
 import WorkshopSelect from "@/components/ui/WorkshopSelect";
 import { UpdateUserProps, useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUser } from "@/hooks/api/useUser";
+import { getErrorCode } from "@/util/apiError";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -47,13 +48,14 @@ export default function Workshops() {
                 }}
                 isLoading={isPending}
                 errorMessage={error?.message}
+                errorCode={getErrorCode(error)}
             >
                 <h1 className="text-center pb-4 border-b w-full">Edit Workshops</h1>
 
                 {!user && <LoadingCircle />}
                 {user && (
                     <>
-                        <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+                        <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
                         <WorkshopSelect
                             session={1}
                             id="workshop_1_id"
@@ -82,7 +84,7 @@ export default function Workshops() {
                 )}
 
                 <Link
-                    className="text-center text-sm hover:text-highlight-2-primary underline"
+                    className="text-center text-sm hover:text-[var(--violet-800)] underline"
                     href="/my-fact/dashboard"
                 >
                     Back to Dashboard

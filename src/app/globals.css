@@ -261,3 +261,34 @@ body {
 .fact-form-page a.underline {
   text-decoration-color: var(--hairline-on-light);
 }
+
+/* InteractiveButton's non-submit variant (e.g. dashboard "Log out") ships
+   the 2025 highlight palette (bg-highlight-2-secondary / hover:bg-highlight-third)
+   by default, since that component is shared with the admin tool, which is
+   staying on the old theme for now (see fact-frontend-2026/CLAUDE.md). Scoped
+   descendant override, same pattern as button#main-submit above, so admin's
+   own InteractiveButton instances are untouched. */
+.fact-form-page button.bg-highlight-2-secondary {
+  background: var(--white);
+  color: var(--ink-900);
+  border: 1px solid var(--hairline-on-light);
+  box-shadow: none;
+}
+
+.fact-form-page button.bg-highlight-2-secondary:hover {
+  background: var(--cream-100);
+}
+
+/* LinkButton (e.g. dashboard "Edit Profile" / "Update Workshops") ships the
+   2025 hot-pink hover fill (hover:bg-highlight-2-primary) by default, same
+   shared-with-admin reasoning as above. */
+.fact-form-page .text-text-primary.border-2 {
+  color: var(--violet-800);
+  border-color: var(--violet-800);
+}
+
+.fact-form-page .text-text-primary.border-2:hover {
+  color: var(--cream-100);
+  background: linear-gradient(180deg, var(--violet-800) 0%, var(--ink-900) 100%);
+  border-color: transparent;
+}

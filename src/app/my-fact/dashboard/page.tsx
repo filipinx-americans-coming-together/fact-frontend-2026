@@ -53,7 +53,7 @@ export default function Dashboard() {
                         (notification) => notification.message
                     )}
                 />
-            )} {user.registration && <div className="bg-[rgba(240,240,240,0.3)] py-8 px-12 rounded-xl min-w-9/12 w-fit flex justify-evenly flex-col text-left mx-auto gap-10 md:gap-16">
+            )} {user.registration && <div className="bg-[var(--white)] py-8 px-12 rounded-xl min-w-9/12 w-fit flex justify-evenly flex-col text-left mx-auto gap-10 md:gap-16" style={{ boxShadow: "0 10px 28px rgba(14,21,94,0.12)", outline: "1px solid var(--hairline-on-light)" }}>
 
                 <div className="font-bold text-4xl my-2 flex items-center">
                             Welcome, {user.user.first_name} {user.user.last_name}
@@ -75,7 +75,7 @@ export default function Dashboard() {
                                     id={pair.workshop}
                                 />
                             ))}
-                            <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+                            <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
                             {flag?.value ? (
                                 <div className="text-center my-6">
                                     <LinkButton
@@ -94,11 +94,11 @@ export default function Dashboard() {
                     </div>
                     <UserAgenda/>
                     </div> : <div className="flex flex-col gap-4 items-center">
-                        <Link href="/my-fact/register" className="py-4 px-6 shadow-lg hover:shadow-xl font-bold bg-[rgba(255,255,255,0.3)] rounded-xl w-fit mx-auto text-xl">Register for FACT 2026</Link>
-                        <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center">Just finished registering? Refresh the page to load the dashboard <div className="text-lg"><IoMdRefresh /></div></div>
+                        <Link href="/my-fact/register" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
+                        <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just finished registering? Refresh the page to load the dashboard <div className="text-lg"><IoMdRefresh /></div></div>
                         </div>
                      }
-                    <div className="mx-auto my-6 w-fit text-background-primary">
+                    <div className="mx-auto my-6 w-fit">
                 <InteractiveButton
                     text="Log out"
                     onClick={() => {
