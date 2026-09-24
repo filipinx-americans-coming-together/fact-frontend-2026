@@ -25,6 +25,7 @@ import { API_URL } from "@/util/constants";
 import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
 import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
 import { ApiError, getErrorCode } from "@/util/apiError";
+import SearchableSelect from "@/components/ui/SearchableSelect";
 
 export default function Register() {
     return (
@@ -33,6 +34,15 @@ export default function Register() {
         </Suspense>
     );
 }
+
+const performerOptions = [
+    { value: "1", label: "FASO Kumantayo"},
+    { value: "1", label: "PSA Harana"},
+    { value: "1", label: "Purple Cakes"},
+    { value: "2", label: "FIA Modern"},
+    { value: "3", label: "PSA Barkada"},
+    { value: "3", label: "PSA Lumaya"},
+];
 
 function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
@@ -47,6 +57,8 @@ function RegisterForm() {
     } = useUiucPromoCode();
     const searchParams = useSearchParams();
     const uiucError = searchParams.get("uiuc_error");
+    const [isPerformer, setIsPerformer] = useState(false);
+    const [performerSession, setPerformerSession] = useState<{[key: string]: any}>({ session: -1 });
 
     const [checkoutComplete, setCheckoutComplete] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
@@ -198,21 +210,41 @@ function RegisterForm() {
                     className="underline hover:text-[var(--violet-800)]"
                 >Browse Workshops</Link>
 
-                <WorkshopSelect
+                <div className="flex self-start items-center gap-2">
+                    <input
+                        type="checkbox"
+                        checked={isPerformer}
+                        onChange={(e) => setIsPerformer(e.target.checked)}
+                        id="performer"
+                    />
+                    <span>I am a Variety Show performer</span>
+                </div>
+
+                {isPerformer && <SearchableSelect
+                    id="session"
+                    label="Select your Variety Show Act"
+                    setState={setPerformerSession}
+                    options={performerOptions}
+                    placeholder=""
+                />}
+
+                {isPerformer && performerSession.session == 1 ? <div className="font-medium self-start">
+                    Your tech time is during Session 1
+                </div> : <WorkshopSelect
                     session={1}
                     id="workshop_1_id"
                     setState={setFormData}
-                />
-                <WorkshopSelect
+                />}
+                {isPerformer &&performerSession.session == 2 ? <div className="font-medium self-start">Your tech time is during Session 2</div> : <WorkshopSelect
                     session={2}
                     id="workshop_2_id"
                     setState={setFormData}
-                />
-                <WorkshopSelect
+                />}
+                {isPerformer && performerSession.session == 3 ? <div className="font-medium self-start">Your tech time is during Session 3</div> : <WorkshopSelect
                     session={3}
                     id="workshop_3_id"
                     setState={setFormData}
-                />
+                />}
 
                 
                 <div className="static flex items-start gap-1">
