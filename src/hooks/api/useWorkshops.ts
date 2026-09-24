@@ -83,7 +83,7 @@ export function useWorkshops(): {
     error: Error | null;
 } {
     const {
-        data: workshops,
+        data: workshops_all,
         error,
         isLoading,
     } = useQuery({
@@ -92,6 +92,7 @@ export function useWorkshops(): {
         retry: 0,
     });
 
+    const workshops = workshops_all?.filter((wks) => wks.title != "tech-time"); // filter out workshops with session 0
     workshops?.sort((a, b) => a.title.localeCompare(b.title)); // sort in alphabetical order
     workshops?.sort((a, b) => a.session - b.session);      // while keeping the sessions in order   
 

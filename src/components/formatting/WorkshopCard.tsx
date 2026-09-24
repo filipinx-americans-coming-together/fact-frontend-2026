@@ -23,21 +23,28 @@ export default function WorkshopCard(props: WorkshopProps) {
                     Couldn&#39;t load this workshop. Please refresh, or contact FACT IT if it persists.
                 </div>
             ) : workshop ? (
-                <div className="bg-[rgba(250,250,250,0.3)] text-black text-xs px-8 py-4 m-4 rounded-md w-80 shadow-lg">
+                <div className="bg-[rgba(250,250,250,0.3)] text-black text-xs px-8 py-4 m-4 rounded-md h-24 w-80 shadow-lg">
+                    
                     <div>Session {workshop.workshop.session}</div>
                     <div className="text-center">
-                        <div>{workshop.workshop.title}</div>
+                        
+                        {workshop.workshop.title === "tech-time" ? <div className="font-medium">Your Variety Show act's tech time is during this session.</div> : <>
+                        <div className="font-medium">{workshop.workshop.title}</div>
                         <div>
-                            {workshop.workshop.session === 1 ? "10:00 AM - 11:10 AM" :
-                            workshop.workshop.session === 2 ? "11:20 AM - 12:30 PM" :
-                            workshop.workshop.session === 3 ? "1:50 PM - 3:00 PM" :
+                            {workshop.workshop.session === 1 ? "9:30 AM - 10:40 AM" :
+                            workshop.workshop.session === 2 ? "10:50 AM - 12:00 PM" :
+                            workshop.workshop.session === 3 ? "1:20 PM - 2:30 PM" :
                             "Time TBD"}
                         </div>
                         <div>
                             {workshop.location.building}{" "}
                             {workshop.location.room_num}
                         </div>
+                    
+                    </>}
                     </div>
+                    
+                    
                 </div>
             ) : (
                 <LoadingCircle />
