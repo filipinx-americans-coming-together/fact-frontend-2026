@@ -1,20 +1,54 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { useWorkshops } from '@/hooks/api/useWorkshops';
+import { useLocations } from '@/hooks/api/useLocations';
+import { LocationData } from '@/util/types';
+import { getFacilitatorForWorkshop } from '@/util/facilitatorPhotos';
+import { SESSION_TIMES } from '@/util/constants';
+
+const DESC_CLAMP_THRESHOLD = 220;
+
+function useIdToggleSet() {
+  const [ids, setIds] = useState<Set<number>>(new Set());
+  const toggle = useCallback((id: number) => {
+    setIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }, []);
+  return [ids, toggle] as const;
+}
 
 export default function WorkshopsPage() {
   const { workshops } = useWorkshops();
+  const { locations } = useLocations();
   const [query, setQuery] = useState('');
+  const [sessionFilter, setSessionFilter] = useState<number | 'all'>('all');
+  const [expandedIds, toggleExpanded] = useIdToggleSet();
+  const [openBioIds, toggleBio] = useIdToggleSet();
+
+  const locationsById = useMemo(() => {
+    const map = new Map<number, LocationData>();
+    (locations ?? []).forEach((location) => map.set(location.id, location));
+    return map;
+  }, [locations]);
 
   const sessions = useMemo(() => {
     const q = query.trim().toLowerCase();
     const bySession = new Map<number, typeof workshops>();
 
     (workshops ?? []).forEach((workshop) => {
+      if (sessionFilter !== 'all' && workshop.session !== sessionFilter) return;
       const matches =
         !q || workshop.title.toLowerCase().includes(q) || workshop.description.toLowerCase().includes(q);
       if (!matches) return;
@@ -24,13 +58,13 @@ export default function WorkshopsPage() {
     });
 
     return Array.from(bySession.entries()).sort(([a], [b]) => a - b);
-  }, [workshops, query]);
+  }, [workshops, query, sessionFilter]);
 
   const totalVisible = sessions.reduce((sum, [, items]) => sum + (items?.length ?? 0), 0);
 
   return (
     <>
-      <SiteHeader compact pageTitle="Workshops" pageSubtitle="Browse this year's sessions." />
+      <SiteHeader compact pageTitle="Workshops" pageSubtitle="Browse this year's sessions." active="workshops" />
 
       <main id="below">
         <section className="section section--workshops">
@@ -50,9 +84,22 @@ export default function WorkshopsPage() {
           </svg>
           <div className="section__inner">
             <p className="section__intro">
-              Browse this year&apos;s workshop lineup below. Delegates choose their sessions after registering, from
-              the My FACT dashboard.
+              Browse this year&apos;s workshop lineup below.
             </p>
+
+            <div className="workshops__sessionfilter" role="group" aria-label="Filter by session">
+              {(['all', 1, 2, 3] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  className="workshops__sessionpill"
+                  aria-pressed={sessionFilter === option}
+                  onClick={() => setSessionFilter(option)}
+                >
+                  {option === 'all' ? 'All sessions' : `Session ${option}`}
+                </button>
+              ))}
+            </div>
 
             <div className="workshops__search">
               <label className="sr-only" htmlFor="workshop-search-input">
@@ -69,6 +116,12 @@ export default function WorkshopsPage() {
               />
             </div>
 
+            <p className="sr-only" aria-live="polite">
+              {query.trim() || sessionFilter !== 'all'
+                ? `${totalVisible} workshop${totalVisible === 1 ? '' : 's'} found`
+                : ''}
+            </p>
+
             {!workshops ? (
               <p className="workshops__empty">Loading workshops&hellip;</p>
             ) : totalVisible === 0 ? (
@@ -77,30 +130,145 @@ export default function WorkshopsPage() {
               <div className="workshops__sessions">
                 {sessions.map(([session, items]) => (
                   <div key={session}>
-                    <h2 className="groupheading">Session {session}</h2>
+                    <h2 className="groupheading">
+                      Session {session}{' '}
+                      <span className="groupheading__count">
+                        &middot; {items?.length ?? 0} workshop{items?.length === 1 ? '' : 's'}
+                      </span>
+                    </h2>
                     <div>
-                      {items?.map((workshop) => (
-                        <article className="workshop__row" key={workshop.id}>
-                          <div className="workshop__facilitator" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                              <circle cx="12" cy="8.5" r="3.4" />
-                              <path d="M5.3 19.5c.7-4.1 3.3-6.3 6.7-6.3s6 2.2 6.7 6.3" />
-                            </svg>
-                          </div>
-                          <div className="workshop__info">
-                            <h3 className="workshop__title">{workshop.title}</h3>
-                            <p className="workshop__desc">{workshop.description}</p>
-                            {workshop.facilitators && workshop.facilitators.length > 0 ? (
-                              <p className="workshop__desc">Facilitated by {workshop.facilitators.join(', ')}</p>
-                            ) : null}
-                          </div>
-                        </article>
-                      ))}
+                      {items?.map((workshop) => {
+                        const location = locationsById.get(workshop.location);
+                        const hasRealLocation =
+                          !!location?.building && location.building.trim().toLowerCase() !== 'tbd';
+                        const capacity = location?.capacity;
+                        const isFull =
+                          typeof capacity === 'number' &&
+                          typeof workshop.registrationCount === 'number' &&
+                          workshop.registrationCount >= capacity;
+                        const facilitator = getFacilitatorForWorkshop(workshop.title);
+
+                        return (
+                          <article
+                            className={isFull ? 'workshop__row workshop__row--full' : 'workshop__row'}
+                            key={workshop.id}
+                          >
+                            <div className="workshop__info">
+                              <h3 className="workshop__title">{workshop.title}</h3>
+                              <p className="workshop__meta">
+                                <span>{SESSION_TIMES[workshop.session] ?? 'Time TBD'}</span>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>
+                                  {hasRealLocation
+                                    ? `${location!.building} ${location!.room_num}`
+                                    : 'Location TBD'}
+                                </span>
+                                {typeof capacity === 'number' && typeof workshop.registrationCount === 'number' ? (
+                                  <>
+                                    <span aria-hidden="true">&middot;</span>
+                                    {isFull ? (
+                                      <span className="workshop__seats workshop__seats--full">Full</span>
+                                    ) : (
+                                      <span className="workshop__seats">
+                                        {workshop.registrationCount}/{capacity} spots
+                                      </span>
+                                    )}
+                                  </>
+                                ) : null}
+                              </p>
+                              {(() => {
+                                const isLong = workshop.description.length > DESC_CLAMP_THRESHOLD;
+                                const isExpanded = expandedIds.has(workshop.id);
+                                return (
+                                  <>
+                                    <p
+                                      id={`workshop-desc-${workshop.id}`}
+                                      className={
+                                        isLong && !isExpanded ? 'workshop__desc is-clamped' : 'workshop__desc'
+                                      }
+                                    >
+                                      {workshop.description}
+                                    </p>
+                                    {isLong ? (
+                                      <button
+                                        type="button"
+                                        className="workshop__descmore"
+                                        aria-expanded={isExpanded}
+                                        aria-controls={`workshop-desc-${workshop.id}`}
+                                        onClick={() => toggleExpanded(workshop.id)}
+                                      >
+                                        {isExpanded ? 'Read less' : 'Read more'}
+                                      </button>
+                                    ) : null}
+                                  </>
+                                );
+                              })()}
+                              {facilitator ? (
+                                <>
+                                  <button
+                                    type="button"
+                                    className="workshop__bioTrigger"
+                                    aria-expanded={openBioIds.has(workshop.id)}
+                                    aria-controls={`workshop-bio-${workshop.id}`}
+                                    onClick={() => toggleBio(workshop.id)}
+                                  >
+                                    Facilitated by {facilitator.name}
+                                  </button>
+                                  <div
+                                    className={
+                                      openBioIds.has(workshop.id)
+                                        ? 'workshop__bioWrap is-open'
+                                        : 'workshop__bioWrap'
+                                    }
+                                  >
+                                    <div
+                                      className="workshop__bio"
+                                      id={`workshop-bio-${workshop.id}`}
+                                      aria-hidden={!openBioIds.has(workshop.id)}
+                                    >
+                                      <Image
+                                        className={
+                                          facilitator.flatPhoto
+                                            ? 'workshop__bioPhoto workshop__bioPhoto--flat'
+                                            : 'workshop__bioPhoto'
+                                        }
+                                        src={facilitator.photo}
+                                        alt={facilitator.name}
+                                        width={facilitator.width}
+                                        height={facilitator.height}
+                                        placeholder="blur"
+                                        blurDataURL={facilitator.blurDataURL}
+                                      />
+                                      <p className="workshop__bioText">{facilitator.bio}</p>
+                                    </div>
+                                  </div>
+                                </>
+                              ) : workshop.facilitators && workshop.facilitators.length > 0 ? (
+                                <p className="workshop__desc">Facilitated by {workshop.facilitators.join(', ')}</p>
+                              ) : null}
+                            </div>
+                          </article>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
               </div>
             )}
+
+            <a className="team__backtotop" href="#top">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 12h13M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span>Back to top</span>
+            </a>
           </div>
         </section>
 
@@ -108,19 +276,6 @@ export default function WorkshopsPage() {
           <div className="crosslink__inner">
             <p className="crosslink__label">Continue exploring</p>
             <div className="crosslink__links">
-              <Link className="crosslink__link" href="/agenda">
-                <span>Agenda</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
               <Link className="crosslink__link" href="/team">
                 <span>Team</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true">

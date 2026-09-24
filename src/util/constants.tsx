@@ -7,3 +7,9 @@ export const API_URL =
 
 export const EMAIL_MAX_LEN = 200;
 export const PASSWORD_MAX_LEN = 200;
+
+export const SESSION_TIMES: Record<number, string> = {
+    1: "9:30 AM - 10:40 AM",
+    2: "10:50 AM - 12:00 PM",
+    3: "1:20 PM - 2:30 PM",
+};
