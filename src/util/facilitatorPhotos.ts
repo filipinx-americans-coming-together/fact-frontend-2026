@@ -17,7 +17,7 @@ export type FacilitatorInfo = {
 export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   'Filipino Nurses: The Greatest Migration Story Never Told': {
     name: 'Filipino American Historical Society of Chicago',
-    photo: '/images/facilitators/filipino-american-historical-society-of-chicago.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/filipino-american-historical-society-of-chicago.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEEBf/EACAQAAICAgICAwAAAAAAAAAAAAECAwQABRESFSExcYH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABMf/aAAwDAQACEQMRAD8AWl09Px8ck0KyvIvbs3v8GYO7pR09g0cPCoQGCk/HOFDdXKtcwoytGoJUOvPH1kVmzLbneady7sfZOE1T/9k=',
@@ -25,7 +25,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'AZA Essentials - Service Project': {
     name: 'AZA Essentials',
-    photo: '/images/facilitators/aza-essentials.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/aza-essentials.png',
     width: 203,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQMG/8QAHxAAAgICAQUAAAAAAAAAAAAAAQIAEQQSAyEyQmFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANUck6odaLGqPj7MTkMrMp4naj0KCwZZkVu5QfojA//Z',
@@ -33,7 +33,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Exploring Filipino Immigration Climate in the U.S.': {
     name: 'I-CAUSE',
-    photo: '/images/facilitators/i-cause.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/i-cause.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAgX/xAAkEAACAQMDAwUAAAAAAAAAAAABAgQAAxEFEiEiMVFBYXFy8P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwAyI0mY7PckS1KBiwcghcHnAyMY45q/pMZ2hLvlSy4JDC44JUj07fs0dWuvBvJdjna0htj8Aj7fNVI9hI9lbVsdI89yfJ96D//Z',
@@ -41,7 +41,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Healing, Care, and the Filipinx Experience: The Magic of Knowing': {
     name: 'Isa Sargan',
-    photo: '/images/facilitators/isa-sargan.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/isa-sargan.jpg',
     width: 120,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQIG/8QAIBAAAgICAgIDAAAAAAAAAAAAAQIDEQAEBRITITFBcf/EABQBAQAAAAAAAAAAAAAAAAAAAAT/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAMAwEAAhEDEQA/AENGGBeI13kFszdj9miTQ/MUEgVEHiLDqKOZDiNmZoiDIxCxivfxR9ZWlzG4muEElhSQLF4TcZSKX//Z',
@@ -49,7 +49,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Medical Missions, Rehabilitation and Relief! Going Back Home to Help Our Home!': {
     name: 'NAFCON x Kabataan Alliance',
-    photo: '/images/facilitators/nafcon-x-kabataan-alliance.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/nafcon-x-kabataan-alliance.jpg',
     width: 172,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAwX/xAAeEAACAgICAwAAAAAAAAAAAAABAgMRAAQSUQUjMf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQIAAxH/2gAMAwEAAhEDEQA/AK+0802zLbMFQkKoNZQ8bLJJre2yysVvvFm1IZn5Op5dgkXioixqFQUo+DASj7r30moAN//Z',
@@ -57,7 +57,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'More Than Trauma: Exploring Generational Activism in the Pan-Asian Community': {
     name: 'Asian American Coalition to Combat Oppression, Racism, and Discrimination (ACCORD) at UIUC',
-    photo: '/images/facilitators/accord-uiuc.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/accord-uiuc.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAgMF/8QAHRAAAgICAwEAAAAAAAAAAAAAAQIDEQBBBBITwf/EABQBAQAAAAAAAAAAAAAAAAAAAAL/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDV9YoFAaH0YgEk/MDhWpkBQML6trHDyZIl6iiNXrJO7SMWc2TjN//Z',
@@ -65,7 +65,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Impacts of A.I. on the Filipino People and Our Environment': {
     name: 'Kabataan Alliance Midwest',
-    photo: '/images/facilitators/kabataan-alliance-midwest.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/kabataan-alliance-midwest.jpeg',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAMF/8QAIxAAAgIBAwMFAAAAAAAAAAAAAQIDEQQABSIhQYEjMlFxsf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDVlyN0afIGEkbU1ciLDXXc+2uv3qkOZmUQsYLA8wOQVqFgH47+dI3HGjMqyi1d/TYqasE1+HTMWGODHRIlCrV+dB//2Q==',
@@ -73,7 +73,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Defend Migrants: Youth & Students Fight Against Fascism!': {
     name: 'Tanggol Migrante Movement',
-    photo: '/images/facilitators/tanggol-migrante-movement.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/tanggol-migrante-movement.jpeg',
     width: 220,
     height: 92,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQEC/8QAIxAAAQMDAgcAAAAAAAAAAAAAAQIDEQAEBSGhEhMUIzFBU//EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oADAMBAAIRAxEAPwBlrNi4L/InthGi0ERO9aGUuPYZ3pFNnboKillAK44iBqY8TV6Zn5pqXZG//9k=',
@@ -81,7 +81,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Bridging Generations': {
     name: 'Jeremy Bautista',
-    photo: '/images/facilitators/jeremy-bautista.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/jeremy-bautista.jpg',
     width: 166,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAMG/8QAIRAAAgEEAgIDAAAAAAAAAAAAAQIDAAQRIRITBWEUQVH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAEAAiH/2gAMAwEAAhEDEQA/AGXd+JrqLpeTq46VSVPL916pA8q4AHxXcjRbmBn3WVS4eS6klcKzMCx1jdTF5PvMmd/Yo7UZEC//2Q==',
@@ -89,7 +89,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'The Evolution of Filipino Folk Dance': {
     name: 'FIA Cultural',
-    photo: '/images/facilitators/fia-cultural.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/fia-cultural.png',
     width: 209,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAwb/xAAdEAACAgMBAQEAAAAAAAAAAAABAgMRABIhBFGh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAABABEC/9oADAMBAAIRAxEAPwCsknCPrw0e9xUbdb/PmC/i87uXaIFibuziRQpCmkY1W7q8gOh1ZUy//9k=',
@@ -97,7 +97,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'PSA 101: Introduction to the MAFAsphere and Beyond': {
     name: 'MAFA',
-    photo: '/images/facilitators/mafa.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/mafa.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQMEBv/EAB0QAQACAgIDAAAAAAAAAAAAAAECAwARBBIxQXH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARMf/aAAwDAQACEQMRAD8AzfB4tV9azsYvbroN+fbklsQskRRB1sw1WTjFIyT44uUmTtwg7J5f/9k=',
@@ -106,7 +106,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Introduction to Philippine Music—from the indigenous, colonial, to post colonial heritage': {
     name: 'Dr. Bernard Ellorin PhD of the Pakaraguian Kulintang Ensemble',
-    photo: '/images/facilitators/bernard-ellorin.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/bernard-ellorin.jpeg',
     width: 220,
     height: 84,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIEBv/EAB8QAAEDBAMBAAAAAAAAAAAAAAEAAhEDBDGSFBVS0f/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARMf/aAAwDAQACEQMRAD8A0/Y2vo6FK6/bILKZc04MRKo41LydigbSicsOx+qUXkmX/9k=',
@@ -114,7 +114,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'The Art of Belonging: Stories, Archives, and the Magic of Memory': {
     name: 'CIRCA Pinitg',
-    photo: '/images/facilitators/circa-pintig.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/circa-pintig.jpg',
     width: 220,
     height: 147,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQMEBf/EACAQAAIBAwQDAAAAAAAAAAAAAAEDAgAREgQFIVExMtH/xAAUAQEAAAAAAAAAAAAAAAAAAAAB/8QAGBEAAgMAAAAAAAAAAAAAAAAAAAERIUH/2gAMAwEAAhEDEQA/AMJG2p1EMlk2yxvlx3fxUrVIU2cCqZMZEe4+UU7rqEKCoBeIFuYXpDtU1zDOUrE9C1Fio0//2Q==',
@@ -122,7 +122,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Maximizing your Impact at Career Fairs: Stand Out, Get the Job!': {
     name: 'The Career Center (University of Illinois)',
-    photo: '/images/facilitators/career-center-uiuc.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/career-center-uiuc.jpg',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAC/8QAGxABAAMAAwEAAAAAAAAAAAAAAQACEQMSUYH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAAMAAAAAAAAAAAAAAAAAAAADMf/aAAwDAQACEQMRAD8AK8ZY1snzZix1tg6ew19ZRZSkQ//Z',
@@ -130,7 +130,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Demystifying Graduate School for Filipino-Americans': {
     name: 'Ryan Talusan',
-    photo: '/images/facilitators/ryan-talusan.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/ryan-talusan.jpg',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQG/8QAIBAAAgICAgIDAAAAAAAAAAAAAQIDEQAEBSESQRMUMf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEhAv/aAAwDAQACEQMRAD8AU5tt5JY/p7Xw0LClAQ5v2cYC2oJFEjvMXsTSSbMrs7FmZgTfq/zLuO3tiLXKLIfEMavuuhgTpR5h/9k=',
@@ -138,7 +138,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'The Art of Being You': {
     name: 'Luis Danao',
-    photo: '/images/facilitators/luis-danao.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/luis-danao.jpg',
     width: 184,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAwX/xAAjEAACAQMDBAMAAAAAAAAAAAABAgMAESEEBRITFCIxQWFx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAL/xAAXEQADAQAAAAAAAAAAAAAAAAAAAREx/9oADAMBAAIRAxEAPwCBp9vGqF4FLnIwD9Yo2i7d2iut1NjcD3VDadQ8EHOLx5sAVzaglVllcdRj5H3Y/P5SPaRVh//Z',
@@ -146,7 +146,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Salamin ng Loob': {
     name: 'Kasamahan',
-    photo: '/images/facilitators/kasamahan.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/kasamahan.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAgUG/8QAHRAAAQQCAwAAAAAAAAAAAAAAAgABBBEDFAUiYv/EABQBAQAAAAAAAAAAAAAAAAAAAAH/xAAXEQEBAQEAAAAAAAAAAAAAAAABAAJR/9oADAMBAAIRAxEAPwDOcVmj4mkbMXYsOvl1PSAyC3F6tqRQZBXsrf/Z',
@@ -155,7 +155,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Fostering Growth and Development in Our Organisations as Ambassadors of Our Heritage: A Leadership Roundtable': {
     name: 'Ethan D.K. Lopez',
-    photo: '/images/facilitators/ethan-lopez.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/ethan-lopez.jpg',
     width: 120,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABQT/xAAfEAACAgICAwEAAAAAAAAAAAABAgMRAAQFURIhMWH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAwDAQACEQMRAD8Ag4vjJN9ZZYAKT0GsX5dYdOZYZmjaRiyGj+HrEd7fn4Z5tXQIjQEGyLayMMkQvIzs7FmNk39ORCSZf//Z',
@@ -163,7 +163,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   "From Plastics to Pick-Me's: The Evolution of Girl Hate in the Media": {
     name: 'Josie Liu',
-    photo: '/images/facilitators/josie-liu.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/josie-liu.jpg',
     width: 220,
     height: 147,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgME/8QAIhABAAEDAgcBAAAAAAAAAAAAAQIABBEDUQUSExQxcXOx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANt1qxt4wwRcpkdsg+vNXlZC5DJvRXj+vqN2w5kj04mBpjYyext/lH8KD//Z',
@@ -171,7 +171,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Breaking Into the Music Industry: How to grow your career as a music artist': {
     name: 'Sierra Sikora',
-    photo: '/images/facilitators/sierra-sikora.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/sierra-sikora.jpg',
     width: 220,
     height: 165,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQMF/8QAHxAAAgICAQUAAAAAAAAAAAAAAQIAAxEhBCIxQVHB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAYEQEBAAMAAAAAAAAAAAAAAAACAAERIf/aAAwDAQACEQMRAD8Ay66lVOpgSVJGPsDw+QSTUpK+1bEm1jpSGDtkAjZ8GAusUadhnfcwy6SFzd//2Q==',
@@ -179,7 +179,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Kaya Mo, Personal Finance & Retirement 101': {
     name: 'Donny Rojo, FYLPRO',
-    photo: '/images/facilitators/donny-rojo.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/donny-rojo.jpeg',
     width: 144,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAwQFBv/EACMQAAIBAgQHAAAAAAAAAAAAAAECAwAEERIhUQUiMUFSYXH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABgRAAIDAAAAAAAAAAAAAAAAAAAREiFB/9oADAMBAAIRAxEAPwBu9ms7qVyuVjEuZj4jf1RrW84ZOrys68zY6tgeg7VmJJGhS/jj0VmRT81NTwxwB3qo6DpH/9k=',
@@ -187,7 +187,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Urban Street Dance Workshop': {
     name: 'Filipino American Historical Society of Chicago',
-    photo: '/images/facilitators/filipino-american-historical-society-of-chicago.png',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/filipino-american-historical-society-of-chicago.png',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEEBf/EACAQAAICAgICAwAAAAAAAAAAAAECAwQABRESFSExcYH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABMf/aAAwDAQACEQMRAD8AWl09Px8ck0KyvIvbs3v8GYO7pR09g0cPCoQGCk/HOFDdXKtcwoytGoJUOvPH1kVmzLbneady7sfZOE1T/9k=',
@@ -195,7 +195,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Creative Expression through Music Production & Songwriting': {
     name: 'Ashton Perry',
-    photo: '/images/facilitators/ashton-perry.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/ashton-perry.jpg',
     width: 220,
     height: 146,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQMEBf/EACIQAAEDAgYDAAAAAAAAAAAAAAECAwQAEQUSEyExMkFRcf/EABQBAQAAAAAAAAAAAAAAAAAAAAP/xAAWEQEBAQAAAAAAAAAAAAAAAAABACH/2gAMAwEAAhEDEQA/AIJWGvMuOIRHWQnruVfOKU5BntrIQ09lO4KAbGtbEpjsZ8IayhACbC3vmjHkvFq2qvYkdj4NAOzJl//Z',
@@ -203,7 +203,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Liwan Simulator - A Crash Course': {
     name: "FIA'Liwan",
-    photo: '/images/facilitators/fia-liwan.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/fia-liwan.jpg',
     width: 220,
     height: 165,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAHhAAAgEDBQAAAAAAAAAAAAAAAAECAxESEyFBUZH/xAAUAQEAAAAAAAAAAAAAAAAAAAAB/8QAFxEBAAMAAAAAAAAAAAAAAAAAAAERUf/aAAwDAQACEQMRAD8A1zrbPGEm+rWGvDnLxlQBuMf/2Q==',
@@ -211,7 +211,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Mapping Our Migration Stories: Narrating the Experiences of the Filipino Diaspora': {
     name: 'Tanggol Migrante Movement',
-    photo: '/images/facilitators/tanggol-migrante-movement.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/tanggol-migrante-movement.jpeg',
     width: 220,
     height: 92,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQEC/8QAIxAAAQMDAgcAAAAAAAAAAAAAAQIDEQAEBSGhEhMUIzFBU//EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oADAMBAAIRAxEAPwBlrNi4L/InthGi0ERO9aGUuPYZ3pFNnboKillAK44iBqY8TV6Zn5pqXZG//9k=',
@@ -219,7 +219,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Songs from Scratch: Songwriting & Music Production 101': {
     name: 'Sierra Sikora',
-    photo: '/images/facilitators/sierra-sikora.jpg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/sierra-sikora.jpg',
     width: 220,
     height: 165,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQMF/8QAHxAAAgICAQUAAAAAAAAAAAAAAQIAAxEhBCIxQVHB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAYEQEBAAMAAAAAAAAAAAAAAAACAAERIf/aAAwDAQACEQMRAD8Ay66lVOpgSVJGPsDw+QSTUpK+1bEm1jpSGDtkAjZ8GAusUadhnfcwy6SFzd//2Q==',
@@ -227,7 +227,7 @@ export const FACILITATORS_BY_WORKSHOP_TITLE: Record<string, FacilitatorInfo> = {
   },
   'Creativity for the People: Advocate for a Pro-People Culture in the Philippines': {
     name: 'Kabataan Alliance Midwest',
-    photo: '/images/facilitators/kabataan-alliance-midwest.jpeg',
+    photo: 'https://d8t8hw5atqxm3ugh.public.blob.vercel-storage.com/facilitators/kabataan-alliance-midwest.jpeg',
     width: 180,
     height: 180,
     blurDataURL: 'data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAMF/8QAIxAAAgIBAwMFAAAAAAAAAAAAAQIDEQQABSIhQYEjMlFxsf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDVlyN0afIGEkbU1ciLDXXc+2uv3qkOZmUQsYLA8wOQVqFgH47+dI3HGjMqyi1d/TYqasE1+HTMWGODHRIlCrV+dB//2Q==',

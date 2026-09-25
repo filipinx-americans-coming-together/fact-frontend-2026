@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { InstagramIcon } from './SocialIcon';
 
 type SiteHeaderProps =
-  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: 'about' | 'team' | null }
-  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: 'about' | 'team' | null };
+  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: 'about' | 'team' | 'workshops' | null }
+  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: 'about' | 'team' | 'workshops' | null };
 
 // Mirrors live's .hero header exactly — full hero (home) vs .hero--compact
 // (every interior page). "About Us" and "Team" are linked in nav today; per
