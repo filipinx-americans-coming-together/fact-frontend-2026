@@ -124,7 +124,7 @@ export default function Profile() {
                             id="school_id"
                             setState={setFormData}
                             required={false}
-                            // defaultValue={user.delegate.school}
+                            defaultValue={user.delegate.school ? user.delegate.school.toString() : undefined}
                         />
                     </>
                 )}
