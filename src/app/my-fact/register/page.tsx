@@ -26,6 +26,7 @@ import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
 import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
 import { ApiError, getErrorCode } from "@/util/apiError";
 import SearchableSelect from "@/components/ui/SearchableSelect";
+import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
 
 export default function Register() {
     return (
@@ -36,12 +37,12 @@ export default function Register() {
 }
 
 const performerOptions = [
-    { value: "1", label: "FASO Kumantayo"},
-    { value: "1", label: "PSA Harana"},
-    { value: "1", label: "Purple Cakes"},
-    { value: "2", label: "FIA Modern"},
-    { value: "3", label: "PSA Barkada"},
-    { value: "3", label: "PSA Lumaya"},
+    { label: "FASO Kumantayo", value: "0", session: 0 }, // session 1
+    { label: "PSA Harana", value: "1", session: 0 },
+    { label: "Purple Cakes", value: "2", session: 0 },
+    { label: "FIA Modern", value: "3", session: 1 }, // session 2
+    { label: "PSA Barkada", value: "4", session: 2 }, // session 3
+    { label: "PSA Lumaya", value: "5", session: 2 },
 ];
 
 function RegisterForm() {
@@ -58,8 +59,8 @@ function RegisterForm() {
     const searchParams = useSearchParams();
     const uiucError = searchParams.get("uiuc_error");
     const [isPerformer, setIsPerformer] = useState(false);
-    const [performerSession, setPerformerSession] = useState<{[key: string]: any}>({ session: -1 });
-
+    const [performerSession, setPerformerSession] = useState<{[key: string]: any}>({ performer_id: "-1" });
+    const {techTimes, isLoading: techTimesLoading, error: techTimesError} = useWorkshopsTech();
     const [checkoutComplete, setCheckoutComplete] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
     const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
@@ -221,26 +222,42 @@ function RegisterForm() {
                 </div>
 
                 {isPerformer && <SearchableSelect
-                    id="session"
+                    id="performer_id"
                     label="Select your Variety Show Act"
                     setState={setPerformerSession}
                     options={performerOptions}
                     placeholder=""
                 />}
 
-                {isPerformer && performerSession.session == 1 ? <div className="font-medium self-start">
-                    Your tech time is during Session 1
-                </div> : <WorkshopSelect
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 0 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_1_id"
+                        label="Session 1 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 1).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={1}
                     id="workshop_1_id"
                     setState={setFormData}
                 />}
-                {isPerformer &&performerSession.session == 2 ? <div className="font-medium self-start">Your tech time is during Session 2</div> : <WorkshopSelect
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 1 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_2_id"
+                        label="Session 2 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 2).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={2}
                     id="workshop_2_id"
                     setState={setFormData}
                 />}
-                {isPerformer && performerSession.session == 3 ? <div className="font-medium self-start">Your tech time is during Session 3</div> : <WorkshopSelect
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 2 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_3_id"
+                        label="Session 3 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 3).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={3}
                     id="workshop_3_id"
                     setState={setFormData}
