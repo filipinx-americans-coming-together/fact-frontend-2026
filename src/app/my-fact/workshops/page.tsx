@@ -6,6 +6,7 @@ import LoadingCircle from "@/components/icons/LoadingCircle";
 import WorkshopSelect from "@/components/ui/WorkshopSelect";
 import { UpdateUserProps, useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUser } from "@/hooks/api/useUser";
+import { useWorkshops } from "@/hooks/api/useWorkshops";
 import { getErrorCode } from "@/util/apiError";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,6 +16,7 @@ import { IoMdRefresh } from "react-icons/io";
 export default function Workshops() {
     const { updateUser, isSuccess, isPending, error } = useUpdateUser();
     const { user, error: noUser } = useUser();
+    const { workshops, isLoading, error: workshopsError } = useWorkshops();
 
     const [formData, setFormData] = useState<Object>({
         workshop_1_id: "",
@@ -56,30 +58,36 @@ export default function Workshops() {
                 {user && (
                     <>
                         <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
-                        <WorkshopSelect
+                        { workshops?.find(wks => user.registration && wks.id == user.registration[0].workshop) ? <WorkshopSelect
                             session={1}
                             id="workshop_1_id"
                             userRegistration={user.registration}
                             setState={setFormData}
                             defaultValue={user.registration[0].workshop.toString()}
                             required={false}
-                        />
-                        <WorkshopSelect
+                        /> : <div className="font-medium self-start">
+                                Your Variety Show act's tech time is during Session 1
+                            </div> }
+                        { workshops?.find(wks => user.registration && wks.id == user.registration[1].workshop) ? <WorkshopSelect
                             session={2}
                             id="workshop_2_id"
                             userRegistration={user.registration}
                             setState={setFormData}
                             defaultValue={user.registration[1].workshop.toString()}
                             required={false}
-                        />
-                        <WorkshopSelect
+                        /> : <div className="font-medium self-start">
+                                Your Variety Show act's tech time is during Session 2
+                            </div> }
+                        { workshops?.find(wks => user.registration && wks.id == user.registration[2].workshop) ?<WorkshopSelect
                             session={3}
                             id="workshop_3_id"
                             userRegistration={user.registration}
                             setState={setFormData}
                             defaultValue={user.registration[2].workshop.toString()}
                             required={false}
-                        />
+                        /> : <div className="font-medium self-start">
+                                Your Variety Show act's tech time is during Session 3
+                            </div> }
                     </>
                 )}
 
