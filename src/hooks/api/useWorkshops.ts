@@ -77,13 +77,13 @@ async function fetchRegistrationCount({id} : {id: number}): Promise<{ registrati
     return registrations
 }
 
-export function useWorkshops(): {
-    workshops: WorkshopData[] | undefined;
+export function useWorkshopsTech(): {
+    techTimes: WorkshopData[] | undefined;
     isLoading: boolean;
     error: Error | null;
 } {
     const {
-        data: workshops,
+        data: workshops_all,
         error,
         isLoading,
     } = useQuery({
@@ -92,6 +92,28 @@ export function useWorkshops(): {
         retry: 0,
     });
 
+    const techTimes = workshops_all?.filter((wks) => wks.title === "tech-time");
+    techTimes?.sort((a, b) => a.session - b.session);
+
+    return { techTimes, isLoading, error };
+}
+
+export function useWorkshops(): {
+    workshops: WorkshopData[] | undefined;
+    isLoading: boolean;
+    error: Error | null;
+} {
+    const {
+        data: workshops_all,
+        error,
+        isLoading,
+    } = useQuery({
+        queryKey: ["workshops"],
+        queryFn: () => fetchWorkshops(),
+        retry: 0,
+    });
+
+    const workshops = workshops_all?.filter((wks) => wks.title != "tech-time");
     workshops?.sort((a, b) => a.title.localeCompare(b.title)); // sort in alphabetical order
     workshops?.sort((a, b) => a.session - b.session);      // while keeping the sessions in order   
 

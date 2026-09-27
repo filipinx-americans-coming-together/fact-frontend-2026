@@ -25,6 +25,8 @@ import { API_URL } from "@/util/constants";
 import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
 import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
 import { ApiError, getErrorCode } from "@/util/apiError";
+import SearchableSelect from "@/components/ui/SearchableSelect";
+import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
 
 export default function Register() {
     return (
@@ -33,6 +35,15 @@ export default function Register() {
         </Suspense>
     );
 }
+
+const performerOptions = [
+    { label: "FASO Kumantayo", value: "0", session: 0 }, // session 1
+    { label: "PSA Harana", value: "1", session: 0 },
+    { label: "Purple Cakes", value: "2", session: 0 },
+    { label: "FIA Modern", value: "3", session: 1 }, // session 2
+    { label: "PSA Barkada", value: "4", session: 2 }, // session 3
+    { label: "PSA Lumaya", value: "5", session: 2 },
+];
 
 function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
@@ -47,7 +58,9 @@ function RegisterForm() {
     } = useUiucPromoCode();
     const searchParams = useSearchParams();
     const uiucError = searchParams.get("uiuc_error");
-
+    const [isPerformer, setIsPerformer] = useState(false);
+    const [performerSession, setPerformerSession] = useState<{[key: string]: any}>({ performer_id: "-1" });
+    const {techTimes, isLoading: techTimesLoading, error: techTimesError} = useWorkshopsTech();
     const [checkoutComplete, setCheckoutComplete] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
     const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
@@ -198,21 +211,57 @@ function RegisterForm() {
                     className="underline hover:text-[var(--violet-800)]"
                 >Browse Workshops</Link>
 
-                <WorkshopSelect
+                <div className="flex self-start items-center gap-2">
+                    <input
+                        type="checkbox"
+                        checked={isPerformer}
+                        onChange={(e) => setIsPerformer(e.target.checked)}
+                        id="performer"
+                    />
+                    <span>I am a Variety Show performer</span>
+                </div>
+
+                {isPerformer && <SearchableSelect
+                    id="performer_id"
+                    label="Select your Variety Show Act"
+                    setState={setPerformerSession}
+                    options={performerOptions}
+                    placeholder=""
+                />}
+
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 0 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_1_id"
+                        label="Session 1 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 1).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={1}
                     id="workshop_1_id"
                     setState={setFormData}
-                />
-                <WorkshopSelect
+                />}
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 1 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_2_id"
+                        label="Session 2 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 2).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={2}
                     id="workshop_2_id"
                     setState={setFormData}
-                />
-                <WorkshopSelect
+                />}
+                {isPerformer && performerOptions.find((opt) => opt.value === performerSession.performer_id)?.session === 2 && techTimes?.length ?  
+                    <SearchableSelect 
+                        id="workshop_3_id"
+                        label="Session 3 (Performer)"
+                        setState={setFormData}
+                        placeholder=""
+                        options={techTimes.filter((wks) => wks.session === 3).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
                     session={3}
                     id="workshop_3_id"
                     setState={setFormData}
-                />
+                />}
 
                 
                 <div className="static flex items-start gap-1">

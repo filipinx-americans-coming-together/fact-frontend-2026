@@ -182,7 +182,7 @@ function UserAgenda() {
                         <div className="text-3xl font-bold">My Agenda</div>
                         <br />
                         <button
-                            className="underline font-light hover:text-highlight-2-primary my-3"
+                            className="underline font-light hover:text-gray-400 my-3"
                             onClick={() => {
                                 downloadAgendaPDF(
                                     user.user.first_name,
@@ -199,7 +199,7 @@ function UserAgenda() {
                             return (
                                 <div
                                     key={day}
-                                    className="flex flex-col gap-4 border-highlight-2-secondary md:border-l-2 md:pl-4"
+                                    className="flex flex-col gap-4 border-[var(--orchid-400)] md:border-l-2 md:pl-4"
                                 >
                                     <div className="font-bold text-xl my-2">
                                         {day}

@@ -56,6 +56,14 @@ export function SiteFooter() {
             <InstagramIcon />
             <span>@psa_fact</span>
           </a>
+          <a
+            className="footer__social"
+            href="https://forms.gle/hxsMHErMSXeFmbAFA"
+            target="_blank"
+            rel="noopener"
+          >
+            Bug Report Form
+          </a>
         </div>
       </div>
       <div className="footer__legalrow">

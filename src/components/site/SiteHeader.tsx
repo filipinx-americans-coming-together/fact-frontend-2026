@@ -67,6 +67,11 @@ export function SiteHeader(props: SiteHeaderProps) {
                 Team
               </Link>
             </li>
+            <li>
+              <Link href="/workshops" aria-current={active === 'workshops' ? 'page' : undefined}>
+                Workshops
+              </Link>
+            </li>
           </ul>
 
           <div className="hero__actions">
