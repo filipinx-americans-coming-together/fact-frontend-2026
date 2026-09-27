@@ -2,14 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { InstagramIcon } from './SocialIcon';
 
+type NavActive = 'about' | 'workshops' | 'team' | 'past-facts' | 'variety-show' | null;
+
 type SiteHeaderProps =
-  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: 'about' | 'team' | null }
-  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: 'about' | 'team' | null };
+  | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: NavActive }
+  | { compact: true; pageTitle: string; pageSubtitle?: string; active?: NavActive };
 
 // Mirrors live's .hero header exactly — full hero (home) vs .hero--compact
-// (every interior page). "About Us" and "Team" are linked in nav today; per
-// DESIGN.md's confirmed rule, other pages don't get a nav link until
-// they're actually announced as live, even though the routes exist.
+// (every interior page). "About Us", "Workshops", "Team", "Past FACTs", and
+// "Variety Show" are linked in nav today; per DESIGN.md's confirmed rule,
+// other pages don't get a nav link until they're actually announced as live,
+// even though the routes exist.
 export function SiteHeader(props: SiteHeaderProps) {
   const { compact, active = null } = props;
 
