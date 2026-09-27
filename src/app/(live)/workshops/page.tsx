@@ -64,7 +64,7 @@ export default function WorkshopsPage() {
 
   return (
     <>
-      <SiteHeader compact pageTitle="Workshops" pageSubtitle="Browse this year's sessions." active="workshops" />
+      <SiteHeader compact pageTitle="Workshops" pageSubtitle="View this year's sessions!" active="workshops" />
 
       <main id="below">
         <section className="section section--workshops">

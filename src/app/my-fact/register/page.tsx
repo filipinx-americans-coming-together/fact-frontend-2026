@@ -27,6 +27,7 @@ import { useUiucPromoCode } from "@/hooks/api/useUiucPromoCode";
 import { ApiError, getErrorCode } from "@/util/apiError";
 import SearchableSelect from "@/components/ui/SearchableSelect";
 import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
+import EventbriteCheckout from "@/components/ui/EventbriteCheckout";
 
 export default function Register() {
     return (
@@ -34,6 +35,22 @@ export default function Register() {
             <RegisterForm />
         </Suspense>
     );
+}
+
+const WORKSHOP_EVENT_ID = "2001126216382";
+const BUNDLE_EVENT_ID = "2001120979719";
+// The Bundle ticket class is hidden on Eventbrite and only revealed by this
+// code; the same event's Variety Show Only ticket is revealed by VSHOWONLY
+// on /variety-show instead.
+const BUNDLE_PROMO_CODE = "BUNDLE";
+
+// Saved in place of an order ID when Eventbrite's callback didn't include one.
+const UNKNOWN_ORDER_ID = "unknown";
+const UNKNOWN_ORDER_MESSAGE =
+    "We have received your payment! Don't purchase again. Contact FACT IT with the order number from your Eventbrite confirmation email.";
+
+function orderStorageKey(email: string) {
+    return `fact-eventbrite-order:${email}`;
 }
 
 const performerOptions = [
@@ -49,7 +66,7 @@ function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
     const { user, isLoading, error : userError } = useUser();
     const { verifyPaymentAsync, isPending: verifyPending } = useVerifyPayment();
-    const { status: delegateStatus } = useDelegateStatus();
+    const { status: delegateStatus, isLoading: delegateStatusLoading } = useDelegateStatus();
     const {
         getPromoCode,
         data: promoCodeResult,
@@ -61,73 +78,26 @@ function RegisterForm() {
     const [isPerformer, setIsPerformer] = useState(false);
     const [performerSession, setPerformerSession] = useState<{[key: string]: any}>({ performer_id: "-1" });
     const {techTimes, isLoading: techTimesLoading, error: techTimesError} = useWorkshopsTech();
-    const [checkoutComplete, setCheckoutComplete] = useState(false);
+    // orderId is set the moment Eventbrite reports a completed order and is
+    // never cleared by a failed verification — once it exists the checkout
+    // is locked, so nobody is ever shown a second checkout after paying.
+    const [orderId, setOrderId] = useState<string | null>(null);
+    // Eventbrite reported a completed order but its callback had no order
+    // ID. The delegate still paid, so checkout locks the same way; FACT IT
+    // verifies them by hand from their Eventbrite confirmation email.
+    const [orderIdUnknown, setOrderIdUnknown] = useState(false);
+    const [savedOrderChecked, setSavedOrderChecked] = useState(false);
+    const [paymentVerified, setPaymentVerified] = useState(false);
     const [clientError, setClientError] = useState<string | null>(null);
     const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
-    const [loadEB, setLoadEB] = useState(false);
     const [ticketType, setTicketType] = useState(false);
     const currentTicketType = ticketType ? "workshop" : "bundle";
-    // Load the Eventbrite widgets script
-    const loadEventbriteScript = () => {
-        const script = document.createElement("script");
-        script.src = "https://www.eventbrite.com/static/widgets/eb_widgets.js";
-        // script.src = "/static-data/eb_widgets.js"
-        script.async = true;
-        document.head.appendChild(script);
-        console.log('eventbrite script loaded')
-        setLoadEB(true);
-    };
-
-    useEffect(() => {
-        loadEventbriteScript();
-    })
-    
-    const EventbriteWidgetWks = ({ onComplete }: { onComplete: Function }) => {
-    useEffect(() => {
-        if (loadEB) {
-            // @ts-ignore
-            try {window.EBWidgets.createWidget({
-                // Required
-                
-                widgetType: 'checkout',
-                eventId: '2001126216382',
-                iframeContainerId: 'eventbrite-widget-container-2001126216382',
-                iframeContainerHeight: 800,
-                onOrderComplete: onComplete
-            });
-        } catch {
-            setTimeout(()=>{setLoadEB(true)}, 3000);
-        }
-        }}, [loadEB]);
-
-        return (
-            // <button id="eventbrite-widget-modal-trigger-2001126216382" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops Only</button>
-            <div id="eventbrite-widget-container-2001126216382"></div>
-        );
-    };
-
-    const EventbriteWidgetBnd = ({ onComplete }: { onComplete: Function }) => {
-    useEffect(() => {
-        if (loadEB) {
-            // @ts-ignore
-            try {window.EBWidgets.createWidget({
-            widgetType: 'checkout',
-            eventId: '2001120979719',
-            iframeContainerId: 'eventbrite-widget-container-2001120979719',
-            iframeContainerHeight: 800,
-            onOrderComplete: onComplete,
-        })} catch {
-            setTimeout(()=>{setLoadEB(true)}, 3000);
-        }
-        }
-
-        }, [loadEB]);
-
-        return (
-            <div id="eventbrite-widget-container-2001120979719"></div>
-            // <button id="eventbrite-widget-modal-trigger-2001120979719" type="button" className="text-sm text-center text-text-primary w-fit p-4 bg-[rgba(250,250,250,0.3)] shadow-lg rounded-xl hover:scale-105 hover:shadow-xl border-slate-700 border-1">Workshops + Variety Show Bundle</button>
-        );
-    };
+    const userEmail: string | undefined = user?.user?.email;
+    const isPaid = paymentVerified || delegateStatus?.payment_status === "paid";
+    const checkoutLocked = isPaid || orderId !== null || orderIdUnknown;
+    // Don't mount checkout until we know whether this delegate already paid
+    // (backend status) or already has an order saved in this browser.
+    const checkoutReady = savedOrderChecked && !delegateStatusLoading;
 
     const router = useRouter();
     const [formData, setFormData] = useState<{ [key: string]: any }>({
@@ -140,37 +110,76 @@ function RegisterForm() {
 
     useEffect(() => {
         if (isSuccess) {
+            if (userEmail) {
+                try {
+                    localStorage.removeItem(orderStorageKey(userEmail));
+                } catch {}
+            }
             router.push("/my-fact/dashboard");
         }
     }, [isSuccess])
 
-    // Eventbrite's onOrderComplete passes the order it just created — we
-    // verify that order server-side (POST /registration/verify-payment/)
-    // before treating checkout as done, instead of trusting the client-side
-    // callback firing at all. This is the actual fix for last year's "anyone
-    // could get in for free" gap: payment_status is never set by anything
-    // the browser says, only by the backend confirming the order with
-    // Eventbrite itself.
-    const handleOrderComplete = async (orderData: any) => {
-        const orderId = orderData?.orderId ?? orderData?.order_id;
-
+    // Restore an order placed earlier (reload, closed tab, failed verify) so
+    // the checkout stays locked instead of inviting a second purchase.
+    useEffect(() => {
+        if (!userEmail) return;
         if (!orderId) {
+            try {
+                const saved = localStorage.getItem(orderStorageKey(userEmail));
+                if (saved === UNKNOWN_ORDER_ID) setOrderIdUnknown(true);
+                else if (saved) setOrderId(saved);
+            } catch {}
+        }
+        setSavedOrderChecked(true);
+    }, [userEmail]);
+
+    // Verifies the order server-side (POST /registration/verify-payment/)
+    // — payment_status is never set by anything the browser says, only by
+    // the backend confirming the order with Eventbrite itself. A failure
+    // here does NOT reopen checkout: the order ID is kept and verification
+    // is retried when the delegate presses Register.
+    const verifyOrder = async (id: string): Promise<boolean> => {
+        try {
+            await verifyPaymentAsync(id);
+            setPaymentVerified(true);
+            return true;
+        } catch (e: any) {
             setClientError(
-                "Could not read your Eventbrite order. Please contact FACT IT."
+                `We have received your payment! Don't purchase again. Press "Register" to retry, ` +
+                `or contact FACT IT with Order #${id}. ` +
+                `Reason: ${e?.message || "Could not verify your payment with Eventbrite."}`
             );
+            setClientErrorCode(e instanceof ApiError ? e.code : undefined);
+            return false;
+        }
+    };
+
+    const handleOrderComplete = (orderData: any) => {
+        const rawId = orderData?.orderId ?? orderData?.order_id;
+
+        if (!rawId) {
+            setOrderIdUnknown(true);
+            if (userEmail) {
+                try {
+                    localStorage.setItem(orderStorageKey(userEmail), UNKNOWN_ORDER_ID);
+                } catch {}
+            }
+            // The locked "Payment Received" panel already shows the message.
+            setClientError(null);
             setClientErrorCode(undefined);
             return;
         }
 
-        try {
-            await verifyPaymentAsync(orderId);
-            setCheckoutComplete(true);
-        } catch (e: any) {
-            setClientError(
-                e?.message || "Could not verify your payment with Eventbrite."
-            );
-            setClientErrorCode(e instanceof ApiError ? e.code : undefined);
+        const id = String(rawId);
+        setOrderId(id);
+        if (userEmail) {
+            try {
+                localStorage.setItem(orderStorageKey(userEmail), id);
+            } catch {}
         }
+        setClientError(null);
+        setClientErrorCode(undefined);
+        verifyOrder(id);
     };
     useEffect(() => {
         if (userError) {
@@ -187,17 +196,25 @@ function RegisterForm() {
             <FormContainer
                 submitText="Register"
                 formName="registerForm"
-                onSubmit={() => {
+                onSubmit={async () => {
                     setClientError(null);
                     setClientErrorCode(undefined);
 
-                    if (checkoutComplete) {
-                        register({ f_name : user?.user.first_name, l_name: user?.user.last_name, email: user?.user.email, workshop_1_id: formData.workshop_1_id, workshop_2_id:formData.workshop_2_id, workshop_3_id:formData.workshop_3_id } as registrationProps);
-                    } else {
-                        setClientError("Complete EventBrite checkout before continuing")
+                    if (!isPaid) {
+                        if (!orderId && orderIdUnknown) {
+                            setClientError(UNKNOWN_ORDER_MESSAGE);
+                            return;
+                        }
+                        if (!orderId) {
+                            setClientError("Complete EventBrite checkout before continuing");
+                            return;
+                        }
+                        if (!(await verifyOrder(orderId))) return;
                     }
+
+                    register({ f_name : user?.user.first_name, l_name: user?.user.last_name, email: user?.user.email, workshop_1_id: formData.workshop_1_id, workshop_2_id:formData.workshop_2_id, workshop_3_id:formData.workshop_3_id } as registrationProps);
                 }}
-                isLoading={isPending}
+                isLoading={isPending || verifyPending}
                 errorMessage={clientError || error?.message}
                 errorCode={clientErrorCode || getErrorCode(error)}
             >
@@ -362,7 +379,30 @@ function RegisterForm() {
                     </span>
 
                 </div>
-                    {!checkoutComplete && <div className="w-full">
+                    {checkoutLocked && (
+                        <div className="w-full max-w-md mx-auto flex flex-col items-center gap-2 text-center p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
+                            <p className="font-bold">
+                                Payment Received{orderId ? `: Order #${orderId}` : ""}
+                            </p>
+                            {verifyPending ? (
+                                <p className="text-sm text-[var(--ink-on-light-dim)]">Verifying your payment with Eventbrite...</p>
+                            ) : isPaid ? (
+                                <p className="text-sm">Press the Register button below to finish your registration.</p>
+                            ) : !orderId && orderIdUnknown ? (
+                                <p className="text-sm">
+                                    Don&apos;t purchase again. Contact FACT IT with the order number from your Eventbrite confirmation email.
+                                </p>
+                            ) : (
+                                <p className="text-sm">
+                                    Do not purchase again. Press Register below to finish. If it fails, contact FACT IT with your order number.
+                                </p>
+                            )}
+                        </div>
+                    )}
+                    {!checkoutLocked && !checkoutReady && (
+                        <div className="w-fit mx-auto"><LoadingCircle /></div>
+                    )}
+                    {!checkoutLocked && checkoutReady && <div className="w-full">
                     <div className="font-bold text-center">Checkout</div>
                     <br/>
                     <div className="text-center text-sm font-[550]">Note: you must press the Register button at the bottom of the page after completing checkout for your registration to be processed.</div>
@@ -436,18 +476,12 @@ function RegisterForm() {
                     </div>
 
                     <br/>
-                    {verifyPending && (
-                        <div className="text-center text-sm text-[var(--ink-on-light-dim)]">
-                            Verifying your payment with Eventbrite...
-                        </div>
-                    )}
-                    {loadEB ?
+                    {!ticketType && <><div className="w-fit mx-auto text-sm text-[var(--ink-on-light-dim)] flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/></>}
                     <div className="mx-auto w-full">
-                        {ticketType ? <EventbriteWidgetWks
-                        onComplete={handleOrderComplete}/> :
-
-                        <div><div className="w-fit mx-auto text-sm text-[var(--ink-on-light-dim)] flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/><EventbriteWidgetBnd onComplete={handleOrderComplete}/></div>} </div>
-                    : <div className="w-fit mx-auto"><LoadingCircle/></div>}</div>
+                        <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!ticketType} onOrderComplete={handleOrderComplete} />
+                        <EventbriteCheckout eventId={BUNDLE_EVENT_ID} promoCode={BUNDLE_PROMO_CODE} hidden={ticketType} onOrderComplete={handleOrderComplete} />
+                    </div>
+                    </div>
                 }
             </FormContainer>
 
