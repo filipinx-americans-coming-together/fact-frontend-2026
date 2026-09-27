@@ -1,187 +1,196 @@
-# Graph Report - fact2026  (2026-08-17)
+# Graph Report - fact-frontend-2026  (2026-09-27)
 
 ## Corpus Check
-- 15 files · ~2,784,265 words
+- 185 files · ~141,306 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 170 nodes · 185 edges · 29 communities (20 shown, 9 thin omitted)
-- Extraction: 86% EXTRACTED · 13% INFERRED · 1% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.81)
+- 628 nodes · 1574 edges · 48 communities (25 shown, 23 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `719f9a9d`
+- Built from commit: `705a2760`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Meagan Fisher Couldwell (designer)
-- Hero Section (FACT 2026 Landing Page)
-- FACT 2026 Index.html Design Critique Report
-- FACT Header Logo (Positive)
-- 2026-08-11T18-11-18Z__team-html.md
-- 2026-08-15T23-25-30Z__index-html.md
-- Hero Title Graphic
-- P1: Placeholder surface area stacks up and undercuts credibility
-- FACT26 Typemark
-- 2026-08-17T01-00-53Z__index-html.md
-- FACT26 Logomark
-- Hero Background Image (Purple Flower Macro)
+- fetchWithCredentials
+- LoadingCircle.tsx
+- SiteHeader.tsx
+- UserAgenda.tsx
+- register/page.tsx
+- dependencies
+- components/NotificationManager.tsx
+- devDependencies
+- gallery/page.tsx
+- compilerOptions
+- WorkshopSelect.tsx
+- navigation/Navbar.tsx
+- app/layout.tsx
+- Stats.tsx
+- AgendaList.tsx
+- server.js
+- CountdownTimer.tsx
 - FACT 2026 Brand Commitments (palette, wordmark, motifs)
+- postcss.config.mjs
+- upload-workshop-photos.mjs
+- TicketsChart.tsx
+- FacilitatorAssistant.tsx
+- BackgroundImage.tsx
+- FAQSection.tsx
+- Disclosed Placeholder Content Practice
 - Workshops Search Structural Rework (9 to 80 sessions)
-- 2026-08-17T02-18-39Z__about-html.md
-- main.js
-- 2026-08-17T05-45-01Z__about-html.md
-- 2026-08-17T06-12-32Z__index-html.md
-- FACT Background3 - Purple Flower Hero Background
-- Nav Mark (FACT 2026 Logo)
+- next.config.mjs
+- upload-team-photos.mjs
 - Graphify Knowledge Graph Workflow Rules
+- .groupheading Class (documented duplication of .faq__categoryheading)
 - The Hairline-Only Structure Rule
 - Night-Day-Night Band Template Structure
 - The No-Card Rule
+- .pill--ink Component (day-band interactive pill)
 - Radial-Gradient Placeholder Circle Device
 - The Two-Ink Rule
-- 2026-08-17T07-12-36Z__index-html.md
-- FAQ Registration Category
-- P0: Zero working conversion action anywhere on the site
+- Product Principle: delegates must understand what/when/how to register
+- FACT (Filipinx Americans Coming Together) Conference
+- Mahiwagahan: Enchanting Our Bright Minds (2026 Theme)
+- Partner-Built Registration Portal (My FACT)
+- DangerZone.tsx
+- README.md
+- usePromoteAdminStatus.ts
 
 ## God Nodes (most connected - your core abstractions)
-1. `FACT 2026 Index.html Design Critique Report` - 14 edges
-2. `Homepage Table of Contents (six-entry nav)` - 11 edges
-3. `Hero Section (FACT 2026 Landing Page)` - 10 edges
-4. `Meagan Fisher Couldwell (designer)` - 10 edges
-5. `P1: Undefined FACT-specific event names break comprehension` - 7 edges
-6. `Disclosed Placeholder Content Practice` - 5 edges
-7. `workshops.html (Workshops)` - 5 edges
-8. `Agenda Day-by-Day Program List` - 5 edges
-9. `FACT Header Logo (Positive)` - 5 edges
-10. `Owltastic Homepage Screenshot` - 5 edges
+1. `fetchWithCredentials()` - 67 edges
+2. `API_URL` - 56 edges
+3. `LoadingCircle()` - 28 edges
+4. `parseApiResponse()` - 21 edges
+5. `useAdminUser()` - 20 edges
+6. `TextInput()` - 18 edges
+7. `RegPageContainer()` - 17 edges
+8. `SiteHeader()` - 16 edges
+9. `useWorkshops()` - 16 edges
+10. `compilerOptions` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Disclosed Placeholder Content Practice` --semantically_similar_to--> `Product Principle: don't invent registration/sponsor/donation content that doesn't exist yet`  [INFERRED] [semantically similar]
   DESIGN.md → PRODUCT.md
-- `P0: Zero working conversion action anywhere on the site` --semantically_similar_to--> `Product Principle: delegates must understand what/when/how to register`  [INFERRED] [semantically similar]
-  .impeccable/critique/2026-08-10T03-03-35Z__index-html.md → PRODUCT.md
-- `FACT 2026 Index.html Design Critique Report` --references--> `agenda.html (Agenda)`  [EXTRACTED]
-  .impeccable/critique/2026-08-10T03-03-35Z__index-html.md → agenda.html
-- `FACT 2026 Index.html Design Critique Report` --references--> `index.html (Homepage)`  [EXTRACTED]
-  .impeccable/critique/2026-08-10T03-03-35Z__index-html.md → index.html
-- `P2: Workshop Register pills + fake scarcity contradict site's own registration flow` --references--> `FAQ Registration Category`  [EXTRACTED]
-  .impeccable/critique/2026-08-10T03-03-35Z__index-html.md → faq.html
+- `The Almanac Held to Candlelight (Creative North Star)` --references--> `FACT 2026 Brand Commitments (palette, wordmark, motifs)`  [INFERRED]
+  DESIGN.md → PRODUCT.md
+- `FACT 2026 Color Tokens (ink-900, violet-800, orchid-400, cream-100)` --shares_data_with--> `FACT 2026 Brand Commitments (palette, wordmark, motifs)`  [INFERRED]
+  DESIGN.md → PRODUCT.md
+- `WorkshopSelectProps` --references--> `RegistrationData`  [EXTRACTED]
+  src/components/ui/WorkshopSelect.tsx → src/util/types.tsx
+- `Workshops Search Structural Rework (9 to 80 sessions)` --references--> `Static HTML/CSS/JS Stack Decision`  [EXTRACTED]
+  DESIGN.md → PRODUCT.md
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Undefined FACT-Specific Agenda Event Names** — concept_delegate_day, concept_palenke, concept_v_show, concept_bye_bye_brunch, agenda_page, impeccable_critique_2026_08_10t03_03_35z__index_html_finding_undefined_event_names [EXTRACTED 1.00]
-- **Site-Wide aria-disabled CTA Pattern (Login/Donate/Register/View Booklet)** — index_page, about_page, agenda_page, faq_page, team_page, past_facts_page, workshops_page, impeccable_critique_2026_08_10t03_03_35z__index_html_finding_zero_working_cta [EXTRACTED 1.00]
-- **Shared Night-Day-Night Page Template Family** — index_page, about_page, agenda_page, faq_page, team_page, past_facts_page, workshops_page, design_night_day_night_rhythm [EXTRACTED 1.00]
+- **Site-Wide aria-disabled CTA Pattern (Login/Donate/Register/View Booklet)** — src_app_live_about_page, src_app_live_faq_page, src_app_live_team_page, src_app_live_past_facts_page [EXTRACTED 1.00]
+- **Shared Night-Day-Night Page Template Family** — src_app_live_about_page, src_app_live_faq_page, src_app_live_team_page, src_app_live_past_facts_page, design_night_day_night_rhythm [EXTRACTED 1.00]
 
-## Communities (29 total, 9 thin omitted)
+## Communities (48 total, 23 thin omitted)
 
-### Community 0 - "Meagan Fisher Couldwell (designer)"
+### Community 0 - "fetchWithCredentials"
+Cohesion: 0.07
+Nodes (51): AdminResetConfirm(), fetchApproveSchool(), AgendaItemProps, fetchCreateAgendaItem(), useCreateAgendaItem(), fetchCreateLocation(), LocationProps, fetchCreateNotification() (+43 more)
+
+### Community 1 - "LoadingCircle.tsx"
+Cohesion: 0.09
+Nodes (45): Accounts(), Agenda(), AddLocationForm(), Button(), DeleteLocationForm(), NumberObject, FormContainer(), FormProps (+37 more)
+
+### Community 2 - "SiteHeader.tsx"
+Cohesion: 0.06
+Nodes (32): AboutPage(), metadata, DAYS, metadata, DonatePage(), TIER_COLORS, TOP_DONORS, CATEGORIES (+24 more)
+
+### Community 3 - "UserAgenda.tsx"
+Cohesion: 0.13
+Nodes (16): WorkshopInfo(), extractWorkshopId(), Facilitator, ModalProps, WorkshopDetailContent(), AgendaWorkshop, DATE_OPTIONS, FormattedData (+8 more)
+
+### Community 4 - "register/page.tsx"
+Cohesion: 0.06
+Nodes (60): NewAccountData, FacilitatorAccountSetUp(), SetUpData, CreateAccount(), Dashboard(), ForgotPassword(), Login(), Profile() (+52 more)
+
+### Community 5 - "dependencies"
+Cohesion: 0.04
+Nodes (44): @emotion/react, @emotion/styled, jspdf, micromatch, @mui/material, @mui/x-charts, dependencies, @emotion/react (+36 more)
+
+### Community 6 - "components/NotificationManager.tsx"
 Cohesion: 0.12
-Nodes (19): Adobe (client), The Adobe Create Blog: Balancing Form and Function article, The Audubon Society (client), Change.org (client), ClassPass (client), Contact Me section, Dribbble's Overtime Podcast interview, Featured Work section (6 project thumbnails) (+11 more)
+Nodes (15): DateTimeInput(), NotificationCard(), NotificationManager(), useCreateNotification(), fetchDeleteNotification(), useDeleteNotification(), Home(), Notification() (+7 more)
 
-### Community 1 - "Hero Section (FACT 2026 Landing Page)"
-Cohesion: 0.31
-Nodes (11): Countdown Timer (Days Until FACT), Donate Button (CTA), Event Dates (Oct. 16-18, 2026), FACT 2026 Event Brand, Hero Section (FACT 2026 Landing Page), Login Button, FACT Circular Logo Badge, Mahiwagahan 2026 Theme (+3 more)
+### Community 7 - "devDependencies"
+Cohesion: 0.05
+Nodes (41): autoprefixer, depcheck, eslint, eslint-config-next, jest-mock, jsdom, devDependencies, autoprefixer (+33 more)
 
-### Community 2 - "FACT 2026 Index.html Design Critique Report"
-Cohesion: 0.16
-Nodes (24): about.html (About Us), Agenda Day-by-Day Program List, agenda.html (Agenda), Bye-Bye Brunch (FACT agenda event), Delegate Day (FACT agenda event), Palenke (FACT agenda event), V-Show / Variety Show (FACT agenda event), Disclosed Placeholder Content Practice (+16 more)
+### Community 9 - "compilerOptions"
+Cohesion: 0.07
+Nodes (26): dom, dom.iterable, esnext, next-env.d.ts, .next/types/**/*.ts, node_modules, **/*.ts, **/*.tsx (+18 more)
 
-### Community 3 - "FACT Header Logo (Positive)"
-Cohesion: 0.48
-Nodes (7): Decorative Butterfly Icon, Enchanted/Whimsical Design Theme, FACT Wordmark, Floral Flourish Decoration, FACT Header Logo (Positive), Mahiwagahan 2026 Event Name, Tagline: "enchanting our bright minds"
+### Community 10 - "WorkshopSelect.tsx"
+Cohesion: 0.11
+Nodes (25): getLocationByID(), UpdateLocationForm(), useUpdateLocation(), FacilitatorRegistration(), SESSION_NUMBERS, FacilitatorRow(), SESSION_NUMBERS, FacilitatorDashboard() (+17 more)
 
-### Community 4 - "2026-08-11T18-11-18Z__team-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
+### Community 11 - "navigation/Navbar.tsx"
+Cohesion: 0.15
+Nodes (10): Refund(), PageContainerProps, Footer(), PageHeader(), PageHeaderProps, DesktopNav(), MobileNav(), iconList (+2 more)
 
-### Community 5 - "2026-08-15T23-25-30Z__index-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
+### Community 12 - "app/layout.tsx"
+Cohesion: 0.33
+Nodes (4): metadata, LiveSiteInteractions(), QueryProviderWrapper(), initLiveSiteInteractions()
 
-### Community 6 - "Hero Title Graphic"
-Cohesion: 0.70
-Nodes (5): Butterfly and Floral Motif, Enchanting Our Bright Minds (Tagline), FACT Mahiwagahan 2026, Hero Title Graphic, Whimsical/Magical Ornate Design Theme
+### Community 13 - "Stats.tsx"
+Cohesion: 0.39
+Nodes (5): RegistrationChart(), Stats(), fetchRegistrationSummary(), RegistrationSummaryData, useRegistrationSummary()
 
-### Community 7 - "P1: Placeholder surface area stacks up and undercuts credibility"
+### Community 14 - "AgendaList.tsx"
+Cohesion: 0.43
+Nodes (5): addLeadingZero(), AgendaItemCard(), AgendaList(), fetchDeleteAgendaItem(), useDeleteAgendaItem()
+
+### Community 15 - "server.js"
 Cohesion: 0.40
-Nodes (5): P1: Placeholder surface area stacks up and undercuts credibility, P2: Team grid dead space at desktop widths, Past FACTs List (year/theme entries), Team Grid (committee roster component), Workshops Session List (80 sessions across 3 sessions)
+Nodes (4): app, handle, options, port
 
-### Community 8 - "FACT26 Typemark"
-Cohesion: 0.67
-Nodes (4): Butterfly Ornament Motif, FACT26 Brand, Ornate Serif/Script Lettering Style, FACT26 Typemark
+### Community 16 - "CountdownTimer.tsx"
+Cohesion: 0.40
+Nodes (3): CountdownTimeLeft, CountdownTimerProps, INIT_TIME
 
-### Community 9 - "2026-08-17T01-00-53Z__index-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
-
-### Community 10 - "FACT26 Logomark"
-Cohesion: 0.67
-Nodes (3): FACT 2026 (event/brand), FACT26 Logomark, Whimsical / Enchanted-Forest Visual Theme
-
-### Community 11 - "Hero Background Image (Purple Flower Macro)"
-Cohesion: 0.67
-Nodes (3): Hero Background Image (Purple Flower Macro), Website Hero Section, Purple/Lavender Brand Color Palette
-
-### Community 12 - "FACT 2026 Brand Commitments (palette, wordmark, motifs)"
+### Community 17 - "FACT 2026 Brand Commitments (palette, wordmark, motifs)"
 Cohesion: 0.67
 Nodes (3): FACT 2026 Color Tokens (ink-900, violet-800, orchid-400, cream-100), The Almanac Held to Candlelight (Creative North Star), FACT 2026 Brand Commitments (palette, wordmark, motifs)
 
-### Community 13 - "Workshops Search Structural Rework (9 to 80 sessions)"
+### Community 45 - "DangerZone.tsx"
+Cohesion: 0.43
+Nodes (5): DangerZone(), DangerZoneAction(), useUpdateFlag(), fetchRegistrationFlag(), useRegistrationFlag()
+
+### Community 46 - "README.md"
+Cohesion: 0.50
+Nodes (3): Deploy on Vercel, Getting Started, Learn More
+
+### Community 47 - "usePromoteAdminStatus.ts"
 Cohesion: 0.67
-Nodes (3): Workshops Search Structural Rework (9 to 80 sessions), Static HTML/CSS/JS Stack Decision, Workshops Client-Side Keyword Search
-
-### Community 14 - "2026-08-17T02-18-39Z__about-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
-
-### Community 16 - "2026-08-17T05-45-01Z__about-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
-
-### Community 17 - "2026-08-17T06-12-32Z__index-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
-
-### Community 26 - "2026-08-17T07-12-36Z__index-html.md"
-Cohesion: 0.22
-Nodes (8): Design Health Score, Design Specificity Verdict, Minor Observations, Overall Impression, Persona Red Flags, Priority Issues, Questions to Consider, What's Working
-
-### Community 27 - "FAQ Registration Category"
-Cohesion: 0.67
-Nodes (3): FAQ Stale 2025 Pricing Disclosure Flag, FAQ Registration Category, Partner-Built Registration Portal (My FACT)
-
-### Community 28 - "P0: Zero working conversion action anywhere on the site"
-Cohesion: 0.67
-Nodes (3): P0: Zero working conversion action anywhere on the site, Footer 'Get Notified When Registration Opens' mailto CTA, Product Principle: delegates must understand what/when/how to register
-
-## Ambiguous Edges - Review These
-- `Mahiwagahan 2026 Event Name` → `Enchanted/Whimsical Design Theme`  [AMBIGUOUS]
-  assets/FACT Header Pos copy.png · relation: conceptually_related_to
-- `Donate Button (CTA)` → `Login Button`  [AMBIGUOUS]
-  assets/hero section.png · relation: conceptually_related_to
+Nodes (3): PromoteConfirm(), fetchPromoteAdminStatus(), usePromoteAdminStatus()
 
 ## Knowledge Gaps
-- **89 isolated node(s):** `Design Health Score`, `Design Specificity Verdict`, `Overall Impression`, `What's Working`, `Priority Issues` (+84 more)
+- **161 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+156 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **What is the exact relationship between `Mahiwagahan 2026 Event Name` and `Enchanted/Whimsical Design Theme`?**
-  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **What is the exact relationship between `Donate Button (CTA)` and `Login Button`?**
-  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `FACT 2026 Index.html Design Critique Report` connect `FACT 2026 Index.html Design Critique Report` to `P0: Zero working conversion action anywhere on the site`, `P1: Placeholder surface area stacks up and undercuts credibility`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `P2: Workshop Register pills + fake scarcity contradict site's own registration flow` connect `FACT 2026 Index.html Design Critique Report` to `FAQ Registration Category`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **What connects `Design Health Score`, `Design Specificity Verdict`, `Overall Impression` to the rest of the system?**
-  _89 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Meagan Fisher Couldwell (designer)` be split into smaller, more focused modules?**
-  _Cohesion score 0.12280701754385964 - nodes in this community are weakly interconnected._
+- **Why does `API_URL` connect `fetchWithCredentials` to `LoadingCircle.tsx`, `UserAgenda.tsx`, `register/page.tsx`, `components/NotificationManager.tsx`, `WorkshopSelect.tsx`, `Stats.tsx`, `AgendaList.tsx`, `usePromoteAdminStatus.ts`, `DangerZone.tsx`?**
+  _High betweenness centrality (0.044) - this node is a cross-community bridge._
+- **Why does `fetchWithCredentials()` connect `fetchWithCredentials` to `LoadingCircle.tsx`, `register/page.tsx`, `components/NotificationManager.tsx`, `WorkshopSelect.tsx`, `AgendaList.tsx`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `SiteHeader()` connect `SiteHeader.tsx` to `WorkshopSelect.tsx`, `register/page.tsx`, `components/NotificationManager.tsx`?**
+  _High betweenness centrality (0.036) - this node is a cross-community bridge._
+- **What connects `nextConfig`, `name`, `version` to the rest of the system?**
+  _161 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `fetchWithCredentials` be split into smaller, more focused modules?**
+  _Cohesion score 0.06923282544774124 - nodes in this community are weakly interconnected._
+- **Should `LoadingCircle.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.0875 - nodes in this community are weakly interconnected._
+- **Should `SiteHeader.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.060109289617486336 - nodes in this community are weakly interconnected._
