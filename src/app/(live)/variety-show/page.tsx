@@ -5,7 +5,6 @@ import Script from 'next/script';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
-import LoadingCircle from '@/components/icons/LoadingCircle';
 
 // Same Eventbrite event as the Bundle option on /my-fact/register — the
 // venue's seat inventory lives on that one event, and this promo code is
@@ -16,67 +15,44 @@ import LoadingCircle from '@/components/icons/LoadingCircle';
 const EVENTBRITE_EVENT_ID = '2001120979719';
 const PROMO_CODE = 'VSHOWONLY';
 
+const ACTS = [
+    'Tropang Pinoy',
+    'RVN',
+    'UC PASO Ritmo',
+    'KasaTigre',
+    'Sierra Sikora',
+    'PSA Lumaya',
+    'Purple Cakes',
+    'PSA Harana',
+    'FIA Modern',
+    'Barkada',
+];
+
 export default function VarietyShow() {
-    const containerId = `eventbrite-widget-container-${EVENTBRITE_EVENT_ID}`;
-    const initializedRef = useRef(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    const tryCreateWidget = () => {
-        if (initializedRef.current) return;
-        if (typeof window === 'undefined') return;
-        // @ts-ignore
-        if (!window.EBWidgets) return;
-
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        try {
-            // @ts-ignore
-            window.EBWidgets.createWidget({
-                widgetType: 'checkout',
-                eventId: EVENTBRITE_EVENT_ID,
-                iframeContainerId: containerId,
-                iframeContainerHeight: 800,
-                onOrderComplete: () => console.log('Checkout Completed'),
-                promoCode: PROMO_CODE,
-            });
-
-            initializedRef.current = true;
-
-            const observer = new MutationObserver(() => {
-                if (container.querySelector('iframe')) {
-                    setIsLoaded(true);
-                    observer.disconnect();
-                }
-            });
-            observer.observe(container, { childList: true });
-        } catch (e) {
-            console.warn('EBWidgets available but createWidget failed, retrying…', e);
-        }
-    };
-
-    useEffect(() => {
-        const id = setInterval(tryCreateWidget, 200);
-        setTimeout(() => clearInterval(id), 5000);
-        return () => clearInterval(id);
-    }, []);
-
     return (
         <>
-            <SiteHeader compact pageTitle="Variety Show" />
+            <SiteHeader
+                compact
+                pageTitle="Variety Show"
+                pageSubtitle="A night of music, dance, and culture — presented by FACT 2026."
+                active="variety-show"
+            />
 
             <main id="below">
-                <section className="section section--about" aria-label="Variety Show tickets">
+                <section className="section section--lineup" aria-label="Variety Show lineup">
                     <div className="section__inner">
-                        <div style={{ margin: '0 auto', maxWidth: 640 }}>
-                            <div id={containerId}>
-                                {!isLoaded && (
-                                    <div className="w-fit mx-auto">
-                                        <LoadingCircle />
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                        <h2 className="section__heading" style={{ textAlign: 'center' }}>
+                            Lineup
+                        </h2>
+                        <p className="lineup__headliner-tbd">
+                            <span>Headliner</span>
+                            Coming soon
+                        </p>
+                        <ul className="lineup__names">
+                            {ACTS.map((act) => (
+                                <li key={act}>{act}</li>
+                            ))}
+                        </ul>
                     </div>
                 </section>
 
@@ -116,12 +92,6 @@ export default function VarietyShow() {
 
                 <SiteFooter />
             </main>
-
-            <Script
-                src="https://www.eventbrite.com/static/widgets/eb_widgets.js"
-                strategy="afterInteractive"
-                onLoad={tryCreateWidget}
-            />
         </>
     );
 }

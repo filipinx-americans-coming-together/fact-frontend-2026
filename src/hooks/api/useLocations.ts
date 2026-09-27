@@ -3,24 +3,29 @@ import { ResponseData, LocationData } from "@/util/types";
 import { useQuery } from "@tanstack/react-query";
 
 async function fetchLocations(): Promise<LocationData[]> {
-    const response = await fetch(`${API_URL}/registration/locations/`);
-
     let json;
 
-    try {
-        json = await response.json();
-    } catch {
-        throw new Error("Server error, please try again later");
+    if (API_URL.length === 0) {
+        json = await fetch('./static-data/locations.json').then(r=>r.json());
     }
+    else {
+        const response = await fetch(`${API_URL}/registration/locations/`);
 
-    if (!response.ok) {
-        let message = "Server error, please try again later";
-
-        if (json.message && response.status !== 500) {
-            message = json.message;
+        try {
+            json = await response.json();
+        } catch {
+            throw new Error("Server error, please try again later");
         }
 
-        throw new Error(message);
+        if (!response.ok) {
+            let message = "Server error, please try again later";
+
+            if (json.message && response.status !== 500) {
+                message = json.message;
+            }
+
+            throw new Error(message);
+        }
     }
 
     const formatted_data = json.map((location: ResponseData<LocationData>) => {

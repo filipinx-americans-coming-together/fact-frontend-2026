@@ -10,15 +10,36 @@ export const metadata: Metadata = {
 };
 
 const ENTRIES = [
-  { year: '2025', theme: '"Ipahayag nang Malakas" (Proclaim Loudly)', flag: 'Photos and booklet coming soon' },
-  { year: '2024', theme: 'Theme TBD', flag: 'Theme, photos, and booklet coming soon' },
-  { year: '2023', theme: 'Theme TBD', flag: 'Theme, photos, and booklet coming soon' },
+  {
+    year: '2025',
+    theme: '"Ipahayag nang Malakas" (Proclaim Loudly)',
+    flag: 'Photos and booklet coming soon',
+    booklet: null,
+  },
+  {
+    year: '2024',
+    theme: '"Magbubunga" (Planting Prosperity)',
+    flag: 'Photos coming soon',
+    booklet:
+      'https://www.canva.com/design/DAGWwo4xlZ0/vLFBOlCcY1tcmDNjXULjNA/view?utm_content=DAGWwo4xlZ0&utm_campaign=designshare&utm_medium=link&utm_source=editor#15',
+  },
+  {
+    year: '2023',
+    theme: '"Kaalaman" (Knowledge Is Power)',
+    flag: 'Photos and booklet coming soon',
+    booklet: null,
+  },
 ];
 
 export default function PastFactsPage() {
   return (
     <>
-      <SiteHeader compact pageTitle="Past FACTs" pageSubtitle="A look back at past themes and conferences." />
+      <SiteHeader
+        compact
+        pageTitle="Past FACTs"
+        pageSubtitle="A look back at past themes and conferences."
+        active="past-facts"
+      />
 
       <main id="below">
         <section className="section section--pastfacts">
@@ -50,19 +71,28 @@ export default function PastFactsPage() {
                   <div className="pastfacts__photo" aria-hidden="true">
                     <PhotoPlaceholderIcon />
                   </div>
-                  <div className="pastfacts__body">
-                    <p className="pastfacts__year">{entry.year}</p>
-                    <p className="pastfacts__theme">{entry.theme}</p>
-                    <span className="pastfacts__flag">{entry.flag}</span>
-                  </div>
-                  <button
-                    className="pill pill--ink pastfacts__link"
-                    type="button"
-                    aria-disabled="true"
-                    title="Booklet coming soon"
-                  >
-                    View Booklet<span className="sr-only">. Booklet coming soon</span>
-                  </button>
+                  <h2 className="pastfacts__year">{entry.year}</h2>
+                  <p className="pastfacts__theme">{entry.theme}</p>
+                  <span className="pastfacts__flag">{entry.flag}</span>
+                  {entry.booklet ? (
+                    <a
+                      className="pill pill--ink pastfacts__link"
+                      href={entry.booklet}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Booklet<span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <button
+                      className="pill pill--ink pastfacts__link"
+                      type="button"
+                      aria-disabled="true"
+                      title="Booklet coming soon"
+                    >
+                      View Booklet<span className="sr-only">. Booklet coming soon</span>
+                    </button>
+                  )}
                 </article>
               ))}
             </div>
