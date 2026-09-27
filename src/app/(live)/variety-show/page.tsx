@@ -5,6 +5,7 @@ import Script from 'next/script';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import EventbriteCheckout from '@/components/ui/EventbriteCheckout';
 
 // Same Eventbrite event as the Bundle option on /my-fact/register — the
 // venue's seat inventory lives on that one event, and this promo code is
@@ -34,11 +35,25 @@ export default function VarietyShow() {
             <SiteHeader
                 compact
                 pageTitle="Variety Show"
-                pageSubtitle="A night of music, dance, and culture — presented by FACT 2026."
+                pageSubtitle="Welcome to a night of music, dance, and culture!"
                 active="variety-show"
             />
 
             <main id="below">
+                {/* Public checkout, no FACT account needed: tickets bought
+                    here are never tied to a delegate, so there's nothing to
+                    verify server-side. */}
+                <section className="section section--about" aria-label="Variety Show tickets">
+                    <div className="section__inner">
+                        <h2 className="section__heading" style={{ textAlign: 'center' }}>
+                            Tickets
+                        </h2>
+                        <div style={{ margin: '0 auto', maxWidth: 640 }}>
+                            <EventbriteCheckout eventId={EVENTBRITE_EVENT_ID} promoCode={PROMO_CODE} />
+                        </div>
+                    </div>
+                </section>
+
                 <section className="section section--lineup" aria-label="Variety Show lineup">
                     <div className="section__inner">
                         <h2 className="section__heading" style={{ textAlign: 'center' }}>

@@ -32,7 +32,7 @@ function FormContainer(props: FormProps) {
                             <p>{props.errorMessage}</p>
                             {props.errorCode && (
                                 <p className="text-xs mt-1 text-[var(--ink-on-light-dim)]">
-                                    Error code: <span className="font-mono">{props.errorCode}</span> — include this if you report the issue.
+                                    Error code: <span className="font-mono">{props.errorCode}</span>. Include this if you report the issue.
                                 </p>
                             )}
                         </div>
