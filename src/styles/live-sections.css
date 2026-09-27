@@ -1788,6 +1788,116 @@ html.has-trailer-open {
   transform: scale(1.25);
 }
 
+/* ---------- Variety Show lineup (headliner + acts, no-card people grid) ---------- */
+
+.lineup__headliner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  margin: clamp(2rem, 4vw, 2.75rem) auto 0;
+}
+
+.lineup__headliner .team__photo {
+  width: 220px;
+  height: 275px;
+}
+
+.lineup__headliner .team__photo svg {
+  width: 28%;
+  height: 28%;
+}
+
+.lineup__headliner .team__name {
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.lineup__headliner .lineup__bio {
+  max-width: 44ch;
+}
+
+.lineup__divider {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto;
+  background: var(--hairline-on-light);
+}
+
+.lineup__bio {
+  margin: 0;
+  max-width: 26ch;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-on-light-dim);
+}
+
+/* Caps each act card to the photo's own width so a long school name
+   wraps instead of stretching that one card wider than its neighbors. */
+.lineup__grid .team__member {
+  width: 140px;
+}
+
+/* Headliner slot held open until the act is announced. */
+.lineup__headliner-tbd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--violet-800);
+}
+
+.lineup__headliner-tbd span {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+
+/* Name-only act list: display serif set as a program roll, two columns
+   from tablet up, hairline rules between rows. */
+.lineup__names {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--hairline-on-light);
+}
+
+.lineup__names li {
+  padding: clamp(0.9rem, 2vw, 1.15rem) 0.5rem;
+  border-bottom: 1px solid var(--hairline-on-light);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
+
+@media (min-width: 640px) {
+  .lineup__names {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+  }
+}
+
 /* ---------- Team member modal (opened from a team card) ---------- */
 
 html.has-team-open {
