@@ -182,21 +182,17 @@
 }
 
 .mahiwagahan__icon {
-  width: 56px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 1.5rem;
-  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 32% 28%, var(--orchid-400), var(--violet-800) 55%, var(--ink-900) 100%);
-  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  filter: drop-shadow(0 0 16px rgba(179, 122, 212, 0.55));
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--violet-800);
 }
 
 .mahiwagahan__icon svg {
-  width: 46%;
-  height: 46%;
+  width: 100%;
+  height: 100%;
 }
 
 .about__quote {
@@ -649,21 +645,17 @@
 }
 
 .cta__icon {
-  width: 68px;
-  height: 68px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 1.75rem;
-  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 32% 28%, var(--orchid-400), var(--violet-800) 55%, var(--ink-900) 100%);
-  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  filter: drop-shadow(0 0 20px rgba(179, 122, 212, 0.65));
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--violet-800);
 }
 
 .cta__icon svg {
-  width: 46%;
-  height: 46%;
+  width: 100%;
+  height: 100%;
 }
 
 .cta__text {
@@ -2051,47 +2043,51 @@ html.has-team-open {
 /* ---------- Past FACTs ---------- */
 
 .pastfacts__list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
-}
-
-.pastfacts__entry {
-  display: flex;
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  padding: clamp(2.25rem, 4.5vw, 3.25rem) 0;
   border-top: 1px solid var(--hairline-on-light);
 }
 
+.pastfacts__entry {
+  grid-row: span 5;
+  display: grid;
+  grid-template-rows: subgrid;
+  align-items: start;
+  padding: clamp(2.25rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.25rem);
+  border-left: 1px solid var(--hairline-on-light);
+}
+
+.pastfacts__entry:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
 .pastfacts__entry:last-child {
-  border-bottom: 1px solid var(--hairline-on-light);
+  padding-right: 0;
 }
 
 .pastfacts__photo {
-  flex: none;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 21 / 9;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 32% 28%, var(--orchid-400), var(--violet-800) 55%, var(--ink-900) 100%);
-  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--ink-900);
+  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .pastfacts__photo svg {
-  width: 40%;
-  height: 40%;
-}
-
-.pastfacts__body {
-  flex: 1;
-  min-width: 0;
+  width: 15%;
+  height: 15%;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 .pastfacts__year {
-  margin: 0;
+  margin: 0.9rem 0 0;
   font-family: var(--font-display);
   font-weight: 900;
   font-variation-settings: 'SOFT' 40, 'WONK' 1;
@@ -2101,7 +2097,7 @@ html.has-team-open {
 }
 
 .pastfacts__theme {
-  margin: 0.5rem 0 0;
+  margin: 0.4rem 0 0;
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
@@ -2111,7 +2107,7 @@ html.has-team-open {
 
 .pastfacts__flag {
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   font-size: 0.85rem;
   color: var(--accent-on-light);
 }
@@ -2122,7 +2118,8 @@ html.has-team-open {
 }
 
 .pastfacts__link {
-  flex: none;
+  align-self: start;
+  margin-top: 1.25rem;
 }
 
 /* ---------- Palengke ---------- */
@@ -2398,13 +2395,34 @@ html.has-team-open {
     align-items: flex-start;
   }
 
-  .pastfacts__entry {
-    align-items: flex-start;
+  .workshop__bio {
+    flex-direction: column;
   }
 
-  .pastfacts__photo {
-    width: 76px;
-    height: 76px;
+  .workshop__bioPhoto {
+    max-width: 100%;
+  }
+
+  .pastfacts__list {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    border-top: none;
+  }
+
+  .pastfacts__entry {
+    padding: clamp(1.75rem, 4vw, 2.25rem) 0;
+    border-left: none;
+    border-top: 1px solid var(--hairline-on-light);
+  }
+
+  .pastfacts__entry:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .pastfacts__entry:last-child {
+    padding-right: 0;
   }
 
   .venue,

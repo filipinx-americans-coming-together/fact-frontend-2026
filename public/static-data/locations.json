@@ -1,0 +1,272 @@
+[
+  {
+    "model": "registration.location",
+    "pk": 5000,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 140,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5001,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5002,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5003,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 40,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5004,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5005,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5006,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 70,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5007,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5008,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5009,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5010,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 80,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5011,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5012,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 35,
+      "session": 1
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5013,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5014,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5015,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5016,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 120,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5017,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5018,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5019,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5020,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5021,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5022,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 2
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5023,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 30,
+      "session": 3
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5024,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 3
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5025,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 50,
+      "session": 3
+    }
+  },
+  {
+    "model": "registration.location",
+    "pk": 5026,
+    "fields": {
+      "room_num": "",
+      "building": "",
+      "capacity": 70,
+      "session": 3
+    }
+  }
+]
