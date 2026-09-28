@@ -159,7 +159,7 @@ export default function CreateAccount() {
                         label="Pronouns"
                         id="pronouns"
                         setState={setFormData}
-                        required={false}
+                        maxLength={30}
                     />
                     <p className="text-xs text-[var(--ink-on-light-dim)] mt-2 w-fit mx-auto">
                         The pronouns provided will appear on your name tag

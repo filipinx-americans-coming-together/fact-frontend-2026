@@ -6,7 +6,7 @@ import { PhotoPlaceholderIcon } from '@/components/site/PhotoPlaceholderIcon';
 
 export const metadata: Metadata = {
   title: 'Past FACTs · FACT 2026',
-  description: 'A look back at past themes and conferences.',
+  description: 'A look back at our past themes and conferences!',
 };
 
 const ENTRIES = [
@@ -37,7 +37,7 @@ export default function PastFactsPage() {
       <SiteHeader
         compact
         pageTitle="Past FACTs"
-        pageSubtitle="A look back at past themes and conferences."
+        pageSubtitle="A look back at our past themes and conferences!"
         active="past-facts"
       />
 
