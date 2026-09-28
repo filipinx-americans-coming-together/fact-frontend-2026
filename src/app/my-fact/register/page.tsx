@@ -49,6 +49,20 @@ const UNKNOWN_ORDER_ID = "unknown";
 const UNKNOWN_ORDER_MESSAGE =
     "We have received your payment! Don't purchase again. Contact FACT IT with the order number from your Eventbrite confirmation email.";
 
+// Removing the pre-applied BUNDLE code and entering the UIUC Variety Show
+// Only code reveals that ticket in the Bundle widget. verify-payment accepts
+// it (it's a real order for this event), but it doesn't include workshops,
+// so POST /registration/delegates/ would reject it with a 402.
+const NO_WORKSHOPS_TICKET_TYPE = "variety_show";
+function wrongTicketMessage(orderId: string | null) {
+    return (
+        "Your ticket is Variety Show Only, which doesn't include workshops. " +
+        "Don't purchase again. Contact FACT IT" +
+        (orderId ? ` with Order #${orderId}` : "") +
+        " to switch to the Workshops + Variety Show Bundle."
+    );
+}
+
 function orderStorageKey(email: string) {
     return `fact-eventbrite-order:${email}`;
 }
@@ -88,12 +102,15 @@ function RegisterForm() {
     const [orderIdUnknown, setOrderIdUnknown] = useState(false);
     const [savedOrderChecked, setSavedOrderChecked] = useState(false);
     const [paymentVerified, setPaymentVerified] = useState(false);
+    const [verifiedTicketType, setVerifiedTicketType] = useState<string | null>(null);
     const [clientError, setClientError] = useState<string | null>(null);
     const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
     const [ticketType, setTicketType] = useState(false);
     const currentTicketType = ticketType ? "workshop" : "bundle";
     const userEmail: string | undefined = user?.user?.email;
     const isPaid = paymentVerified || delegateStatus?.payment_status === "paid";
+    const paidTicketType = verifiedTicketType ?? delegateStatus?.ticket_type ?? null;
+    const hasNoWorkshopsTicket = isPaid && paidTicketType === NO_WORKSHOPS_TICKET_TYPE;
     const checkoutLocked = isPaid || orderId !== null || orderIdUnknown;
     // Don't mount checkout until we know whether this delegate already paid
     // (backend status) or already has an order saved in this browser.
@@ -140,8 +157,13 @@ function RegisterForm() {
     // is retried when the delegate presses Register.
     const verifyOrder = async (id: string): Promise<boolean> => {
         try {
-            await verifyPaymentAsync(id);
+            const result = await verifyPaymentAsync(id);
             setPaymentVerified(true);
+            setVerifiedTicketType(result.ticket_type);
+            if (result.ticket_type === NO_WORKSHOPS_TICKET_TYPE) {
+                setClientError(wrongTicketMessage(id));
+                return false;
+            }
             return true;
         } catch (e: any) {
             setClientError(
@@ -199,6 +221,11 @@ function RegisterForm() {
                 onSubmit={async () => {
                     setClientError(null);
                     setClientErrorCode(undefined);
+
+                    if (hasNoWorkshopsTicket) {
+                        setClientError(wrongTicketMessage(orderId));
+                        return;
+                    }
 
                     if (!isPaid) {
                         if (!orderId && orderIdUnknown) {
@@ -386,6 +413,8 @@ function RegisterForm() {
                             </p>
                             {verifyPending ? (
                                 <p className="text-sm text-[var(--ink-on-light-dim)]">Verifying your payment with Eventbrite...</p>
+                            ) : hasNoWorkshopsTicket ? (
+                                <p className="text-sm text-red-600">{wrongTicketMessage(orderId)}</p>
                             ) : isPaid ? (
                                 <p className="text-sm">Press the Register button below to finish your registration.</p>
                             ) : !orderId && orderIdUnknown ? (
@@ -476,7 +505,21 @@ function RegisterForm() {
                     </div>
 
                     <br/>
-                    {!ticketType && <><div className="w-fit mx-auto text-sm text-[var(--ink-on-light-dim)] flex gap-1 items-center text-center">Have a promo code? You must click remove then add the code <PiArrowElbowRightDownBold /></div><br/></>}
+                    {!ticketType && <>
+                        <div className="w-full max-w-md mx-auto flex flex-col gap-2 text-sm text-left p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
+                            <p className="font-bold text-center">Using a UIUC discount code?</p>
+                            <ol className="list-decimal pl-5 flex flex-col gap-1">
+                                <li>In the checkout below, click <b>Remove</b> next to the code that&apos;s already filled in.</li>
+                                <li>Enter your UIUC <b>Bundle</b> code, not the Variety Show Only code.</li>
+                                <li>Before paying, check that your ticket name ends in <b>Workshop + Variety Show Bundle</b>.</li>
+                            </ol>
+                            <p className="text-[var(--ink-on-light-dim)]">
+                                Variety Show Only tickets don&apos;t include workshops and can&apos;t be used to register here. No discount code? Leave the checkout as is.
+                            </p>
+                        </div>
+                        <div className="w-fit mx-auto flex items-center pt-2"><PiArrowElbowRightDownBold /></div>
+                        <br/>
+                    </>}
                     <div className="mx-auto w-full">
                         <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!ticketType} onOrderComplete={handleOrderComplete} />
                         <EventbriteCheckout eventId={BUNDLE_EVENT_ID} promoCode={BUNDLE_PROMO_CODE} hidden={ticketType} onOrderComplete={handleOrderComplete} />
