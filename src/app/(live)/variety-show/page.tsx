@@ -53,12 +53,11 @@ export default function VarietyShow() {
                             <p>
                                 <b>These tickets are for the Variety Show only.</b> Want the full FACT
                                 experience with workshops? Register <Link className="inline-link" href="/my-fact/create-account">here</Link>.
-                                The Workshops + Variety Show Bundle includes your show ticket.
+                                The Workshops + Variety Show Bundle includes your Variety Show ticket.
                             </p>
                             <p style={{ marginTop: '0.75rem' }}>
                                 <b>UIUC students:</b> your Variety Show ticket is free. Use the UIUC promo code
-                                that was sent out, with <b>-VSHOW</b> added to the end (for
-                                example, <code>YOURCODE-VSHOW</code>).
+                                that was sent out, with <b>-VSHOW</b> added to the end.
                             </p>
                         </div>
                         <div style={{ margin: '0 auto', maxWidth: 640 }}>
