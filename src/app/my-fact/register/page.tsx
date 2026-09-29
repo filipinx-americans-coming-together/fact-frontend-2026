@@ -504,12 +504,12 @@ function RegisterForm() {
                     />
                     <br/>
 
+                    {/*
+                      UIUC discount code flow temporarily disabled — not a
+                      removal. Re-enable by restoring this block; nothing else
+                      on the backend or in useUiucPromoCode/useDelegateStatus
+                      needs to change.
                     <div className="w-fit mx-auto max-w-md flex flex-col items-center gap-2 text-center p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
-                        {/*
-                          UIUC discount code flow temporarily disabled (shown
-                          as "coming soon" below) — not a removal. Re-enable by
-                          restoring this block; nothing else on the backend or
-                          in useUiucPromoCode/useDelegateStatus needs to change.
                         {uiucError === "already_linked" && (
                             <p className="text-red-600 text-sm">
                                 That UIUC NetID is already linked to a different FACT account.
@@ -562,11 +562,8 @@ function RegisterForm() {
                                 )}
                             </>
                         )}
-                        */}
-                        <p className="text-sm">UIUC student discount codes coming soon.</p>
                     </div>
-
-                    <br/>
+                    */}
                     <UiucCodeInstructions variant={isPerformer ? "performer" : "standard"} />
                     <div className="w-fit mx-auto flex items-center pt-2"><PiArrowElbowRightDownBold /></div>
                     <br/>
