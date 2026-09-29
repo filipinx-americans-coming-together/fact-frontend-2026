@@ -15,6 +15,8 @@ import { useRouter } from "next/navigation";
 import { createAccountProps, useCreateAccount } from "@/hooks/api/useCreateAccount";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import { getErrorCode } from "@/util/apiError";
+import FlowSteps from "@/components/ui/FlowSteps";
+import EmailHelpNote from "@/components/ui/EmailHelpNote";
 
 
 export default function CreateAccount() {
@@ -84,6 +86,7 @@ export default function CreateAccount() {
                     errorCode={getErrorCode(verificationError || requestError)}
                 >
                     <h1 className="text-center pb-4 border-b w-full">Create Account</h1>
+                    <FlowSteps current={1} />
                     <TextInput
                         label="Email"
                         id="email"
@@ -98,10 +101,9 @@ export default function CreateAccount() {
                                 setState={setFormData}
                             />
                             <p className="text-xs text-[var(--ink-on-light-dim)]">
-                                {
-                                    "A temporary 6-digit code has been sent to your email. Can't find the code? Check your spam folder or search for emails from 'no-reply@psauiuc.org'"
-                                }
+                                A temporary 6-digit code has been sent to your email.
                             </p>
+                            <EmailHelpNote variant="code" />
                         </>
                     )}
                 </FormContainer>

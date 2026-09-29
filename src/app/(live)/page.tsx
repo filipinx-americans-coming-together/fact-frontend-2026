@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import NotificationsManager from '@/components/ui/NotificationManager';
@@ -127,7 +128,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section--cta" aria-label="Join the newsletter">
+        <section className="section section--cta" aria-label="How to join FACT 2026">
           <div className="section__inner">
             <div className="cta">
               <div className="cta__icon" aria-hidden="true">
@@ -135,10 +136,23 @@ export default function Home() {
                   <path d="M12 3l2.1 5.9L20 11l-5.9 2.1L12 19l-2.1-5.9L4 11l5.9-2.1Z" />
                 </svg>
               </div>
-              <h2 className="section__heading">Ready for FACT 2026?</h2>
+              <h2 className="section__heading">How to join FACT 2026</h2>
               <div className="section__rule" aria-hidden="true" />
               <p className="cta__text">
-                Registration opens soon, so sign up for our newsletter to be the first to know when it does!
+                <b>The full FACT experience:</b> spend the day at our workshops exploring Filipinx culture, identity
+                and community, then close out the night at our much-anticipated <b>Variety Show</b>.
+              </p>
+              <p className="cta__text">
+                <b>Workshops + Variety Show</b> →{' '}
+                <Link href="/my-fact/create-account">Create your My FACT account</Link> and register. Your
+                registration includes your workshop sessions, and the Bundle ticket adds the Variety Show.
+              </p>
+              <p className="cta__text">
+                <b>Variety Show only</b> → Head to the <Link href="/variety-show">Variety Show page</Link> and grab
+                a ticket. No account needed.
+              </p>
+              <p className="cta__text" style={{ marginTop: '1.25rem' }}>
+                Stay in the loop:
               </p>
               <a
                 className="pill pill--solid"
@@ -152,8 +166,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <p className="landing__soon">More information coming soon</p>
 
         <SiteFooter />
       </main>

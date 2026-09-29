@@ -4,6 +4,7 @@ import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import LoadingCircle from "@/components/icons/LoadingCircle";
 import SchoolSelect from "@/components/ui/SchoolSelect";
+import EmailHelpNote from "@/components/ui/EmailHelpNote";
 import Select from "@/components/ui/Select";
 import TextInput from "@/components/ui/TextInput";
 import { useRequestEmailVerification } from "@/hooks/api/useRequestEmailVerification";
@@ -180,10 +181,9 @@ export default function Profile() {
                             required={true}
                         />
                         <p className="text-xs">
-                            {
-                                "A temporary 6-digit code has been sent to your email. Can't find the code? Check your spam folder or search for emails from 'no-reply@psauiuc.org'"
-                            }
+                            A temporary 6-digit code has been sent to your email.
                         </p>
+                        <EmailHelpNote variant="code" />
                     </>
                 )}
             </FormContainer>

@@ -22,4 +22,17 @@ describe('Home page', () => {
     expect(screen.getByText(/October 16–18/)).toBeInTheDocument();
     expect(await screen.findByText(/Enjoying what FACT is building/i)).toBeInTheDocument();
   });
+
+  it('explains how to join instead of "registration opens soon"', () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(jsonResponse([]))));
+
+    renderWithQueryClient(<Home />);
+
+    expect(screen.getByRole('heading', { name: 'How to join FACT 2026' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Create your My FACT account/ })).toHaveAttribute('href', '/my-fact/create-account');
+    expect(screen.getByRole('link', { name: /Variety Show page/ })).toHaveAttribute('href', '/variety-show');
+    expect(screen.queryByText(/Registration opens soon/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/More information coming soon/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/UIUC students/)).not.toBeInTheDocument();
+  });
 });

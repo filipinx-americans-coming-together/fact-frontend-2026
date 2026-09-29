@@ -30,6 +30,8 @@ import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
 import EventbriteCheckout from "@/components/ui/EventbriteCheckout";
 import TicketTypeChoice, { isWorkshopsOnly } from "@/components/ui/TicketTypeChoice";
 import UiucCodeInstructions from "@/components/ui/UiucCodeInstructions";
+import FlowSteps from "@/components/ui/FlowSteps";
+import EmailHelpNote from "@/components/ui/EmailHelpNote";
 import ExistingOrderPanel, { DifferentEmailOrderLink } from "@/components/ui/ExistingOrderPanel";
 import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
 
@@ -281,7 +283,21 @@ function RegisterForm() {
             >
                 <h1 className="text-center pb-4 border-b w-full">Register for FACT</h1>
 
-                
+                <FlowSteps current={2} />
+
+                <div className="w-full max-w-md mx-auto flex flex-col gap-2 text-sm text-center">
+                    <p>
+                        <b>Registering signs you up for workshops.</b> You&apos;ll choose one workshop for each
+                        session, and pick a Workshops Only or Workshops + Variety Show ticket.
+                    </p>
+                    <p>
+                        <b>Only here for the Variety Show?</b> You don&apos;t need to register.{" "}
+                        <Link href="/variety-show" className="underline hover:text-[var(--violet-800)]">
+                            Get a Variety Show ticket here.
+                        </Link>
+                    </p>
+                </div>
+
                 {/* <div className="text-center">Workshop Selection</div> */}
                 <Link
                     href="/workshops"
@@ -460,6 +476,7 @@ function RegisterForm() {
                                     Do not purchase again. Press Register below to finish. If it fails, contact FACT IT with your order number.
                                 </p>
                             )}
+                            <EmailHelpNote variant="ticket" />
                         </div>
                     )}
                     {!checkoutLocked && !checkoutReady && (

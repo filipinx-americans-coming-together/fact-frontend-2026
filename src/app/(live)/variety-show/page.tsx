@@ -48,6 +48,18 @@ export default function VarietyShow() {
                         <h2 className="section__heading" style={{ textAlign: 'center' }}>
                             Tickets
                         </h2>
+                        <div style={{ margin: '0 auto 1.5rem', maxWidth: 640, textAlign: 'center' }}>
+                            <p>
+                                <b>These tickets are for the Variety Show only.</b> Want the full FACT
+                                experience with workshops? <Link href="/my-fact/create-account">Register here</Link>.
+                                The Workshops + Variety Show Bundle includes your show ticket.
+                            </p>
+                            <p style={{ marginTop: '0.75rem' }}>
+                                <b>UIUC students:</b> your Variety Show ticket is free. Use the UIUC promo code
+                                that was sent out, with <b>-VSHOW</b> added to the end (for
+                                example, <code>YOURCODE-VSHOW</code>).
+                            </p>
+                        </div>
                         <div style={{ margin: '0 auto', maxWidth: 640 }}>
                             <EventbriteCheckout eventId={EVENTBRITE_EVENT_ID} promoCode={PROMO_CODE} />
                         </div>

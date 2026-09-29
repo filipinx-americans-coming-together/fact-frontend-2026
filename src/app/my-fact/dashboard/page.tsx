@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
 import Link from "next/link";
 import { IoMdRefresh } from "react-icons/io";
+import FlowSteps from "@/components/ui/FlowSteps";
 
 export default function Dashboard() {
     const { user, isLoading, error } = useUser();
@@ -58,16 +59,18 @@ export default function Dashboard() {
                 <div className="font-bold text-4xl my-2 flex items-center">
                             Welcome, {user.user.first_name} {user.user.last_name}
                         </div>
-                        {user.registration.length ? 
+                        <FlowSteps current={user.registration.length ? 3 : 2} />
+                        {/* Shown whether or not they've registered: unregistered
+                            delegates still need to fix their name, school, etc. */}
+                        <div className="text-center">
+                            <LinkButton
+                                text="EDIT PROFILE"
+                                url="/my-fact/profile"
+                            />
+                        </div>
+                        {user.registration.length ?
                 <div className="flex justify-between flex-col xl:flex-row">
                 <div className="flex flex-col">
-                
-                        <div className="text-center my-6">
-                        <LinkButton
-                            text="EDIT PROFILE"
-                            url="/my-fact/profile"
-                        />
-                    </div>
                     <div className="flex flex-col justify-center items-center px-2 py-4 my-4 gap-2 md:gap-3">
                         {user.registration.map((pair) => (
                                 <WorkshopCard
