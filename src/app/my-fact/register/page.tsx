@@ -28,6 +28,9 @@ import { ApiError, getErrorCode } from "@/util/apiError";
 import SearchableSelect from "@/components/ui/SearchableSelect";
 import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
 import EventbriteCheckout from "@/components/ui/EventbriteCheckout";
+import TicketTypeChoice, { isWorkshopsOnly } from "@/components/ui/TicketTypeChoice";
+import ExistingOrderPanel, { DifferentEmailOrderLink } from "@/components/ui/ExistingOrderPanel";
+import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
 
 export default function Register() {
     return (
@@ -105,16 +108,29 @@ function RegisterForm() {
     const [verifiedTicketType, setVerifiedTicketType] = useState<string | null>(null);
     const [clientError, setClientError] = useState<string | null>(null);
     const [clientErrorCode, setClientErrorCode] = useState<string | undefined>(undefined);
+    // The delegate's own Workshops Only / Bundle pick. Performers are always
+    // Workshops Only (see isWorkshopsOnly), without overwriting this pick, so
+    // unticking "performer" brings their earlier choice back.
     const [ticketType, setTicketType] = useState(false);
-    const currentTicketType = ticketType ? "workshop" : "bundle";
+    const workshopsOnly = isWorkshopsOnly(isPerformer, ticketType);
+    const currentTicketType = workshopsOnly ? "workshop" : "bundle";
     const userEmail: string | undefined = user?.user?.email;
     const isPaid = paymentVerified || delegateStatus?.payment_status === "paid";
     const paidTicketType = verifiedTicketType ?? delegateStatus?.ticket_type ?? null;
     const hasNoWorkshopsTicket = isPaid && paidTicketType === NO_WORKSHOPS_TICKET_TYPE;
     const checkoutLocked = isPaid || orderId !== null || orderIdUnknown;
+    // Workshop orders already placed with this account's email (masked hints
+    // only). Any lookup failure leaves this empty: checkout is never blocked.
+    const { orders: existingOrders, isLoading: existingOrdersLoading } = useFindMyOrder(
+        !!userEmail && !delegateStatusLoading && delegateStatus?.payment_status !== "paid"
+    );
+    const [showCheckoutAnyway, setShowCheckoutAnyway] = useState(false);
+    const [linkError, setLinkError] = useState<string | null>(null);
     // Don't mount checkout until we know whether this delegate already paid
-    // (backend status) or already has an order saved in this browser.
-    const checkoutReady = savedOrderChecked && !delegateStatusLoading;
+    // (backend status), already has an order saved in this browser, or
+    // already bought one with this email on Eventbrite.
+    const checkoutReady = savedOrderChecked && !delegateStatusLoading && !existingOrdersLoading;
+    const showExistingOrders = existingOrders.length > 0 && !showCheckoutAnyway;
 
     const router = useRouter();
     const [formData, setFormData] = useState<{ [key: string]: any }>({
@@ -155,9 +171,13 @@ function RegisterForm() {
     // the backend confirming the order with Eventbrite itself. A failure
     // here does NOT reopen checkout: the order ID is kept and verification
     // is retried when the delegate presses Register.
-    const verifyOrder = async (id: string): Promise<boolean> => {
+    // linking: the delegate typed in an existing order number instead of
+    // checking out here. It only counts as their order once verified, and a
+    // failure shows the backend's reason next to the order-number input.
+    const verifyOrder = async (id: string, linking = false): Promise<boolean> => {
         try {
             const result = await verifyPaymentAsync(id);
+            if (linking) setOrderId(id);
             setPaymentVerified(true);
             setVerifiedTicketType(result.ticket_type);
             if (result.ticket_type === NO_WORKSHOPS_TICKET_TYPE) {
@@ -166,6 +186,10 @@ function RegisterForm() {
             }
             return true;
         } catch (e: any) {
+            if (linking) {
+                setLinkError(e?.message || "Could not verify that order with Eventbrite.");
+                return false;
+            }
             setClientError(
                 `We have received your payment! Don't purchase again. Press "Register" to retry, ` +
                 `or contact FACT IT with Order #${id}. ` +
@@ -202,6 +226,15 @@ function RegisterForm() {
         setClientError(null);
         setClientErrorCode(undefined);
         verifyOrder(id);
+    };
+
+    // Links an order bought earlier (on Eventbrite directly, another device,
+    // or another email) through the same verify-payment path as checkout.
+    const handleLinkOrder = (id: string) => {
+        setLinkError(null);
+        setClientError(null);
+        setClientErrorCode(undefined);
+        verifyOrder(id, true);
     };
     useEffect(() => {
         if (userError) {
@@ -431,15 +464,26 @@ function RegisterForm() {
                     {!checkoutLocked && !checkoutReady && (
                         <div className="w-fit mx-auto"><LoadingCircle /></div>
                     )}
-                    {!checkoutLocked && checkoutReady && <div className="w-full">
+                    {!checkoutLocked && checkoutReady && showExistingOrders && (
+                        <ExistingOrderPanel
+                            email={userEmail}
+                            orders={existingOrders}
+                            onLink={handleLinkOrder}
+                            pending={verifyPending}
+                            errorMessage={linkError}
+                            onShowCheckout={() => setShowCheckoutAnyway(true)}
+                        />
+                    )}
+                    {!checkoutLocked && checkoutReady && !showExistingOrders && <div className="w-full">
                     <div className="font-bold text-center">Checkout</div>
                     <br/>
                     <div className="text-center text-sm font-[550]">Note: you must press the Register button at the bottom of the page after completing checkout for your registration to be processed.</div>
                     <br/>
-                    <div className="flex justify-center gap-2 lg:gap-4">
-                        <button onClick={() => setTicketType(true)} type="button" className={`text-sm text-center w-fit p-4 rounded-xl hover:scale-105 transition-colors ${ticketType ? "pill pill--ink" : "text-[var(--ink-900)] bg-[var(--white)] shadow-lg hover:shadow-xl border border-[var(--hairline-on-light)]"}`}>Workshops Only</button>
-                        <button onClick={() => setTicketType(false)} type="button" className={`text-sm text-center w-fit p-4 rounded-xl hover:scale-105 transition-colors ${!ticketType ? "pill pill--ink" : "text-[var(--ink-900)] bg-[var(--white)] shadow-lg hover:shadow-xl border border-[var(--hairline-on-light)]"}`}>Workshops + Variety Show Bundle</button>
-                    </div>
+                    <TicketTypeChoice
+                        isPerformer={isPerformer}
+                        workshopsOnlySelected={ticketType}
+                        onChange={setTicketType}
+                    />
                     <br/>
 
                     <div className="w-fit mx-auto max-w-md flex flex-col items-center gap-2 text-center p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
@@ -505,7 +549,7 @@ function RegisterForm() {
                     </div>
 
                     <br/>
-                    {!ticketType && <>
+                    {!workshopsOnly && <>
                         <div className="w-full max-w-md mx-auto flex flex-col gap-2 text-sm text-left p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
                             <p className="font-bold text-center">Using a UIUC discount code?</p>
                             <ol className="list-decimal pl-5 flex flex-col gap-1">
@@ -521,9 +565,10 @@ function RegisterForm() {
                         <br/>
                     </>}
                     <div className="mx-auto w-full">
-                        <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!ticketType} onOrderComplete={handleOrderComplete} />
-                        <EventbriteCheckout eventId={BUNDLE_EVENT_ID} promoCode={BUNDLE_PROMO_CODE} hidden={ticketType} onOrderComplete={handleOrderComplete} />
+                        <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!workshopsOnly} onOrderComplete={handleOrderComplete} />
+                        <EventbriteCheckout eventId={BUNDLE_EVENT_ID} promoCode={BUNDLE_PROMO_CODE} hidden={workshopsOnly} onOrderComplete={handleOrderComplete} />
                     </div>
+                    <DifferentEmailOrderLink onLink={handleLinkOrder} pending={verifyPending} errorMessage={linkError} />
                     </div>
                 }
             </FormContainer>
