@@ -29,6 +29,7 @@ import SearchableSelect from "@/components/ui/SearchableSelect";
 import { useWorkshopsTech } from "@/hooks/api/useWorkshops";
 import EventbriteCheckout from "@/components/ui/EventbriteCheckout";
 import TicketTypeChoice, { isWorkshopsOnly } from "@/components/ui/TicketTypeChoice";
+import UiucCodeInstructions from "@/components/ui/UiucCodeInstructions";
 import ExistingOrderPanel, { DifferentEmailOrderLink } from "@/components/ui/ExistingOrderPanel";
 import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
 
@@ -549,21 +550,9 @@ function RegisterForm() {
                     </div>
 
                     <br/>
-                    {!workshopsOnly && <>
-                        <div className="w-full max-w-md mx-auto flex flex-col gap-2 text-sm text-left p-4 rounded-lg" style={{ border: "1px solid var(--hairline-on-light)" }}>
-                            <p className="font-bold text-center">Using a UIUC discount code?</p>
-                            <ol className="list-decimal pl-5 flex flex-col gap-1">
-                                <li>In the checkout below, click <b>Remove</b> next to the code that&apos;s already filled in.</li>
-                                <li>Enter your UIUC <b>Bundle</b> code, not the Variety Show Only code.</li>
-                                <li>Before paying, check that your ticket name ends in <b>Workshop + Variety Show Bundle</b>.</li>
-                            </ol>
-                            <p className="text-[var(--ink-on-light-dim)]">
-                                Variety Show Only tickets don&apos;t include workshops and can&apos;t be used to register here. No discount code? Leave the checkout as is.
-                            </p>
-                        </div>
-                        <div className="w-fit mx-auto flex items-center pt-2"><PiArrowElbowRightDownBold /></div>
-                        <br/>
-                    </>}
+                    <UiucCodeInstructions variant={isPerformer ? "performer" : "standard"} />
+                    <div className="w-fit mx-auto flex items-center pt-2"><PiArrowElbowRightDownBold /></div>
+                    <br/>
                     <div className="mx-auto w-full">
                         <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!workshopsOnly} onOrderComplete={handleOrderComplete} />
                         <EventbriteCheckout eventId={BUNDLE_EVENT_ID} promoCode={BUNDLE_PROMO_CODE} hidden={workshopsOnly} onOrderComplete={handleOrderComplete} />
