@@ -71,7 +71,7 @@ interface ExistingOrderPanelProps extends LinkOrderFormProps {
     onShowCheckout: () => void;
 }
 
-function orderEnding(order: ExistingOrder) {
+export function orderEnding(order: ExistingOrder) {
     return `Order ending ${order.order_hint.replace(/^…/, "")}`;
 }
 

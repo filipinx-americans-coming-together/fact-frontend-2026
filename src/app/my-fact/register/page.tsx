@@ -34,6 +34,7 @@ import FlowSteps from "@/components/ui/FlowSteps";
 import EmailHelpNote from "@/components/ui/EmailHelpNote";
 import ExistingOrderPanel, { DifferentEmailOrderLink } from "@/components/ui/ExistingOrderPanel";
 import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
+import { NO_WORKSHOPS_TICKET_TYPE, wrongTicketMessage } from "@/util/tickets";
 
 export default function Register() {
     return (
@@ -54,20 +55,6 @@ const BUNDLE_PROMO_CODE = "BUNDLE";
 const UNKNOWN_ORDER_ID = "unknown";
 const UNKNOWN_ORDER_MESSAGE =
     "We have received your payment! Don't purchase again. Contact FACT IT with the order number from your Eventbrite confirmation email.";
-
-// Removing the pre-applied BUNDLE code and entering the UIUC Variety Show
-// Only code reveals that ticket in the Bundle widget. verify-payment accepts
-// it (it's a real order for this event), but it doesn't include workshops,
-// so POST /registration/delegates/ would reject it with a 402.
-const NO_WORKSHOPS_TICKET_TYPE = "variety_show";
-function wrongTicketMessage(orderId: string | null) {
-    return (
-        "Your ticket is Variety Show Only, which doesn't include workshops. " +
-        "Don't purchase again. Contact FACT IT" +
-        (orderId ? ` with Order #${orderId}` : "") +
-        " to switch to the Workshops + Variety Show Bundle."
-    );
-}
 
 function orderStorageKey(email: string) {
     return `fact-eventbrite-order:${email}`;

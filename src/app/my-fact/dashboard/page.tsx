@@ -16,6 +16,7 @@ import RegPageContainer from "@/components/formatting/RegPageContainer";
 import Link from "next/link";
 import { IoMdRefresh } from "react-icons/io";
 import FlowSteps from "@/components/ui/FlowSteps";
+import UnregisteredNotice from "@/components/ui/UnregisteredNotice";
 
 export default function Dashboard() {
     const { user, isLoading, error } = useUser();
@@ -96,10 +97,7 @@ export default function Dashboard() {
                     </div>
                     </div>
                     <UserAgenda/>
-                    </div> : <div className="flex flex-col gap-4 items-center">
-                        <Link href="/my-fact/register" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
-                        <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just finished registering? Refresh the page to load the dashboard <div className="text-lg"><IoMdRefresh /></div></div>
-                        </div>
+                    </div> : <UnregisteredNotice email={user.user.email} />
                      }
                     <div className="mx-auto my-6 w-fit">
                 <InteractiveButton
