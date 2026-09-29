@@ -2505,3 +2505,16 @@ html.has-team-open {
     align-items: flex-start;
   }
 }
+
+/* Inline text link on light sections: the base `a` reset strips color and
+   underline, so body-copy links need this to read as links. */
+.inline-link {
+  color: var(--accent-on-light);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.inline-link:hover {
+  text-decoration-thickness: 2px;
+}

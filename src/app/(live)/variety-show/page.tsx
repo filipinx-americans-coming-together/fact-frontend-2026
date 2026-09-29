@@ -51,7 +51,7 @@ export default function VarietyShow() {
                         <div style={{ margin: '0 auto 1.5rem', maxWidth: 640, textAlign: 'center' }}>
                             <p>
                                 <b>These tickets are for the Variety Show only.</b> Want the full FACT
-                                experience with workshops? <Link href="/my-fact/create-account">Register here</Link>.
+                                experience with workshops? Register <Link className="inline-link" href="/my-fact/create-account">here</Link>.
                                 The Workshops + Variety Show Bundle includes your show ticket.
                             </p>
                             <p style={{ marginTop: '0.75rem' }}>

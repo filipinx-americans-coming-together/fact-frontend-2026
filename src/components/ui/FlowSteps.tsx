@@ -20,7 +20,7 @@ export default function FlowSteps({ current }: { current: 1 | 2 | 3 }) {
                         aria-current={isCurrent ? "step" : undefined}
                         className={`px-3 py-2 rounded-xl ${
                             isCurrent
-                                ? "pill pill--ink"
+                                ? "bg-[linear-gradient(180deg,var(--violet-800),var(--ink-900))] text-[var(--cream-100)] shadow-[0_4px_16px_rgba(14,21,94,0.28)]"
                                 : "text-[var(--ink-on-light-dim)] border border-[var(--hairline-on-light)]"
                         }`}
                     >
