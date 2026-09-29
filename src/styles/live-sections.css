@@ -1459,15 +1459,21 @@ html.has-trailer-open {
   border-radius: 0;
   overflow: hidden;
   object-fit: contain;
-  background: radial-gradient(circle at 32% 28%, var(--orchid-400), var(--violet-800) 55%, var(--ink-900) 100%);
+  /* Transparent logos sit directly on the page's own background. */
+  background: transparent;
+}
+
+/* Only opaque photos get a shadow: on a transparent logo it would outline
+   the invisible rectangle around it. */
+.workshop__bioPhoto--shadow {
   box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
-/* Logos/seals that already carry their own color and shape — the shared
-   radial-gradient backdrop fights them instead of framing them. */
-.workshop__bioPhoto--flat {
-  background: none;
-  box-shadow: none;
+/* The collapsible bio area (grid 0fr -> 1fr) needs its single child to be
+   able to shrink to nothing. */
+.workshop__bioList {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .workshop__bioText {

@@ -8,7 +8,8 @@ import { CrossLinks } from '@/components/site/CrossLinks';
 import { useWorkshops } from '@/hooks/api/useWorkshops';
 import { useLocations } from '@/hooks/api/useLocations';
 import { LocationData } from '@/util/types';
-import { getFacilitatorForWorkshop } from '@/util/facilitatorPhotos';
+import { facilitatorCards } from '@/util/facilitatorCards';
+import { useWorkshopFacilitators } from '@/hooks/api/useWorkshopFacilitators';
 import { SESSION_TIMES } from '@/util/constants';
 
 const DESC_CLAMP_THRESHOLD = 220;
@@ -32,6 +33,7 @@ function useIdToggleSet() {
 export default function WorkshopsPage() {
   const { workshops } = useWorkshops();
   const { locations } = useLocations();
+  const facilitatorsById = useWorkshopFacilitators();
   const [query, setQuery] = useState('');
   const [sessionFilter, setSessionFilter] = useState<number | 'all'>('all');
   const [expandedIds, toggleExpanded] = useIdToggleSet();
@@ -146,7 +148,10 @@ export default function WorkshopsPage() {
                           typeof capacity === 'number' &&
                           typeof workshop.registrationCount === 'number' &&
                           workshop.registrationCount >= capacity;
-                        const facilitator = getFacilitatorForWorkshop(workshop.title);
+                        const cards = facilitatorCards(
+                          workshop.title,
+                          facilitatorsById.get(workshop.id) ?? []
+                        );
 
                         return (
                           <article
@@ -203,7 +208,7 @@ export default function WorkshopsPage() {
                                   </>
                                 );
                               })()}
-                              {facilitator ? (
+                              {cards.length > 0 ? (
                                 <>
                                   <button
                                     type="button"
@@ -212,7 +217,7 @@ export default function WorkshopsPage() {
                                     aria-controls={`workshop-bio-${workshop.id}`}
                                     onClick={() => toggleBio(workshop.id)}
                                   >
-                                    Facilitated by {facilitator.name}
+                                    Facilitated by {cards.map((card) => card.name).join(', ')}
                                   </button>
                                   <div
                                     className={
@@ -222,24 +227,31 @@ export default function WorkshopsPage() {
                                     }
                                   >
                                     <div
-                                      className="workshop__bio"
+                                      className="workshop__bioList"
                                       id={`workshop-bio-${workshop.id}`}
                                       aria-hidden={!openBioIds.has(workshop.id)}
                                     >
-                                      <Image
-                                        className={
-                                          facilitator.flatPhoto
-                                            ? 'workshop__bioPhoto workshop__bioPhoto--flat'
-                                            : 'workshop__bioPhoto'
-                                        }
-                                        src={facilitator.photo}
-                                        alt={facilitator.name}
-                                        width={facilitator.width}
-                                        height={facilitator.height}
-                                        placeholder="blur"
-                                        blurDataURL={facilitator.blurDataURL}
-                                      />
-                                      <p className="workshop__bioText">{facilitator.bio}</p>
+                                      {cards.map((card) => (
+                                        <div className="workshop__bio" key={card.name}>
+                                          {card.photo ? (
+                                            <Image
+                                              className={
+                                                card.opaque
+                                                  ? 'workshop__bioPhoto workshop__bioPhoto--shadow'
+                                                  : 'workshop__bioPhoto'
+                                              }
+                                              src={card.photo}
+                                              alt={card.name}
+                                              width={card.width}
+                                              height={card.height}
+                                              {...(card.blurDataURL
+                                                ? { placeholder: 'blur' as const, blurDataURL: card.blurDataURL }
+                                                : {})}
+                                            />
+                                          ) : null}
+                                          <p className="workshop__bioText">{card.bio}</p>
+                                        </div>
+                                      ))}
                                     </div>
                                   </div>
                                 </>
