@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { CrossLinks } from '@/components/site/CrossLinks';
 
 export const metadata: Metadata = {
   title: 'FAQ · FACT 2026',
@@ -154,39 +154,13 @@ export default function FaqPage() {
           </div>
         </section>
 
-        <nav className="crosslink" aria-label="More to explore">
-          <div className="crosslink__inner">
-            <p className="crosslink__label">Continue exploring</p>
-            <div className="crosslink__links">
-              <Link className="crosslink__link" href="/workshops">
-                <span>Workshops</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-              <Link className="crosslink__link" href="/agenda">
-                <span>Agenda</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <CrossLinks
+          links={[
+            { href: '/', label: 'Home' },
+            { href: '/workshops', label: 'Workshops' },
+            { href: '/agenda', label: 'Agenda' },
+          ]}
+        />
 
         <SiteFooter />
       </main>

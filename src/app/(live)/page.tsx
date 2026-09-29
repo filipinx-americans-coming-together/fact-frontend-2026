@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { CrossLinks } from '@/components/site/CrossLinks';
 import NotificationsManager from '@/components/ui/NotificationManager';
 import { useNotifications } from '@/hooks/api/useNotifications';
 
@@ -166,6 +167,14 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <CrossLinks
+          links={[
+            { href: '/about', label: 'About Us' },
+            { href: '/workshops', label: 'Workshops' },
+            { href: '/variety-show', label: 'Variety Show' },
+          ]}
+        />
 
         <SiteFooter />
       </main>

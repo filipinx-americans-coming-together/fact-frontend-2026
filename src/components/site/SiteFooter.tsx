@@ -5,6 +5,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { InstagramIcon } from './SocialIcon';
 
+// Mirrors the top nav in SiteHeader, plus Home.
+const NAV_LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  { href: '/workshops', label: 'Workshops' },
+  { href: '/team', label: 'Team' },
+  { href: '/past-facts', label: 'Past FACTs' },
+  { href: '/variety-show', label: 'Variety Show' },
+];
+
 export function SiteFooter() {
   const pathname = usePathname();
   const onDonatePage = pathname === '/donate';
@@ -37,12 +47,13 @@ export function SiteFooter() {
         <div className="footer__col footer__col--nav">
           <p className="footer__heading">Navigate</p>
           <ul className="footer__links">
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-            <li>
-              <Link href="/team">Team</Link>
-            </li>
+            {NAV_LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <Link href={href} aria-current={pathname === href ? 'page' : undefined}>
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="footer__col footer__col--connect">

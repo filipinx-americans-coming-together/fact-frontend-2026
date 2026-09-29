@@ -14,7 +14,7 @@ describe('Variety Show page', () => {
     render(<VarietyShow />);
 
     expect(screen.getByText(/These tickets are for the Variety Show only/)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Register here' })).toHaveAttribute('href', '/my-fact/create-account');
+    expect(screen.getByRole('link', { name: 'here' })).toHaveAttribute('href', '/my-fact/create-account');
   });
 
   it('explains the UIUC -VSHOW code', () => {

@@ -1,9 +1,9 @@
 'use client';
 
 import Script from 'next/script';
-import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { CrossLinks } from '@/components/site/CrossLinks';
 
 const BLACKBAUD_FORM_ID = '799cd906-9cc4-401c-bf98-a0de4daac6c6';
 
@@ -86,39 +86,13 @@ export default function DonatePage() {
           </div>
         </section>
 
-        <nav className="crosslink" aria-label="More to explore">
-          <div className="crosslink__inner">
-            <p className="crosslink__label">Continue exploring</p>
-            <div className="crosslink__links">
-              <Link className="crosslink__link" href="/about">
-                <span>About Us</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-              <Link className="crosslink__link" href="/agenda">
-                <span>Agenda</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <CrossLinks
+          links={[
+            { href: '/', label: 'Home' },
+            { href: '/about', label: 'About Us' },
+            { href: '/agenda', label: 'Agenda' },
+          ]}
+        />
 
         <SiteFooter />
       </main>

@@ -1,10 +1,10 @@
 'use client';
 
 import { useMemo, useState, useCallback } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { CrossLinks } from '@/components/site/CrossLinks';
 import { useWorkshops } from '@/hooks/api/useWorkshops';
 import { useLocations } from '@/hooks/api/useLocations';
 import { LocationData } from '@/util/types';
@@ -272,26 +272,13 @@ export default function WorkshopsPage() {
           </div>
         </section>
 
-        <nav className="crosslink" aria-label="More to explore">
-          <div className="crosslink__inner">
-            <p className="crosslink__label">Continue exploring</p>
-            <div className="crosslink__links">
-              <Link className="crosslink__link" href="/team">
-                <span>Team</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <CrossLinks
+          links={[
+            { href: '/', label: 'Home' },
+            { href: '/team', label: 'Team' },
+            { href: '/variety-show', label: 'Variety Show' },
+          ]}
+        />
 
         <SiteFooter />
       </main>
