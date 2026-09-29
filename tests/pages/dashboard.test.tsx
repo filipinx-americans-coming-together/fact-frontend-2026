@@ -46,11 +46,11 @@ describe('Dashboard', () => {
   it('marks step 2 before registering and step 3 after', () => {
     mockUser.mockReturnValue(user([]));
     const { unmount } = render(<Dashboard />);
-    expect(screen.getByText(/2\. Register/).closest('[aria-current="step"]')).not.toBeNull();
+    expect(document.querySelector('[aria-current="step"]')).toHaveTextContent('Step 2: Register');
     unmount();
 
     mockUser.mockReturnValue(user([{ workshop: 1 }]));
     render(<Dashboard />);
-    expect(screen.getByText(/3\. You're in/).closest('[aria-current="step"]')).not.toBeNull();
+    expect(document.querySelector('[aria-current="step"]')).toHaveTextContent("Step 3: You're In!");
   });
 });
