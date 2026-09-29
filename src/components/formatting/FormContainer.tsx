@@ -15,11 +15,11 @@ interface FormProps {
 
 function FormContainer(props: FormProps) {
     return ( // bg-[#FFAC7D]
-        <div className="w-7/12 min-w-[460px] py-12 bg-[rgba(240,240,240,0.3)] m-auto rounded-lg">
+        <div className="w-full sm:w-7/12 sm:min-w-[460px] py-12 bg-[rgba(240,240,240,0.3)] m-auto rounded-lg">
             <div className="text-black m-auto flex flex-col items-center gap-3 ">
                 <form
                     name={props.formName}
-                    className="flex flex-col gap-4 lg:gap-6 items-center text-left w-3/4 md:w-5/6 lg:w-7/12"
+                    className="flex flex-col gap-4 lg:gap-6 items-center text-left w-11/12 sm:w-3/4 md:w-5/6 lg:w-7/12"
                     autoComplete="off"
                     onSubmit={(event) => {
                         event.preventDefault();
