@@ -112,6 +112,8 @@ components:
 
 # Design System: FACT 2026 — Mahiwagahan
 
+> **Status note (2026-09-28):** the pass-by-pass history below describes launch-gated nav links and locked Login/Donate pills. That's no longer the live state. `src/components/site/SiteHeader.tsx` now links About, Workshops, Team, Past FACTs, and Variety Show in the primary nav, and the Login (`/my-fact/login`) and Donate (`/donate`) pills are live links rather than `aria-disabled`. Agenda, Palengke, and FAQ still have routes but aren't in the nav. Variety Show and Donate pages were added after the passes documented here. The `aria-disabled` + live-announcer pattern described below is still the one to use for any future gated control.
+
 ## Overview
 
 **Creative North Star: "The Almanac Held to Candlelight"**
