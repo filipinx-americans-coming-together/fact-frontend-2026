@@ -61,7 +61,7 @@ export default function AgendaPage() {
           links={[
             { href: '/', label: 'Home' },
             { href: '/workshops', label: 'Workshops' },
-            { href: '/faq', label: 'FAQ' },
+            { href: '/variety-show', label: 'Variety Show' },
           ]}
         />
 

@@ -90,7 +90,7 @@ export default function DonatePage() {
           links={[
             { href: '/', label: 'Home' },
             { href: '/about', label: 'About Us' },
-            { href: '/agenda', label: 'Agenda' },
+            { href: '/team', label: 'Team' },
           ]}
         />
 

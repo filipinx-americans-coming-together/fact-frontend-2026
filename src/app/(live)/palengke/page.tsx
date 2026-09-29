@@ -97,7 +97,7 @@ export default function PalengkePage() {
         <CrossLinks
           links={[
             { href: '/', label: 'Home' },
-            { href: '/agenda', label: 'Agenda' },
+            { href: '/workshops', label: 'Workshops' },
             { href: '/team', label: 'Team' },
           ]}
         />

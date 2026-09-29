@@ -144,11 +144,11 @@ export default function Home() {
               </p>
               <p className="cta__text">
                 <b>Workshops + Variety Show</b> →{' '}
-                <Link href="/my-fact/create-account">Create your My FACT account</Link> and register. Your
+                <Link className="inline-link" href="/my-fact/create-account">Create your My FACT account</Link> and register. Your
                 registration includes your workshop sessions, and the Bundle ticket adds the Variety Show.
               </p>
               <p className="cta__text">
-                <b>Variety Show only</b> → Head to the <Link href="/variety-show">Variety Show page</Link> and grab
+                <b>Variety Show only</b> → Head to the <Link className="inline-link" href="/variety-show">Variety Show page</Link> and grab
                 a ticket. No account needed.
               </p>
               <p className="cta__text" style={{ marginTop: '1.25rem' }}>

@@ -87,7 +87,7 @@ export default function VarietyShow() {
                 <CrossLinks
                   links={[
                     { href: '/', label: 'Home' },
-                    { href: '/agenda', label: 'Agenda' },
+                    { href: '/workshops', label: 'Workshops' },
                     { href: '/team', label: 'Team' },
                   ]}
                 />

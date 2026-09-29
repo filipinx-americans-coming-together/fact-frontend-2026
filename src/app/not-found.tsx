@@ -50,7 +50,7 @@ export default function NotFound() {
           links={[
             { href: '/', label: 'Home' },
             { href: '/about', label: 'About Us' },
-            { href: '/faq', label: 'FAQ' },
+            { href: '/workshops', label: 'Workshops' },
           ]}
         />
 

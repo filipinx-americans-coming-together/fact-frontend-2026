@@ -158,7 +158,7 @@ export default function FaqPage() {
           links={[
             { href: '/', label: 'Home' },
             { href: '/workshops', label: 'Workshops' },
-            { href: '/agenda', label: 'Agenda' },
+            { href: '/variety-show', label: 'Variety Show' },
           ]}
         />
 
