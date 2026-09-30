@@ -27,6 +27,8 @@ async function fetchSchools(): Promise<SchoolData[]> {
         return { id: school.pk, name: school.fields.name };
     });
 
+    formatted_data.push(formatted_data.splice(formatted_data.findIndex((school: SchoolData) => school.name === "N/A"), 1)[0]); // move N/A to the end of the list
+
     return formatted_data;
 }
 

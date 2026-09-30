@@ -36,14 +36,13 @@ function SchoolSelect({
                 setState={setState}
                 defaultValue={defaultValue}
                 required={required}
-                options={extraOptions.concat(
-                    schools.map((school) => {
+                options={schools.map((school) => {
                         return {
                             label: school.name,
                             value: school.id.toString(),
                         };
-                    })
-                )}
+                    }).concat(extraOptions)
+                }
                 placeholder="Search for schools..."
             />
         )
