@@ -168,7 +168,7 @@ export default function CreateAccount() {
                     </p>
                     </div>
 
-                    <Select id="year" label="Year" setState={setFormData}>
+                    <Select id="year" label="Year" setState={setFormData} defaultValue={"Freshman"} required={true}>
                         <option value="Freshman">Freshman</option>
                         <option value="Sophomore">Sophomore</option>
                         <option value="Junior">Junior</option>
@@ -190,7 +190,7 @@ export default function CreateAccount() {
                     <SchoolSelect
                         id="school_id"
                         setState={setFormData}
-                        defaultValue="N/A"
+                        // defaultValue="N/A"
                     />
 
                     {formData.school_id == "School not listed" && (

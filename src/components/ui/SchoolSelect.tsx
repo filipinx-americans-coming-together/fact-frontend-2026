@@ -23,7 +23,7 @@ function SchoolSelect({
 }: SchoolSelectProps) {
     const { schools } = useSchools();
     const extraOptions: { label: string; value: string }[] = [
-        { label: "N/A", value: "N/A" },
+        // { label: "N/A", value: "N/A" },
         { label: "School not listed", value: "School not listed" },
     ];
 
