@@ -56,7 +56,7 @@ export function useAdminLogin() {
             return fetchAdminLogin(username, password);
         },
 
-        onSuccess: (data) => queryClient.setQueryData(["active-profile"], data),
+        onSuccess: (data) => queryClient.setQueryData(["active-user"], data),
     });
 
     console.log("isSuccess", isSuccess);

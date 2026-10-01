@@ -61,6 +61,7 @@ export default function Dashboard() {
                             Welcome, {user.user.first_name} {user.user.last_name}
                         </div>
                         <FlowSteps current={user.registration.length ? 3 : 2} />
+                        {/* <div className="text-sm text-[var(--ink-on-light-dim)] flex flex-col md:flex-row gap-1 items-center justify-center">Just finished registering? Refresh the page to load the dashboard <div className="text-lg"><IoMdRefresh /></div></div>  */}
                         {/* Shown whether or not they've registered: unregistered
                             delegates still need to fix their name, school, etc. */}
                         <div className="text-center">
@@ -79,7 +80,7 @@ export default function Dashboard() {
                                     id={pair.workshop}
                                 />
                             ))}
-                            <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+                            {/* <div className="text-sm text-[var(--ink-on-light-dim)] justify-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div> */}
                             {flag?.value ? (
                                 <div className="text-center my-6">
                                     <LinkButton
@@ -97,7 +98,7 @@ export default function Dashboard() {
                     </div>
                     </div>
                     <UserAgenda/>
-                    </div> : <UnregisteredNotice email={user.user.email} />
+                    </div> : <UnregisteredNotice email={user.user.email}  /> 
                      }
                     <div className="mx-auto my-6 w-fit">
                 <InteractiveButton

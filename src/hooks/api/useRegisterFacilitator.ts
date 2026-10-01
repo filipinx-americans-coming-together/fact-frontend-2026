@@ -54,7 +54,7 @@ export function useRegisterFacilitator() {
 
         onSuccess: () =>
             queryClient.refetchQueries({
-                queryKey: ["active-profile"],
+                queryKey: ["active-user"],
                 type: "active",
             }),
     });

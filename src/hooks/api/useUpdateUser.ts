@@ -88,7 +88,7 @@ export function useUpdateUser() {
             return fetchUpdateUser(props);
         },
 
-        onSuccess: (data) => queryClient.setQueryData(["active-profile"], data),
+        onSuccess: (data) => queryClient.setQueryData(["active-user"], data),
     });
 
     return { data, error, isPending, updateUser, isSuccess };
