@@ -163,6 +163,23 @@ export default function CreateAccount() {
                         setState={setFormData}
                         maxLength={30}
                     />
+                    {/* <Select id="pronouns" label="Pronouns" defaultValue="" setState={setFormData}>
+                        <option value="He/Him">He/Him</option>
+                        <option value="She/Her">She/Her</option>
+                        <option value="They/Them">They/Them</option>
+                        <option value="He/They">He/They</option>
+                        <option value="She/They">She/They</option>
+                        <option value="Other">Other</option>
+                        <option value="">Prefer not to say</option>
+                    </Select>
+                    {formData.pronouns == "Other" && (
+                        <TextInput
+                            label="Specify Other Pronouns"
+                            id="other_pronouns"
+                            setState={setFormData}
+                            required={true}
+                        />
+                    )} */}
                     <p className="text-xs text-[var(--ink-on-light-dim)] mt-2 w-fit mx-auto">
                         The pronouns provided will appear on your name tag
                     </p>

@@ -2,15 +2,18 @@
 
 import FormContainer from "@/components/formatting/FormContainer";
 import RegPageContainer from "@/components/formatting/RegPageContainer";
+import LoadingCircle from "@/components/icons/LoadingCircle";
 import TextInput from "@/components/ui/TextInput";
 import { useFacilitatorLogin } from "@/hooks/api/useFacilitatorLogin";
 import { useLogin } from "@/hooks/api/useLogin";
+import { useUser } from "@/hooks/api/useUser";
 import { getErrorCode } from "@/util/apiError";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Login() {
+    const { user, isLoading, error: userError } = useUser();
     const { login, isPending, error, isSuccess } = useLogin();
     const {
         login: facilitatorLogin,
@@ -27,6 +30,11 @@ export default function Login() {
     });
 
     const router = useRouter();
+    useEffect(() => {
+        if (user) {
+            router.push("/my-fact/dashboard");
+        }
+    }, [user]);
 
     useEffect(() => {
         if (isSuccess) {
@@ -40,7 +48,8 @@ export default function Login() {
 
     return (
         <RegPageContainer pageTitle="Log In" pageSubtitle="Access your FACT account.">
-
+            {isLoading ?<div className="flex justify-center"><LoadingCircle /> </div>:
+            <>
             {/* toggle log in type */}
             <div className="mx-auto p-2 border-2 border-[var(--violet-800)] rounded-sm w-fit flex gap-4">
                 <button
@@ -134,6 +143,7 @@ export default function Login() {
                 </div>
 
             </FormContainer>
+            </>}
         
         </RegPageContainer>
     );

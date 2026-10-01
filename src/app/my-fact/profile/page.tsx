@@ -36,7 +36,7 @@ export default function Profile() {
         isSuccess: emailVerified,
     } = useVerifyEmail();
 
-    const [formData, setFormData] = useState<Object>({
+    const [formData, setFormData] = useState<{ [key: string]: any }>({
         f_name: "",
         l_name: "",
         email: "",
@@ -47,7 +47,7 @@ export default function Profile() {
         new_password: "",
     });
 
-    const [emailData, setEmailData] = useState<Object>({
+    const [emailData, setEmailData] = useState<{ [key: string]: any }>({
         email: "",
         code: "",
     });
@@ -82,7 +82,7 @@ export default function Profile() {
 
                 {user && (
                     <>
-                        <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+                        {/* <div className="text-sm text-[var(--ink-on-light-dim)] text-center flex flex-col md:flex-row gap-1 items-center">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div> */}
                         <TextInput
                             label="First Name"
                             id="f_name"
@@ -102,8 +102,27 @@ export default function Profile() {
                             id="pronouns"
                             placeholder={user?.delegate.pronouns}
                             setState={setFormData}
+                            maxLength={30}
                             required={false}
                         />
+                        {/* <Select id="pronouns" label="Pronouns" setState={setFormData} defaultValue={user?.delegate.pronouns} required={false}>
+                            <option value="He/Him">He/Him</option>
+                            <option value="She/Her">She/Her</option>
+                            <option value="They/Them">They/Them</option>
+                            <option value="He/They">He/They</option>
+                            <option value="She/They">She/They</option>
+                            <option value="Other">Other</option>
+                            <option value="">Prefer not to say</option>
+                        </Select>
+                        {formData.pronouns == "Other" && (
+                            <TextInput
+                                label="Specify Other Pronouns"
+                                id="other_pronouns"
+                                setState={setFormData}
+                                required={true}
+                                placeholder={user?.delegate.pronouns}
+                            />
+                        )} */}
 
                         <Select
                             id="year"
@@ -127,6 +146,14 @@ export default function Profile() {
                             required={false}
                             defaultValue={user.delegate.school ? user.delegate.school.toString() : undefined}
                         />
+                        {formData.school_id == "School not listed" && (
+                        <TextInput
+                            label="School Name (no abbreviations please)"
+                            id="other_school_name"
+                            setState={setFormData}
+                            required={true}
+                        />
+                    )}
                     </>
                 )}
 

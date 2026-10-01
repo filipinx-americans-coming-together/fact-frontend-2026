@@ -41,10 +41,10 @@ export function useLogout() {
     } = useMutation({
         mutationFn: () => fetchLogout(),
         onSuccess: () =>
-            queryClient.removeQueries({ queryKey: ["active-profile"] }),
+            queryClient.removeQueries({ queryKey: ["active-user"] }),
     });
 
-    console.log("isSuccess from logout", isSuccess);
+    // console.log("isSuccess from logout", isSuccess);
 
     return { data, error, isPending, logout, isSuccess };
 }

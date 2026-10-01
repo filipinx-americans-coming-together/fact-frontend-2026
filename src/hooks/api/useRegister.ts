@@ -15,6 +15,7 @@ export interface registrationProps {
 
 async function fetchRegister(props: registrationProps): Promise<{
     user: UserData;
+    delegate: DelegateData;
     registration: RegistrationData[];
 }> {
     const endpoint = `${API_URL}/registration/delegates/`;
@@ -30,7 +31,6 @@ async function fetchRegister(props: registrationProps): Promise<{
 
     // user data
     const userData = json.user[0];
-
     const formattedUser: UserData = {
         id: userData.pk,
         first_name: userData.fields.first_name,
@@ -40,6 +40,12 @@ async function fetchRegister(props: registrationProps): Promise<{
 
     // delegate data
     const delegateData = json.delegate[0];
+    const formattedDelegate: DelegateData = {
+        id: delegateData.pk,
+        pronouns: delegateData.fields.pronouns,
+        year: delegateData.fields.year,
+        school: delegateData.fields.school,
+    };
 
     // registration data
     const registrationData = json.registration;
@@ -56,6 +62,7 @@ async function fetchRegister(props: registrationProps): Promise<{
 
     return {
         user: formattedUser,
+        delegate: formattedDelegate,
         registration: formattedRegistration,
     };
 }
@@ -74,7 +81,7 @@ export function useRegister() {
             return fetchRegister(props);
         },
 
-        onSuccess: (data) => queryClient.setQueryData(["active-profile"], data),
+        onSuccess: (data) => queryClient.setQueryData(["active-user"], data),
     });
 
     return { data, error, isPending, register, isSuccess };

@@ -95,7 +95,7 @@ img {
 
 .hero {
   position: relative;
-  z-index: 1;
+  z-index: 20;
   min-height: 100svh;
   min-height: 100vh;
   display: flex;

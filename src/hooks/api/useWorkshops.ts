@@ -27,7 +27,7 @@ async function fetchWorkshops(): Promise<WorkshopData[]> {
 
             throw new Error(message);
         }
-        console.log(json);
+        // console.log(json);
     }
     
 
