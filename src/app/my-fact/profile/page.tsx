@@ -97,7 +97,15 @@ export default function Profile() {
                             setState={setFormData}
                             required={false}
                         />
-                        <Select id="pronouns" label="Pronouns" setState={setFormData} defaultValue={user?.delegate.pronouns} required={false}>
+                        <TextInput
+                            label="Pronouns"
+                            id="pronouns"
+                            placeholder={user?.delegate.pronouns}
+                            setState={setFormData}
+                            maxLength={30}
+                            required={false}
+                        />
+                        {/* <Select id="pronouns" label="Pronouns" setState={setFormData} defaultValue={user?.delegate.pronouns} required={false}>
                             <option value="He/Him">He/Him</option>
                             <option value="She/Her">She/Her</option>
                             <option value="They/Them">They/Them</option>
@@ -107,13 +115,14 @@ export default function Profile() {
                             <option value="">Prefer not to say</option>
                         </Select>
                         {formData.pronouns == "Other" && (
-                        <TextInput
-                            label="Specify Other Pronouns"
-                            id="other_pronouns"
-                            setState={setFormData}
-                            required={true}
-                        />
-                    )}
+                            <TextInput
+                                label="Specify Other Pronouns"
+                                id="other_pronouns"
+                                setState={setFormData}
+                                required={true}
+                                placeholder={user?.delegate.pronouns}
+                            />
+                        )} */}
 
                         <Select
                             id="year"

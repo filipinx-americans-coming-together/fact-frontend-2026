@@ -157,7 +157,13 @@ export default function CreateAccount() {
                         setState={setFormData}
                     />
                     <div className="w-full">
-                    <Select id="pronouns" label="Pronouns" setState={setFormData}>
+                    <TextInput
+                        label="Pronouns"
+                        id="pronouns"
+                        setState={setFormData}
+                        maxLength={30}
+                    />
+                    {/* <Select id="pronouns" label="Pronouns" defaultValue="" setState={setFormData}>
                         <option value="He/Him">He/Him</option>
                         <option value="She/Her">She/Her</option>
                         <option value="They/Them">They/Them</option>
@@ -173,13 +179,7 @@ export default function CreateAccount() {
                             setState={setFormData}
                             required={true}
                         />
-                    )}
-                    <TextInput
-                        label="Pronouns"
-                        id="pronouns"
-                        setState={setFormData}
-                        maxLength={30}
-                    />
+                    )} */}
                     <p className="text-xs text-[var(--ink-on-light-dim)] mt-2 w-fit mx-auto">
                         The pronouns provided will appear on your name tag
                     </p>
