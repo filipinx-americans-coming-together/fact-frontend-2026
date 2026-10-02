@@ -195,14 +195,14 @@ export default function CreateAccount() {
                         <option value="N/A">N/A</option>
                     </Select>
 
-                    {formData.year == "Other" && (
+                    {/* {formData.year == "Other" && (
                         <TextInput
                             label="Specify Other Year"
                             id="other_year"
                             setState={setFormData}
                             required={true}
                         />
-                    )}
+                    )} */}
 
                     <SchoolSelect
                         id="school_id"

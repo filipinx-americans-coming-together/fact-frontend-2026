@@ -129,7 +129,7 @@ export default function Profile() {
                             label="Year"
                             setState={setFormData}
                             required={false}
-                            defaultValue={user?.delegate.year}
+                            defaultValue={user?.delegate.year ? user.delegate.year : "Freshman"}
                         >
                             <option value="Freshman">Freshman</option>
                             <option value="Sophomore">Sophomore</option>
