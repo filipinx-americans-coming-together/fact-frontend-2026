@@ -552,7 +552,7 @@ function RegisterForm() {
                     </div>
                     */}
                     <UiucCodeInstructions variant={isPerformer ? "performer" : "standard"} />
-                    <div className="w-fit mx-auto flex items-center pt-2"><PiArrowElbowRightDownBold /></div>
+                    <div className="w-fit mx-auto flex items-center pt-2"></div>
                     <br/>
                     <div className="mx-auto w-full">
                         <EventbriteCheckout eventId={WORKSHOP_EVENT_ID} hidden={!workshopsOnly} onOrderComplete={handleOrderComplete} />
