@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { InstagramIcon } from './SocialIcon';
 
-type NavActive = 'about' | 'workshops' | 'team' | 'past-facts' | 'variety-show' | null;
+type NavActive = 'about' | 'workshops' | 'team' | 'past-facts' | 'variety-show' | 'faq' | null;
 
 type SiteHeaderProps =
   | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: NavActive }
@@ -10,7 +10,7 @@ type SiteHeaderProps =
 
 // Mirrors live's .hero header exactly — full hero (home) vs .hero--compact
 // (every interior page). "About Us", "Workshops", "Team", "Past FACTs", and
-// "Variety Show" are linked in nav today; per DESIGN.md's confirmed rule,
+// "Variety Show", and "FAQ" are linked in nav today; per DESIGN.md's confirmed rule,
 // other pages don't get a nav link until they're actually announced as live,
 // even though the routes exist.
 export function SiteHeader(props: SiteHeaderProps) {
@@ -80,6 +80,11 @@ export function SiteHeader(props: SiteHeaderProps) {
             <li>
               <Link href="/variety-show" aria-current={active === 'variety-show' ? 'page' : undefined}>
                 Variety Show
+              </Link>
+            </li>
+            <li>
+              <Link href="/faq" aria-current={active === 'faq' ? 'page' : undefined}>
+                FAQ
               </Link>
             </li>
           </ul>
