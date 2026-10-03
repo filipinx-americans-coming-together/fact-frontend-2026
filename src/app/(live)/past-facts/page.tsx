@@ -2,34 +2,51 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { CrossLinks } from '@/components/site/CrossLinks';
-import { PhotoPlaceholderIcon } from '@/components/site/PhotoPlaceholderIcon';
+import { PastFactsSky, type PastFact } from '@/components/site/PastFactsSky';
 
 export const metadata: Metadata = {
   title: 'Past FACTs · FACT 2026',
-  description: 'A look back at our past themes and conferences!',
+  description: 'Every FACT has a theme. Revisit the ones that led to Mahiwagahan, and open each year’s booklet.',
 };
 
-const ENTRIES = [
+// One entry per past conference; adding a year adds a star to the chart.
+const ENTRIES: PastFact[] = [
   {
     year: '2025',
-    theme: '"Ipahayag nang Malakas" (Proclaim Loudly)',
-    flag: 'Photos and booklet coming soon',
-    booklet: null,
+    theme: 'Ipahayag nang Malakas',
+    gloss: 'Proclaim Loudly',
+    booklet: 'https://drive.google.com/file/d/1sUWkaAzeOiFvnSTiOKbiH7et9I_TwRwg/view',
   },
   {
     year: '2024',
-    theme: '"Magbubunga" (Planting Prosperity)',
-    flag: 'Photos coming soon',
+    theme: 'Magbubunga',
+    gloss: 'Planting Prosperity',
     booklet:
-      'https://www.canva.com/design/DAGWwo4xlZ0/vLFBOlCcY1tcmDNjXULjNA/view?utm_content=DAGWwo4xlZ0&utm_campaign=designshare&utm_medium=link&utm_source=editor#15',
+      'https://www.canva.com/design/DAGWwo4xlZ0/vLFBOlCcY1tcmDNjXULjNA/view',
   },
   {
     year: '2023',
-    theme: '"Kaalaman" (Knowledge Is Power)',
-    flag: 'Photos and booklet coming soon',
-    booklet: null,
+    theme: 'Kaalaman',
+    gloss: 'Knowledge Is Power',
+    booklet: 'https://drive.google.com/file/d/1ttf4_ulb__u3qKZLxajWz8VQyNF95pcL/view',
   },
 ];
+
+// A fixed, seeded scatter of background stars, so every render draws the
+// same sky. Plotted on a 1600x900 field that crops (never stretches) to fit.
+const FIELD = (() => {
+  let seed = 2026;
+  const rand = () => {
+    seed = (seed * 16807) % 2147483647;
+    return seed / 2147483647;
+  };
+  return Array.from({ length: 70 }, () => ({
+    cx: Math.round(rand() * 1600),
+    cy: Math.round(rand() * 900),
+    r: Number((0.6 + rand() * 1.1).toFixed(2)),
+    o: Number((0.15 + rand() * 0.45).toFixed(2)),
+  }));
+})();
 
 export default function PastFactsPage() {
   return (
@@ -37,12 +54,21 @@ export default function PastFactsPage() {
       <SiteHeader
         compact
         pageTitle="Past FACTs"
-        pageSubtitle="A look back at our past themes and conferences!"
+        pageSubtitle="The themes that led us to Mahiwagahan"
         active="past-facts"
       />
 
       <main id="below">
-        <section className="section section--pastfacts">
+        <section className="section section--sky" aria-labelledby="sky-heading">
+          <svg className="sky__field" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            {[0, 1, 2].map((depth) => (
+              <g key={depth} className={`sky__depth sky__depth--${depth}`}>
+                {FIELD.filter((_, i) => i % 3 === depth).map((s, i) => (
+                  <circle key={i} cx={s.cx} cy={s.cy} r={s.r} opacity={s.o} />
+                ))}
+              </g>
+            ))}
+          </svg>
           <svg className="motif motif--tr motif--moon" viewBox="0 0 260 60" aria-hidden="true">
             <defs>
               <mask id="pastfacts-moon-2">
@@ -61,45 +87,19 @@ export default function PastFactsPage() {
             <circle cx="238" cy="30" r="18" fill="currentColor" />
           </svg>
           <div className="section__inner">
-            <p className="section__intro">
-              Photos and booklet links are being gathered from past years, so check back as this archive grows.
+            <h2 className="sr-only" id="sky-heading">
+              Past themes, year by year
+            </h2>
+            <p className="section__intro sky__intro">
+              Revisit each year’s theme and open its booklet. Photos from past years are still being gathered, so check back as this archive grows.
             </p>
 
-            <div className="pastfacts__list">
-              {ENTRIES.map((entry) => (
-                <article className="pastfacts__entry" key={entry.year}>
-                  <div className="pastfacts__photo" aria-hidden="true">
-                    <PhotoPlaceholderIcon />
-                  </div>
-                  <h2 className="pastfacts__year">{entry.year}</h2>
-                  <p className="pastfacts__theme">{entry.theme}</p>
-                  <span className="pastfacts__flag">{entry.flag}</span>
-                  {entry.booklet ? (
-                    <a
-                      className="pill pill--ink pastfacts__link"
-                      href={entry.booklet}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Booklet<span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : (
-                    <button
-                      className="pill pill--ink pastfacts__link"
-                      type="button"
-                      aria-disabled="true"
-                      title="Booklet coming soon"
-                    >
-                      View Booklet<span className="sr-only">. Booklet coming soon</span>
-                    </button>
-                  )}
-                </article>
-              ))}
-            </div>
+            <PastFactsSky facts={ENTRIES} current={{ year: '2026', theme: 'Mahiwagahan' }} />
           </div>
         </section>
 
         <CrossLinks
+          tone="night"
           links={[
             { href: '/', label: 'Home' },
             { href: '/about', label: 'About Us' },

@@ -4,9 +4,9 @@ export type CrossLink = { href: string; label: string };
 
 // The "Continue exploring" strip that sits above the footer on every live
 // page. Keep destinations to pages that are linked in the top nav (plus Home).
-export function CrossLinks({ links }: { links: CrossLink[] }) {
+export function CrossLinks({ links, tone }: { links: CrossLink[]; tone?: 'night' }) {
   return (
-    <nav className="crosslink" aria-label="More to explore">
+    <nav className={tone === 'night' ? 'crosslink crosslink--night' : 'crosslink'} aria-label="More to explore">
       <div className="crosslink__inner">
         <p className="crosslink__label">Continue exploring</p>
         <div className="crosslink__links">
