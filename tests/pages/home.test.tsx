@@ -20,7 +20,7 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { name: 'Mahiwagahan' })).toBeInTheDocument();
     expect(screen.getByText('Discover FACT 2026')).toBeInTheDocument();
     expect(screen.getByText(/October 16–18/)).toBeInTheDocument();
-    expect(await screen.findByText(/Enjoying what FACT is building/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Enjoying FACT\?/i)).toBeInTheDocument();
   });
 
   it('explains how to join instead of "registration opens soon"', () => {

@@ -23,7 +23,7 @@ export function SiteFooter() {
     <footer className="footer">
       {!onDonatePage ? (
         <div className="footer__donate">
-          <p className="footer__donateline">Enjoying what FACT is building for Mahiwagahan 2026?</p>
+          <p className="footer__donateline">Enjoying FACT?</p>
           <Link className="pill pill--solid" href="/donate">
             Donate
           </Link>

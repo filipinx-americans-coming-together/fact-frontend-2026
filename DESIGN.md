@@ -80,6 +80,7 @@ rounded:
   pill: "999px"
   circle: "50%"
   control: "10px"
+  photo: "8px"
   focus: "2px"
 components:
   pill-solid:
@@ -215,7 +216,7 @@ New this pass: the trailer poster's scrim (`.trailer__scrim`) and the trailer li
 
 ## Shapes
 
-Unchanged binary form language: fully round (`999px`/`50%`) or hard-edged. The Venue photo placeholder reuses `.about__photo`'s existing hard-edged `21/9` rectangle treatment exactly (see Components → Photo Placeholders) rather than introducing a new aspect ratio or corner style. The quick-facts dark band is a full-bleed rectangle with no radius, matching the footer it echoes. No new radius value was introduced.
+Unchanged binary form language: fully round (`999px`/`50%`) or hard-edged. The one softened corner is `rounded.photo` (8px), used only on photographic frames (Team photos, Variety Show act and headliner frames). The Venue photo placeholder reuses `.about__photo`'s existing hard-edged `21/9` rectangle treatment exactly (see Components → Photo Placeholders) rather than introducing a new aspect ratio or corner style. The quick-facts dark band is a full-bleed rectangle with no radius, matching the footer it echoes. No new radius value was introduced.
 
 ## Components
 
@@ -271,6 +272,17 @@ Unchanged by this pass — see prior documentation retained below in Components.
 
 ### Workshops Session List, Team Grid, Past FACTs List, Workshops Search
 Unchanged by this pass; see prior documentation.
+
+### Variety Show (added 2026-10-05)
+`src/app/(live)/variety-show/page.tsx` (server component) plus the client island `src/components/site/VarietyShowLineup.tsx`.
+
+- **Ticket layout** (`.vshow__layout`): two columns from 900px — show facts and ticket notes on the left (`.vshow__info`, sticky beside the tall checkout; the section uses `overflow: clip` so sticky works), the show-only line + Eventbrite checkout on the right (`.vshow__buy`). Stacks in the same order below 900px.
+- **Show date** (`.vshow__when`): almanac entry — Numeral-role day (`17`, accent-on-light) spanning two rows beside an uppercase Structural Label weekday/month and a Category Label venue. Screen readers get the full date from `.sr-only` text; the numeral is `aria-hidden`.
+- **Show times** (`.vshow__times`): a two-cell `<dl>` between hairlines (Doors open | Show), dim label over a Category Label serif time with tabular numerals, hairline divider between cells.
+- **Ticket notes** (`.vshow__paths`): stacked `<dl>` rows (UIUC students, Coming to FACT?) separated by hairlines — Category Label serif term over dim-ink body. Notes about *who pays what* live here; the generic show-only line sits with the checkout.
+- **Checkout fallback** (`.vshow__fallback`): a quiet Label-size line with an inline link to the Eventbrite page (promo code applied via `?discount=`) under every public checkout embed, because ad blockers can hide the widget. `EventbriteCheckout` also takes `fallbackUrl` for its own load-failure message; never pass it on the register flow, which needs `onOrderComplete`.
+- **Headliner** (`.headliner__teaser`): type only, no frame or motion. The slot name "Headliner" sits in the Title role (Fraunces 800, ink-900); beneath it the payload takes the Display size in violet-800 — italic 500 "to be revealed" until announced, then the act's name upright at 900 above a 4/5 photo frame and the standard More toggle. It answers the Lineup heading by style and colour, never by repeating its upright ink Display. Revealing is one data change (`HEADLINER`).
+- **Act grid** (`.lineup__acts` / `.act`): no-card, centred flex-wrap of 260px items, 4/3 photo frames with `rounded.photo` (8px) and the team-photo shadow, Category Label serif names, no subtitle line. A real `<button>` "More" toggle (`aria-expanded`/`aria-controls`, 44px tall) opens the act's full blurb; its hit area is stretched over the whole card (one control, one tab stop per act), and hovering a card lifts its photo 3px with a deeper shadow; the open card keeps its place (orchid ring) and its details open as `.act-panel`, a hairline-bounded full row inserted after the last card of that row, with a notch pointing up at the card — name and links on the left, blurb (65ch) on the right, stacked on phones; × or Escape closes and returns focus to the card's toggle. Only one act is open at a time. Photos go through `next/image` with `sizes`; `photoFocus` sets `object-position` when a centre crop cuts faces.
 
 ### Photo Placeholders (reused device — now retired from About and Venue)
 The radial-gradient circle/shadow device (`orchid-400`→`violet-800`→`ink-900`, `0 6px 16px rgba(6,4,30,0.28), inset 0 0 0 1px rgba(255,255,255,0.22)`) is still used, not reinvented, across:

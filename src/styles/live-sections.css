@@ -1871,113 +1871,580 @@ html.has-trailer-open {
   transform: scale(1.25);
 }
 
-/* ---------- Variety Show lineup (headliner + acts, no-card people grid) ---------- */
+/* ---------- Variety Show (tickets facts + paths, headliner, act lineup) ---------- */
 
-.lineup__headliner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.section--vshow-tickets {
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  /* clip, not hidden: hidden makes the section a scroll container, which
+     stops .vshow__info from sticking beside the checkout. */
+  overflow: clip;
+}
+
+.vshow__heading {
   text-align: center;
-  gap: 0.65rem;
-  margin: clamp(2rem, 4vw, 2.75rem) auto 0;
+  text-wrap: balance;
 }
 
-.lineup__headliner .team__photo {
-  width: 220px;
-  height: 275px;
+/* Two columns from 900px: show facts + ticket notes (left, pinned) beside
+   the checkout (right). Stacks in that same order below. */
+.vshow__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+  max-width: 1080px;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
 }
 
-.lineup__headliner .team__photo svg {
-  width: 28%;
-  height: 28%;
+.vshow__info {
+  position: sticky;
+  top: 2rem;
 }
 
-.lineup__headliner .team__name {
-  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.lineup__headliner .lineup__bio {
-  max-width: 44ch;
-}
-
-.lineup__divider {
-  width: 100%;
-  max-width: 640px;
-  height: 1px;
-  margin: clamp(2.5rem, 5vw, 3.5rem) auto;
-  background: var(--hairline-on-light);
-}
-
-.lineup__bio {
+/* Date as an almanac entry: big day numeral beside weekday + venue. */
+.vshow__when {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.1rem;
+  align-items: center;
   margin: 0;
-  max-width: 26ch;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--ink-on-light-dim);
 }
 
-/* Caps each act card to the photo's own width so a long school name
-   wraps instead of stretching that one card wider than its neighbors. */
-.lineup__grid .team__member {
-  width: 140px;
+.vshow__date {
+  display: contents;
 }
 
-/* Headliner slot held open until the act is announced. */
-.lineup__headliner-tbd {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  margin: clamp(1.5rem, 3vw, 2rem) auto 0;
-  text-align: center;
+.vshow__day {
+  grid-row: span 2;
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.01em;
-  color: var(--violet-800);
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  font-weight: 900;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+  color: var(--accent-on-light);
 }
 
-.lineup__headliner-tbd span {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
+.vshow__weekday {
+  align-self: end;
+  font-size: 0.85rem;
   font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent-on-light);
 }
 
-/* Name-only act list: display serif set as a program roll, two columns
-   from tablet up, hairline rules between rows. */
-.lineup__names {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 720px;
-  margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--hairline-on-light);
+.vshow__venue {
+  align-self: start;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+  color: var(--ink-900);
 }
 
-.lineup__names li {
-  padding: clamp(0.9rem, 2vw, 1.15rem) 0.5rem;
+.vshow__times {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1.75rem 0 0;
+  border-top: 1px solid var(--hairline-on-light);
   border-bottom: 1px solid var(--hairline-on-light);
-  text-align: center;
+}
+
+.vshow__times > div {
+  padding: 0.9rem 0;
+}
+
+.vshow__times > div + div {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--hairline-on-light);
+}
+
+.vshow__times dt {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-on-light-dim);
+}
+
+.vshow__times dd {
+  margin: 0.15rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
   font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink-900);
+}
+
+.vshow__paths {
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+}
+
+.vshow__path {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--hairline-on-light);
+}
+
+.vshow__path:first-child {
+  padding-top: 0;
+}
+
+.vshow__path:last-child {
+  border-bottom: 0;
+}
+
+.vshow__path dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: var(--accent-on-light);
+}
+
+.vshow__path dd {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--ink-on-light-dim);
+}
+
+.vshow__path dd b,
+.vshow__buyintro b {
+  color: var(--ink-900);
+}
+
+.vshow__code {
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.vshow__buyintro {
+  margin: 0 0 1.25rem;
+  line-height: 1.65;
+  color: var(--ink-on-light-dim);
+}
+
+.vshow__fallback {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-on-light-dim);
+}
+
+@media (max-width: 900px) {
+  .vshow__layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 640px;
+  }
+
+  .vshow__info {
+    position: static;
+  }
+}
+
+/* Headliner: a veiled night-sky frame until the act is announced. */
+
+.section--lineup {
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.headliner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: clamp(2rem, 4vw, 2.75rem) auto 0;
+}
+
+.headliner .act__photo {
+  position: relative;
+  width: clamp(200px, 26vw, 280px);
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(14, 21, 94, 0.28);
+}
+
+/* Headliner slot: the slot name in the Title role, the payload ("to be
+   revealed", later the act's name) at Display size. It answers the Lineup
+   heading by style and colour (italic violet / heavy violet) rather than
+   repeating its upright ink weight. */
+.headliner__teaser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  text-wrap: balance;
+}
+
+.headliner__label {
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--ink-900);
 }
 
-@media (min-width: 640px) {
-  .lineup__names {
-    grid-template-columns: 1fr 1fr;
-    column-gap: clamp(1.5rem, 4vw, 3rem);
+.headliner__teaser em,
+.headliner__teaser strong {
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--violet-800);
+}
+
+.headliner__teaser em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.headliner__teaser strong {
+  font-weight: 900;
+}
+
+.headliner .act__photo + .headliner__teaser {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+/* Act lineup: no-card photo grid; an opened act steps out to a full row. */
+
+.lineup__acts {
+  --act-gap: clamp(1.25rem, 3vw, 2.25rem);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 2.75rem) var(--act-gap);
+  margin: clamp(3rem, 6vw, 4.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.act {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 0 1 260px;
+  min-width: 0;
+  text-align: center;
+}
+
+.act__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 0.6rem;
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--hairline-on-light);
+  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.18);
+  color: var(--accent-on-light);
+}
+
+.act__photo svg {
+  width: 28%;
+  height: 28%;
+}
+
+/* The whole card opens the act: the More button's hit area is stretched
+   over it, so there is still a single control and tab stop per act. */
+.act .act__toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.act__photo {
+  transition: box-shadow 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
+}
+
+.act:hover .act__photo {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(6, 4, 30, 0.24);
+}
+
+.act:hover .act__toggle {
+  color: var(--ink-900);
+}
+
+.act__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.act__text {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.act__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--ink-900);
+}
+
+.act__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 0;
+  border-radius: 2px;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-on-light);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.act__toggle svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.act__toggle:hover {
+  color: var(--ink-900);
+}
+
+.act__toggle[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+.act__toggle:focus-visible {
+  outline: 2px solid var(--violet-800);
+  outline-offset: 2px;
+}
+
+/* The open act keeps its place in the grid; a ring marks it and its
+   details open as a full row directly beneath (.act-panel). */
+.act.is-selected .act__photo {
+  box-shadow:
+    0 0 0 2px var(--cream-100),
+    0 0 0 4px var(--orchid-400),
+    0 10px 24px rgba(6, 4, 30, 0.22);
+}
+
+.act.is-selected .act__name {
+  color: var(--accent-on-light);
+}
+
+.act-panel {
+  --notch-x: 50%;
+  position: relative;
+  flex: 1 1 100%;
+  /* Sit closer to the row that opened it than to the row after. */
+  margin-top: calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) clamp(0.25rem, 2vw, 1.5rem);
+  border-top: 1px solid var(--hairline-on-light);
+  border-bottom: 1px solid var(--hairline-on-light);
+  text-align: left;
+  animation: act-about-in 0.45s var(--ease-out-expo) both;
+}
+
+/* Notch on the top hairline, pointing up at the open card. */
+.act-panel::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: var(--notch-x);
+  width: 12px;
+  height: 12px;
+  background: var(--cream-100);
+  border-top: 1px solid var(--hairline-on-light);
+  border-left: 1px solid var(--hairline-on-light);
+  transform: translateX(-50%) rotate(45deg);
+  transition: left 0.3s var(--ease-out-expo);
+}
+
+.act-panel__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  max-width: 980px;
+  margin: 0 auto;
+  padding-right: 2.75rem;
+}
+
+.act-panel__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.act-panel__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--ink-900);
+}
+
+.act-panel__head .act__links {
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.act-panel__blurb {
+  margin: 0;
+  max-width: 65ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-on-light-dim);
+}
+
+.act-panel__close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.25rem);
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--accent-on-light);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.act-panel__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.act-panel__close:hover {
+  background: var(--hairline-on-light);
+  color: var(--ink-900);
+}
+
+.act__about {
+  margin-top: 0.4rem;
+  animation: act-about-in 0.45s var(--ease-out-expo) both;
+}
+
+.act__about p {
+  margin: 0;
+  max-width: 65ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-on-light-dim);
+}
+
+/* Revealed headliner reuses the act details, centred under the name. */
+.headliner .act__toggle {
+  margin-top: 0.5rem;
+}
+
+.headliner .act__about p {
+  margin-inline: auto;
+  text-align: left;
+}
+
+.headliner .act__links {
+  justify-content: center;
+}
+
+@keyframes act-about-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.act__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.act__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent-on-light);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.act__links a:hover,
+.act__links a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.act__links svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+@media (max-width: 560px) {
+  .act {
+    flex-basis: calc(50% - var(--act-gap) / 2);
+  }
+
+  .act-panel__inner {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-right: 0;
+  }
+
+  .act-panel__head {
+    padding-right: 2.75rem;
+  }
+
+  .act-panel__head .act__links {
+    flex-direction: row;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .act__about,
+  .act-panel {
+    animation: none;
+  }
+
+  .act-panel::before {
+    transition: none;
+  }
+
+  .act__photo,
+  .act:hover .act__photo {
+    transform: none;
   }
 }
 

@@ -15,13 +15,13 @@ describe('SiteFooter', () => {
   it('shows the donate prompt on ordinary pages', () => {
     mockUsePathname.mockReturnValue('/about');
     render(<SiteFooter />);
-    expect(screen.getByText(/Enjoying what FACT is building/i)).toBeInTheDocument();
+    expect(screen.getByText(/Enjoying FACT\?/i)).toBeInTheDocument();
   });
 
   it('hides the donate prompt on the donate page itself', () => {
     mockUsePathname.mockReturnValue('/donate');
     render(<SiteFooter />);
-    expect(screen.queryByText(/Enjoying what FACT is building/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Enjoying FACT\?/i)).not.toBeInTheDocument();
   });
 
   it('always keeps the About Us nav link and Instagram handle', () => {

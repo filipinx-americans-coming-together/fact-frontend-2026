@@ -43,6 +43,12 @@ interface EventbriteCheckoutProps {
     /** Pre-applied Eventbrite promo/access code, e.g. to reveal a hidden ticket class. */
     promoCode?: string;
     onOrderComplete?: (orderData: any) => void;
+    /**
+     * Eventbrite page to send people to if the widget can't load (ad
+     * blockers, strict privacy settings). Only for public checkouts — the
+     * register flow needs onOrderComplete, which a plain link can't fire.
+     */
+    fallbackUrl?: string;
 }
 
 // Must stay a module-level component that's mounted once. When the register
@@ -58,11 +64,13 @@ export default function EventbriteCheckout({
     hidden = false,
     promoCode,
     onOrderComplete,
+    fallbackUrl,
 }: EventbriteCheckoutProps) {
     const containerId = `eventbrite-widget-container-${eventId}${promoCode ? `-${promoCode}` : ""}`;
     const onOrderCompleteRef = useRef(onOrderComplete);
     const createdRef = useRef(false);
     const [loadFailed, setLoadFailed] = useState(false);
+    const [ready, setReady] = useState(false);
 
     useEffect(() => {
         onOrderCompleteRef.current = onOrderComplete;
@@ -82,6 +90,7 @@ export default function EventbriteCheckout({
                     ...(promoCode ? { promoCode } : {}),
                     onOrderComplete: (orderData: any) => onOrderCompleteRef.current?.(orderData),
                 });
+                setReady(true);
             })
             .catch(() => {
                 if (!cancelled) setLoadFailed(true);
@@ -95,9 +104,22 @@ export default function EventbriteCheckout({
         // Inline display:none rather than Tailwind's `hidden` — unlayered
         // global CSS in this project can silently override utility classes.
         <div className="w-full" style={hidden ? { display: "none" } : undefined}>
+            {!ready && !loadFailed && (
+                <p className="text-center text-sm opacity-75" role="status">
+                    Loading checkout…
+                </p>
+            )}
             {loadFailed && (
-                <p className="text-center text-sm text-red-600">
-                    Could not load Eventbrite checkout. Please refresh the page.
+                <p className="text-center text-sm text-red-600" role="alert">
+                    Could not load the Eventbrite checkout.{" "}
+                    {fallbackUrl ? (
+                        <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+                            Get tickets on Eventbrite instead
+                            <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                    ) : (
+                        "Please refresh the page."
+                    )}
                 </p>
             )}
             <div id={containerId}></div>

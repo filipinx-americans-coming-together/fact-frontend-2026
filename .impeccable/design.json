@@ -1,52 +1,284 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-15T19:45:00-05:00",
+  "generatedAt": "2026-10-05T18:14:57.320Z",
   "title": "Design System: FACT 2026 — Mahiwagahan",
   "extensions": {
     "colorMeta": {
-      "ink-900": { "role": "primary", "displayName": "Deep Indigo", "canonical": "#0e155e", "tonalRamp": ["#05071f", "#0a0e37", "#0e155e", "#161f7c", "#2a3aa0", "#5c6cc4", "#9aa4e0", "#dbe0f7"] },
-      "violet-800": { "role": "primary", "displayName": "Violet", "canonical": "#4b1c71", "tonalRamp": ["#180a24", "#2c1043", "#4b1c71", "#652699", "#8a4bc0", "#b285d8", "#d6c0ea", "#f1e8f8"] },
-      "orchid-400": { "role": "primary", "displayName": "Orchid", "canonical": "#b37ad4", "tonalRamp": ["#3a1c4c", "#5c2e78", "#8551a3", "#b37ad4", "#c69ce0", "#dabeeb", "#ecdcf4", "#f9f4fb"] },
-      "cream-100": { "role": "neutral", "displayName": "Parchment / Warm White", "canonical": "#ffffdd", "tonalRamp": ["#4a4a2a", "#8a8a4e", "#c4c47c", "#e8e8b4", "#f5f5d0", "#ffffdd", "#ffffee", "#fffff8"] },
-      "white": { "role": "neutral", "displayName": "White", "canonical": "#ffffff", "tonalRamp": ["#1a1a1a", "#404040", "#737373", "#a6a6a6", "#d4d4d4", "#e8e8e8", "#f5f5f5", "#ffffff"] },
-      "ink-on-light-dim": { "role": "neutral", "displayName": "Ink on Light (Dim)", "canonical": "rgba(14,21,94,0.72)", "tonalRamp": ["#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e"] },
-      "hairline-on-light": { "role": "neutral", "displayName": "Hairline on Light", "canonical": "rgba(14,21,94,0.14)", "tonalRamp": ["#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e", "#0e155e"] },
-      "blue-500-orphaned": { "role": "neutral", "displayName": "Steel Blue (orphaned)", "canonical": "#3681ab", "tonalRamp": ["#0f2530", "#1a3f52", "#255875", "#3681ab", "#5a9dc0", "#87bad4", "#b8d6e5", "#e6f1f6"] },
-      "silver-orphaned": { "role": "neutral", "displayName": "Silver (orphaned)", "canonical": "#e9e6f5", "tonalRamp": ["#37354a", "#57536f", "#807bab", "#a9a5cc", "#cac6e2", "#e9e6f5", "#f3f1fa", "#fbfafd"] }
+      "ink-900": {
+        "role": "primary",
+        "displayName": "Deep Indigo",
+        "canonical": "#0e155e",
+        "tonalRamp": [
+          "#05071f",
+          "#0a0e37",
+          "#0e155e",
+          "#161f7c",
+          "#2a3aa0",
+          "#5c6cc4",
+          "#9aa4e0",
+          "#dbe0f7"
+        ]
+      },
+      "violet-800": {
+        "role": "primary",
+        "displayName": "Violet",
+        "canonical": "#4b1c71",
+        "tonalRamp": [
+          "#180a24",
+          "#2c1043",
+          "#4b1c71",
+          "#652699",
+          "#8a4bc0",
+          "#b285d8",
+          "#d6c0ea",
+          "#f1e8f8"
+        ]
+      },
+      "orchid-400": {
+        "role": "primary",
+        "displayName": "Orchid",
+        "canonical": "#b37ad4",
+        "tonalRamp": [
+          "#3a1c4c",
+          "#5c2e78",
+          "#8551a3",
+          "#b37ad4",
+          "#c69ce0",
+          "#dabeeb",
+          "#ecdcf4",
+          "#f9f4fb"
+        ]
+      },
+      "cream-100": {
+        "role": "neutral",
+        "displayName": "Parchment / Warm White",
+        "canonical": "#ffffdd",
+        "tonalRamp": [
+          "#4a4a2a",
+          "#8a8a4e",
+          "#c4c47c",
+          "#e8e8b4",
+          "#f5f5d0",
+          "#ffffdd",
+          "#ffffee",
+          "#fffff8"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#404040",
+          "#737373",
+          "#a6a6a6",
+          "#d4d4d4",
+          "#e8e8e8",
+          "#f5f5f5",
+          "#ffffff"
+        ]
+      },
+      "ink-on-light-dim": {
+        "role": "neutral",
+        "displayName": "Ink on Light (Dim)",
+        "canonical": "rgba(14,21,94,0.72)",
+        "tonalRamp": [
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e"
+        ]
+      },
+      "hairline-on-light": {
+        "role": "neutral",
+        "displayName": "Hairline on Light",
+        "canonical": "rgba(14,21,94,0.14)",
+        "tonalRamp": [
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e",
+          "#0e155e"
+        ]
+      },
+      "blue-500-orphaned": {
+        "role": "neutral",
+        "displayName": "Steel Blue (orphaned)",
+        "canonical": "#3681ab",
+        "tonalRamp": [
+          "#0f2530",
+          "#1a3f52",
+          "#255875",
+          "#3681ab",
+          "#5a9dc0",
+          "#87bad4",
+          "#b8d6e5",
+          "#e6f1f6"
+        ]
+      },
+      "silver-orphaned": {
+        "role": "neutral",
+        "displayName": "Silver (orphaned)",
+        "canonical": "#e9e6f5",
+        "tonalRamp": [
+          "#37354a",
+          "#57536f",
+          "#807bab",
+          "#a9a5cc",
+          "#cac6e2",
+          "#e9e6f5",
+          "#f3f1fa",
+          "#fbfafd"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display (Fraunces)", "purpose": "Content-page headings (.section__heading) and the compact header's page title (.hero__pagetitle h1) — weight 900 with 'SOFT' 40, 'WONK' 1 variation. Headings-only face; never body/label/UI." },
-      "theme-display": { "displayName": "Theme Display (Fraunces)", "purpose": "New this pass. The landing page's Mahiwagahan heading only (.section__heading--theme), clamp(3.25rem, 8vw, 6rem) — a deliberately oversized Display variant, roughly 1.5x the standard Display scale, reserved for the site's one identity-defining moment. Not reused elsewhere." },
-      "numeral": { "displayName": "Numeral (Fraunces)", "purpose": "Agenda page's giant tabular-numeral day-of-month figures (16/17/18); Past FACTs' year figures reuse the same device at a smaller scale (clamp(2rem, 4vw, 3rem))." },
-      "title": { "displayName": "Title (Fraunces)", "purpose": "Landing page's TOC entry titles, weight 800; Workshops session titles (.workshop__title) reuse the same weight/family one step below Display." },
-      "category-label": { "displayName": "Category Label (Fraunces)", "purpose": "FAQ category headings (.faq__categoryheading), weight 700, set in --accent-on-light. The identical visual spec is also served by a generic class, .groupheading, used for Workshop session headings, Team committee headings, and now Palengke's three vendor-category headings. Both class names exist for the same computed style — a documented minor duplication, not two patterns." },
-      "quote": { "displayName": "Quote (Fraunces Italic)", "purpose": "About page's pulled quote; Past FACTs theme names (.pastfacts__theme) reuse the same italic Fraunces device for a pulled-phrase feel." },
-      "lead": { "displayName": "Lead (Jost)", "purpose": "About page's opening sentence, weight 400, ink-900." },
-      "body": { "displayName": "Body (Jost)", "purpose": "About paragraph copy and FAQ answers, set in --ink-on-light-dim; Workshops session descriptions and Palengke's .vendor__theme description reuse the same dim-ink body treatment." },
-      "structural-label": { "displayName": "Structural Label (Jost)", "purpose": "Agenda weekday labels, TOC index numerals, cross-link strip label, set in --accent-on-light; Team role labels (.team__role) reuse the same uppercase compact-label device." },
-      "question": { "displayName": "Question (Jost)", "purpose": "FAQ <summary> text, ink-900." },
-      "nav-link": { "displayName": "Nav Link (Jost)", "purpose": "Primary nav items across all seven pages, now rendered vertically inside the .hero__menu drawer instead of an inline row. Font-size 0.95rem, gap 1rem." },
-      "label": { "displayName": "Label (Jost)", "purpose": "Night-band pill button text, and the .hero__navtoggle-label current-page/'Menu' text, unchanged size/weight." },
-      "meta": { "displayName": "Meta (Jost)", "purpose": "Night-band topbar eventline and countdown label; Palengke's .vendor__handle (0.8rem, --accent-on-light) reuses this size step." }
+      "display": {
+        "displayName": "Display (Fraunces)",
+        "purpose": "Content-page headings (.section__heading) and the compact header's page title (.hero__pagetitle h1) — weight 900 with 'SOFT' 40, 'WONK' 1 variation. Headings-only face; never body/label/UI. Also the Variety Show headliner payload (.headliner__teaser em/strong) in violet-800 — italic 500 while unannounced, upright 900 once revealed — so it never duplicates the ink section heading above it."
+      },
+      "theme-display": {
+        "displayName": "Theme Display (Fraunces)",
+        "purpose": "The landing page's Mahiwagahan heading only (.section__heading--theme), clamp(2.75rem, 8vw, 6rem) — floor lowered from 3.25rem so the word fits a ~320px column. A deliberately oversized Display variant reserved for the site's one identity-defining moment. Not reused elsewhere."
+      },
+      "numeral": {
+        "displayName": "Numeral (Fraunces)",
+        "purpose": "Agenda page's giant tabular-numeral day-of-month figures (16/17/18); Past FACTs' year figures reuse the same device at a smaller scale (clamp(2rem, 4vw, 3rem))."
+      },
+      "title": {
+        "displayName": "Title (Fraunces)",
+        "purpose": "Workshops session titles (.workshop__title), weight 800, one step below Display; also the Variety Show headliner slot name (.headliner__label)."
+      },
+      "category-label": {
+        "displayName": "Category Label (Fraunces)",
+        "purpose": "One class, .groupheading, weight 700 in --accent-on-light: FAQ categories, Workshop sessions, Team committees, Palengke vendor categories, and Variety Show Dance/Music groups. The same step also sets Variety Show act names (.act__name) and ticket-path labels (.vshow__path dt)."
+      },
+      "quote": {
+        "displayName": "Quote (Fraunces Italic)",
+        "purpose": "About page's pulled quote; Past FACTs theme names (.pastfacts__theme) reuse the same italic Fraunces device for a pulled-phrase feel."
+      },
+      "lead": {
+        "displayName": "Lead (Jost)",
+        "purpose": "About page's opening sentence, weight 400, ink-900; also the Variety Show show-facts line (.vshow__facts, Jost 500)."
+      },
+      "body": {
+        "displayName": "Body (Jost)",
+        "purpose": "About paragraph copy, FAQ answers, Workshops descriptions, Palengke vendor themes, and Variety Show act blurbs (1.02rem, 65ch max), set in --ink-on-light-dim."
+      },
+      "structural-label": {
+        "displayName": "Structural Label (Jost)",
+        "purpose": "Agenda weekday labels, TOC index numerals, cross-link strip label, set in --accent-on-light; Team role labels (.team__role) reuse the same uppercase compact-label device."
+      },
+      "question": {
+        "displayName": "Question (Jost)",
+        "purpose": "FAQ <summary> text, ink-900."
+      },
+      "nav-link": {
+        "displayName": "Nav Link (Jost)",
+        "purpose": "Primary nav items (About, Workshops, Team, Past FACTs, Variety Show, FAQ) — inline at >=900px, inside the .hero__menu drawer below. 0.92rem."
+      },
+      "label": {
+        "displayName": "Label (Jost)",
+        "purpose": "Night-band pill button text, and the .hero__navtoggle-label current-page/'Menu' text, unchanged size/weight."
+      },
+      "meta": {
+        "displayName": "Meta (Jost)",
+        "purpose": "Night-band topbar eventline and countdown label; Palengke's .vendor__handle (0.8rem, --accent-on-light) reuses this size step."
+      }
     },
     "shadows": [
-      { "name": "footer-mark-shadow", "value": "0 6px 16px rgba(6,4,30,0.4)", "purpose": "Footer's circular photo mark — the one carried-over ambient shadow on the day band's dark bookend." },
-      { "name": "control-glow-badge", "value": "0 6px 18px rgba(6,4,30,0.45), inset 0 0 0 1px rgba(255,255,255,0.25)", "purpose": "Night-band circular nav badge frame." },
-      { "name": "placeholder-circle-shadow", "value": "0 6px 16px rgba(6,4,30,0.28), inset 0 0 0 1px rgba(255,255,255,0.22)", "purpose": "Shared shadow on the radial-gradient placeholder circle device: Team member avatars, Past FACTs photo placeholders, and Palengke vendor logos (.vendor__logo) all reuse this exact value." },
-      { "name": "pill-ink-shadow", "value": "inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 16px rgba(14,21,94,0.28)", "purpose": "The .pill--ink variant's resting shadow — soft and diffuse, matching the system's no-hard-offset rule." },
-      { "name": "vendor-card-shadow", "value": "0 10px 28px rgba(14,21,94,0.12), inset 0 0 0 1px rgba(14,21,94,0.14)", "purpose": "Palengke pass. .vendor__card's shadow — the first shadow in the system used to bound a rectangular content block rather than a circular device or pill. The confirmed, user-chosen exception to the No-Card Rule; stays soft/diffuse, no hard offset, no border-radius." },
-      { "name": "cta-icon-glow", "value": "drop-shadow(0 0 14px rgba(179, 122, 212, 0.55))", "purpose": "New this pass. Outer glow on the Newsletter CTA's seal icon (.cta__icon), on top of the standard placeholder-circle-shadow. The first icon-level glow in the system; reserved for a section's single deliberate focal icon, not applied to every placeholder circle." },
-      { "name": "photoframe-shadow", "value": "0 6px 16px rgba(6, 4, 30, 0.28)", "purpose": "Real-photography pass. .photoframe (Venue) and .photocarousel__track/.photocarousel__nav (About carousel) all reuse this exact ambient shadow value, carried over from the retired placeholder device rather than inventing a new one." }
+      {
+        "name": "footer-mark-shadow",
+        "value": "0 6px 16px rgba(6,4,30,0.4)",
+        "purpose": "Footer's circular photo mark — the one carried-over ambient shadow on the day band's dark bookend."
+      },
+      {
+        "name": "control-glow-badge",
+        "value": "0 6px 18px rgba(6,4,30,0.45), inset 0 0 0 1px rgba(255,255,255,0.25)",
+        "purpose": "Night-band circular nav badge frame."
+      },
+      {
+        "name": "placeholder-circle-shadow",
+        "value": "0 6px 16px rgba(6,4,30,0.28), inset 0 0 0 1px rgba(255,255,255,0.22)",
+        "purpose": "Shared shadow on the radial-gradient placeholder circle device: Team member avatars, Past FACTs photo placeholders, and Palengke vendor logos (.vendor__logo) all reuse this exact value."
+      },
+      {
+        "name": "pill-ink-shadow",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 16px rgba(14,21,94,0.28)",
+        "purpose": "The .pill--ink variant's resting shadow — soft and diffuse, matching the system's no-hard-offset rule."
+      },
+      {
+        "name": "vendor-card-shadow",
+        "value": "0 10px 28px rgba(14,21,94,0.12), inset 0 0 0 1px rgba(14,21,94,0.14)",
+        "purpose": "Palengke pass. .vendor__card's shadow — the first shadow in the system used to bound a rectangular content block rather than a circular device or pill. The confirmed, user-chosen exception to the No-Card Rule; stays soft/diffuse, no hard offset, no border-radius."
+      },
+      {
+        "name": "cta-icon-glow",
+        "value": "drop-shadow(0 0 14px rgba(179, 122, 212, 0.55))",
+        "purpose": "New this pass. Outer glow on the Newsletter CTA's seal icon (.cta__icon), on top of the standard placeholder-circle-shadow. The first icon-level glow in the system; reserved for a section's single deliberate focal icon, not applied to every placeholder circle."
+      },
+      {
+        "name": "photoframe-shadow",
+        "value": "0 6px 16px rgba(6, 4, 30, 0.28)",
+        "purpose": "Real-photography pass. .photoframe (Venue) and .photocarousel__track/.photocarousel__nav (About carousel) all reuse this exact ambient shadow value, carried over from the retired placeholder device rather than inventing a new one."
+      },
+      {
+        "name": "photo-frame-shadow",
+        "value": "0 6px 16px rgba(6, 4, 30, 0.18)",
+        "purpose": "Team member photos (.team__photo) and Variety Show act frames (.act__photo): 8px-rounded photographic frames on the parchment band."
+      },
+      {
+        "name": "headliner-photo-shadow",
+        "value": "0 18px 40px rgba(14, 21, 94, 0.28)",
+        "purpose": "The revealed Variety Show headliner photo frame only — a deeper lift than act frames because it is the lineup's single focal object."
+      }
     ],
     "motion": [
-      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for hover/focus transitions across both bands, the .hero__menu drawer's open/close transition, and (new this pass) the theme heading's pointer-tilt/glow transition and the CTA seal-stamp entrance keyframe." },
-      { "name": "seal-stamp", "value": "@keyframes, 0.6s var(--ease-out-expo), scale(0.45) rotate(-14deg) -> scale(1.05) rotate(3deg) -> scale(1) rotate(0deg), opacity 0->1", "purpose": "New this pass. One-shot scroll-triggered entrance for a section's focal seal icon — currently the only member is .cta__icon; the retired TOC section's .toc__visual selector was removed in a follow-up polish pass. Armed via IntersectionObserver + a .js-seal-armed class on <html>; progressive-enhancement-safe; respects prefers-reduced-motion." },
-      { "name": "theme-twinkle", "value": "@keyframes, 2.6s ease-in-out infinite, opacity 0.18<->0.85, scale 0.75<->1.15, staggered 0.4s-1.8s per sparkle", "purpose": "New this pass. Idle twinkle loop for the five .theme__sparkle glyphs around the landing page's Mahiwagahan heading, once visible." }
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for hover/focus transitions across both bands, the .hero__menu drawer's open/close transition, and (new this pass) the theme heading's pointer-tilt/glow transition and the CTA seal-stamp entrance keyframe."
+      },
+      {
+        "name": "seal-stamp",
+        "value": "@keyframes, 0.6s var(--ease-out-expo), scale(0.45) rotate(-14deg) -> scale(1.05) rotate(3deg) -> scale(1) rotate(0deg), opacity 0->1",
+        "purpose": "New this pass. One-shot scroll-triggered entrance for a section's focal seal icon — currently the only member is .cta__icon; the retired TOC section's .toc__visual selector was removed in a follow-up polish pass. Armed via IntersectionObserver + a .js-seal-armed class on <html>; progressive-enhancement-safe; respects prefers-reduced-motion."
+      },
+      {
+        "name": "theme-twinkle",
+        "value": "@keyframes, 2.6s ease-in-out infinite, opacity 0.18<->0.85, scale 0.75<->1.15, staggered 0.4s-1.8s per sparkle",
+        "purpose": "New this pass. Idle twinkle loop for the five .theme__sparkle glyphs around the landing page's Mahiwagahan heading, once visible."
+      },
+      {
+        "name": "act-about-in",
+        "value": "@keyframes, 0.45s var(--ease-out-expo), opacity 0 + translateY(6px) -> rest",
+        "purpose": "Variety Show act details appearing when an act's More toggle opens; off under prefers-reduced-motion."
+      }
     ],
     "breakpoints": [
-      { "name": "mobile-nav", "value": "900px", "purpose": "This pass: the docked .hero__menu drawer expands to a full-bleed sheet — no longer 'collapses to hamburger' from an inline link row, since the always-visible trigger + drawer pattern is now the nav at every width. Also: About/Agenda grids collapse to one column; the four corner motifs switch to fixed mobile pixel sizes; Workshops rows stack to a single column; Past FACTs entries top-align and shrink their photo circle from 110px to 76px. Palengke's .vendor__grid has no dedicated rule at this breakpoint — it reflows via its own auto-fill track." },
-      { "name": "topbar-wrap", "value": "460px", "purpose": "Night band: topbar eventline wraps. Unchanged." },
-      { "name": "faq-compact", "value": "560px", "purpose": "FAQ summary shrinks; TOC arrow hides and entries top-align; cross-link strip stacks vertically." }
+      {
+        "name": "mobile-nav",
+        "value": "900px",
+        "purpose": "This pass: the docked .hero__menu drawer expands to a full-bleed sheet — no longer 'collapses to hamburger' from an inline link row, since the always-visible trigger + drawer pattern is now the nav at every width. Also: About/Agenda grids collapse to one column; the four corner motifs switch to fixed mobile pixel sizes; Workshops rows stack to a single column; Past FACTs entries top-align and shrink their photo circle from 110px to 76px. Palengke's .vendor__grid has no dedicated rule at this breakpoint — it reflows via its own auto-fill track."
+      },
+      {
+        "name": "topbar-wrap",
+        "value": "460px",
+        "purpose": "Night band: topbar eventline wraps. Unchanged."
+      },
+      {
+        "name": "faq-compact",
+        "value": "560px",
+        "purpose": "FAQ summary shrinks; TOC arrow hides and entries top-align; cross-link strip stacks vertically. Variety Show: act grid drops to two per row, an opened act stacks photo over text, ticket-path rows stack, and the show-facts list stacks without separators."
+      }
     ]
   },
   "components": [
@@ -107,11 +339,11 @@
       "css": ".ds-vendor-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.85rem; padding: clamp(1.5rem, 3vw, 1.85rem); background: #ffffff; box-shadow: 0 10px 28px rgba(14,21,94,0.12), inset 0 0 0 1px rgba(14,21,94,0.14); list-style: none; } .ds-vendor-logo { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 32% 28%, #b37ad4, #4b1c71 55%, #0e155e 100%); box-shadow: 0 6px 16px rgba(6,4,30,0.28), inset 0 0 0 1px rgba(255,255,255,0.22); color: rgba(255,255,255,0.75); } .ds-vendor-logo svg { width: 46%; height: 46%; } .ds-vendor-name { margin: 0; font-size: 1.02rem; font-weight: 700; color: #0e155e; } .ds-vendor-theme { margin: 0; font-size: 0.98rem; line-height: 1.55; color: rgba(14,21,94,0.72); } .ds-vendor-handle { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.15rem; font-family: 'Jost', 'Trebuchet MS', sans-serif; font-size: 0.8rem; letter-spacing: 0.02em; color: #4b1c71; }"
     },
     {
-      "name": "Navigation (inline desktop, compact drawer under 900px)",
+      "name": "Navigation (inline at >=900px, drawer below)",
       "kind": "nav",
       "refersTo": null,
-      "description": "Reworked again this pass. The trigger-plus-drawer-at-every-breakpoint pattern (previous version of this component) is retired now that only one nav link (About Us) is live: at >=900px the link sits inline in the topbar, .hero__navtoggle is display:none, no trigger or click needed. Below 900px the original compact anchored drawer returns (not the full-bleed sheet variant, which read as empty for one item). Content trimmed to match: the six unlaunched links and the Login/Donate pills are removed from the markup entirely across all 8 pages, not disabled-and-shown. Toggle label reads 'About Us' only on about.html, 'Menu' everywhere else. Same underlying .hero__navtoggle/.hero__menu markup and JS (open/close on toggle click, outside click, Escape) — only CSS breakpoint behavior and link content changed, so the mechanism resumes automatically as links are added back for future launches.",
-      "html": "<nav class=\"ds-hero-nav\"><button class=\"ds-navtoggle\" aria-expanded=\"false\"><span class=\"ds-navtoggle-bars\"><span></span><span></span><span></span></span><span class=\"ds-navtoggle-label\">Palengke</span></button><div class=\"ds-hero-menu\"><ul class=\"ds-hero-links\"><li><a href=\"#\">About Us</a></li><li><a href=\"#\">Agenda</a></li></ul><div class=\"ds-hero-actions\"><button class=\"ds-pill-ghost\">Login</button><button class=\"ds-pill-solid\">Donate</button></div></div></nav>",
+      "description": "Six live links (About, Workshops, Team, Past FACTs, Variety Show, FAQ) inline in the topbar at >=900px; below 900px the .hero__navtoggle opens the anchored .hero__menu drawer (toggle click, outside click, Escape close it). The current page carries aria-current. Login (/my-fact/login, ghost pill) and Donate (/donate, solid pill) are live links. Launch-gated controls, when any exist, use aria-disabled + title + .sr-only reason + the live announcer.",
+      "html": "<nav class=\"ds-hero-nav\"><button class=\"ds-navtoggle\" aria-expanded=\"false\"><span class=\"ds-navtoggle-bars\"><span></span><span></span><span></span></span><span class=\"ds-navtoggle-label\">Menu</span></button><div class=\"ds-hero-menu\"><ul class=\"ds-hero-links\"><li><a href=\"#\">About</a></li><li><a href=\"#\">Workshops</a></li><li><a href=\"#\">Team</a></li><li><a href=\"#\">Past FACTs</a></li><li><a href=\"#\" aria-current=\"page\">Variety Show</a></li><li><a href=\"#\">FAQ</a></li></ul><div class=\"ds-hero-actions\"><a class=\"ds-pill-ghost\" href=\"#\">Login</a><a class=\"ds-pill-solid\" href=\"#\">Donate</a></div></div></nav>",
       "css": ".ds-hero-nav { position: relative; display: flex; align-items: center; justify-content: space-between; } .ds-navtoggle { position: relative; display: inline-flex; align-items: center; gap: 0.65rem; height: 44px; padding: 0 1.1rem 0 0.9rem; border: none; border-radius: 999px; background: rgba(255,255,255,0.12); color: #fff; cursor: pointer; } .ds-navtoggle-bars { display: flex; flex-direction: column; gap: 4px; } .ds-navtoggle-bars span { display: block; width: 16px; height: 2px; background: #fff; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s cubic-bezier(0.16,1,0.3,1); } .ds-navtoggle-label { font-family: 'Jost', 'Trebuchet MS', sans-serif; font-size: 0.85rem; font-weight: 500; color: #fff; } .ds-hero-menu { position: absolute; top: calc(100% + 0.6rem); right: 0; display: flex; flex-direction: column; gap: 1.35rem; min-width: 240px; padding: 1.5rem 1.5rem 1.65rem; border: 1px solid rgba(255,255,255,0.14); background: rgba(10,8,36,0.94); backdrop-filter: blur(8px); box-shadow: 0 24px 48px rgba(6,4,30,0.4); } .ds-hero-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; font-size: 0.95rem; } .ds-hero-links a { color: #fff; } .ds-hero-actions { display: flex; flex-direction: column; gap: 0.65rem; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,0.14); } @media (max-width: 900px) { .ds-hero-menu { left: 0; right: 0; top: 100%; min-width: 0; border-left: none; border-right: none; border-top: none; } }"
     },
     {
@@ -169,55 +401,91 @@
       "description": "Native <details>/<summary> disclosure. Unchanged by this pass.",
       "html": "<details class=\"ds-faq-item\"><summary>I am a minor, can I go to FACT?</summary><p>Due to university policies, minors unattended by guardians are not permitted.</p></details>",
       "css": ".ds-faq-item { border-top: 1px solid rgba(14,21,94,0.14); padding: 1.15rem 0; } .ds-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; font-size: 1.02rem; font-weight: 500; color: #0e155e; } .ds-faq-item summary::-webkit-details-marker { display: none; } .ds-faq-item summary::after { content: ''; flex: none; width: 12px; height: 12px; background-color: #0e155e; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); -webkit-mask: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2v20M2 12h20' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>\") center / contain no-repeat; mask: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2v20M2 12h20' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>\") center / contain no-repeat; } .ds-faq-item[open] summary::after { transform: rotate(45deg); } .ds-faq-item p { margin: 0.9rem 0 0; max-width: 68ch; color: rgba(14,21,94,0.72); font-size: 0.98rem; line-height: 1.7; }"
+    },
+    {
+      "name": "Variety Show Act",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "No-card lineup entry: 4/3 photo frame (8px radius), Category Label serif name and a real-button More toggle (aria-expanded, 44px) whose hit area covers the whole card. Hover lifts the photo 3px. Opening keeps the card in place (orchid ring) and inserts a hairline-bounded details row after the last card of its row, with a notch pointing at the card; x or Escape closes it.",
+      "html": "<div class=\"ds-act\"><div class=\"ds-act-photo\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/></svg></div><h4 class=\"ds-act-name\">Kumantayo</h4><button class=\"ds-act-toggle\" aria-expanded=\"false\">More<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4 6l4 4 4-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div>",
+      "css": ".ds-act { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; width: 260px; text-align: center; font-family: var(--font-ui, 'Jost', 'Trebuchet MS', sans-serif); } .ds-act-photo { transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; aspect-ratio: 4 / 3; margin-bottom: 0.6rem; border-radius: 8px; display: grid; place-items: center; background: rgba(14, 21, 94, 0.14); box-shadow: 0 6px 16px rgba(6, 4, 30, 0.18); color: #4b1c71; } .ds-act-photo svg { width: 28%; height: 28%; } .ds-act-name { margin: 0; font-family: var(--font-display, 'Fraunces', Georgia, serif); font-size: clamp(1.25rem, 1.9vw, 1.5rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.2; color: #0e155e; } .ds-act-toggle { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 44px; padding: 0 0.5rem; border: 0; border-radius: 2px; background: none; font: inherit; font-size: 0.9rem; font-weight: 600; color: #4b1c71; cursor: pointer; transition: color 0.2s ease; } .ds-act-toggle svg { width: 14px; height: 14px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-act-toggle:hover { color: #0e155e; } .ds-act-toggle:focus-visible { outline: 2px solid #4b1c71; outline-offset: 2px; } .ds-act-toggle[aria-expanded='true'] svg { transform: rotate(180deg); } .ds-act-toggle::after { content: ''; position: absolute; inset: 0; } .ds-act:hover .ds-act-photo { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(6, 4, 30, 0.24); } .ds-act:hover .ds-act-toggle { color: #0e155e; }"
+    },
+    {
+      "name": "Ticket Path Rows",
+      "kind": "custom",
+      "refersTo": "category-label",
+      "description": "Stacked hairline-separated <dl> rows for who-pays-what ticket notes (UIUC students, Coming to FACT?) in the Variety Show info column: Category Label serif term over dim-ink body. Sits under the almanac date (big day numeral + weekday + venue) and the Doors open | Show times strip.",
+      "html": "<dl class=\"ds-paths\"><div class=\"ds-path\"><dt>UIUC students</dt><dd>Your Variety Show ticket is free with your promo code plus <b>-VSHOW</b>.</dd></div><div class=\"ds-path\"><dt>Coming to FACT?</dt><dd>The Bundle already includes your ticket. <a href=\"#\">Register for FACT</a></dd></div></dl>",
+      "css": ".ds-paths { max-width: 430px; margin: 0; border-top: 1px solid rgba(14, 21, 94, 0.14); font-family: var(--font-ui, 'Jost', 'Trebuchet MS', sans-serif); background: #ffffdd; } .ds-path { display: grid; gap: 0.3rem; padding: 1rem 0; border-bottom: 1px solid rgba(14, 21, 94, 0.14); } .ds-path dt { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 700; font-size: clamp(1.25rem, 1.9vw, 1.5rem); line-height: 1.4; color: #4b1c71; } .ds-path dd { margin: 0; line-height: 1.65; color: rgba(14, 21, 94, 0.72); } .ds-path dd b { color: #0e155e; } .ds-path a { color: #4b1c71; font-weight: 600; text-decoration: underline; text-underline-offset: 0.18em; } .ds-path a:hover { text-decoration-thickness: 2px; } .ds-path a:focus-visible { outline: 2px solid #4b1c71; outline-offset: 3px; border-radius: 2px; }"
     }
   ],
   "narrative": {
     "northStar": "The Almanac Held to Candlelight",
-    "overview": "The site is seven pages deep — Home, About, Agenda, Workshops, Team, Past FACTs, and Palengke, plus FAQ — and all seven run the same night→day→night rhythm: a night band (full-bleed violet floral macro photography, reversed-white type, the asset-baked wordmark) opens every page, full-viewport on the landing hero and collapsed to .hero--compact on the six interior pages; a day band carries all reading content on a warm parchment ground (--cream-100, #ffffdd) with Fraunces headings, hand-drawn line-art motifs, and the paper-grain texture; a dark ink-900 footer closes every page as the third bookend. This pass rebuilt the landing page's body content ahead of first deployment (only Home and About are live). The prior hero → quick-facts-row → six-tile TOC → Explore section stack is retired, replaced by hero → Theme moment (the oversized Mahiwagahan heading, its own centered beat with sparkle/tilt interaction) → Venue (two-column where/when block, the site's one live outbound link) → Quick facts rebuilt as a full-bleed dark ink-900 stat band → a single 'More information coming soon' line → Newsletter CTA (seal icon with glow and scroll-triggered entrance, live mailto button) → footer. Disabled/launch-gated controls (all nav links but About, Login/Donate) now also raise a live screen-reader announcement on activation via a shared aria-live region, closing a keyboard/AT gap. The prior Palengke/nav-rework pass (seventh page, .vendor__card as the one confirmed No-Card exception, the trigger-plus-drawer nav) is unchanged by this pass.",
+    "overview": "**Status note (2026-09-28):** the pass-by-pass history below describes launch-gated nav links and locked Login/Donate pills. That's no longer the live state. `src/components/site/SiteHeader.tsx` now links About, Workshops, Team, Past FACTs, and Variety Show in the primary nav, and the Login (`/my-fact/login`) and Donate (`/donate`) pills are live links rather than `aria-disabled`. Agenda, Palengke, and FAQ still have routes but aren't in the nav. Variety Show and Donate pages were added after the passes documented here. The `aria-disabled` + live-announcer pattern described below is still the one to use for any future gated control.\n\nThe site is seven pages deep — Home, About, Agenda, Workshops, Team, Past FACTs, and Palengke, plus FAQ — and all seven run the same night→day→night rhythm: a **night band** (full-bleed violet floral macro photography, reversed-white type, the asset-baked wordmark) opens every page, full-viewport on the landing hero and collapsed to `.hero--compact` on the six interior pages; a **day band** carries all reading content on a warm parchment ground (`--cream-100`, `#ffffdd`) with Fraunces headings, hand-drawn line-art motifs, and the paper-grain texture; a dark `ink-900` footer closes every page as the third bookend.\n\nThis pass rebuilt the landing page's body content end-to-end, ahead of first deployment. As of this writing, Home, About, and Team are live in the nav; Agenda, Workshops, Past FACTs, Palengke, and FAQ all have real routes and render (some still carry explicit in-page \"coming soon\" placeholders for content, e.g. Agenda's schedule) but aren't yet linked from the primary nav — see Components → Navigation for the exact gating mechanism. The prior landing build ran hero → an equal-weight three-item quick-facts row → a six-tile table-of-contents grid (one live About tile, five disabled placeholders) → an \"Explore FACT 2026\" section → a footer CTA. That whole mid-page stack is retired. The rebuilt landing page runs: hero → **Theme moment** (`.section--theme`, new — the Mahiwagahan wordmark and its \"Enchanting Our Bright Minds\" definition, centered and enlarged to its own dedicated beat with an interactive sparkle/tilt effect) → **Venue** (`.section--venue`, new — a two-column block pairing the Oct. 16–18/UIUC facts and the FACT description with a photo-placeholder device and the site's one live outbound link, \"About FACT 2026\") → **Quick facts** (`.section--quickfacts`, rebuilt as a full-bleed dark `ink-900` stat band instead of a parchment three-column row) → a single quiet `.landing__soon` line (\"More information coming soon,\" replacing the old TOC grid entirely — About's link now lives in the Venue button instead of being duplicated in a TOC tile) → **Newsletter CTA** (`.section--cta`, new — a centered, hairline-bordered section with a glowing seal icon, \"Ready for FACT 2026?\", and a live `mailto:` \"Join the Newsletter\" button) → footer. Every launch-gated nav link (and formerly, TOC tiles) uses `aria-disabled=\"true\"` with a `title=\"Coming soon\"` tooltip and a `.sr-only` reason span; `src/lib/liveSiteInteractions.ts` (the shared interaction logic, ported near-verbatim from an earlier static-site prototype's `main.js` — see implementation note below) now also raises a live screen-reader announcement (`\"<label> — <reason>\"` via a lazily-created `aria-live=\"polite\"` region) on every disabled-control activation, so the reason is no longer sighted-only.\n\n**Implementation note.** This document's component descriptions below use the vocabulary of the site's original static HTML/CSS/JS prototype (`main.js`, `index.html`, `about.html`, etc.) because that's where this design system was first built out; it was then ported into the current stack, `fact-frontend-2026`, a Next.js 14 App Router project. The mapping: each `*.html` page is now a route under `src/app/(live)/` (e.g. `about.html` → `src/app/(live)/about/page.tsx`; the landing page is `src/app/(live)/page.tsx`), `main.js`'s logic now lives in `src/lib/liveSiteInteractions.ts` plus per-component client logic, and `css/styles.css` is now split across `src/styles/live-base.css` and `src/styles/live-sections.css`. The CSS class names, design tokens, and component behavior described throughout are unchanged by the port and still accurate against the current code — only the file-level references below are updated to match.\n\nThe prior pass added Palengke as the seventh page and first rebuilt the primary nav into a single trigger-plus-drawer pattern at every breakpoint, introducing `.vendor__card` as the system's one confirmed, user-chosen exception to the No-Card Rule; `.vendor__card` and the Workshops/Team/Past FACTs pages are unchanged since. A later pass reworked the nav a second time: with only About Us actually live at the time, the trigger-plus-drawer-everywhere pattern read as a heavy 7-item shell hiding one real destination. The nav was narrowed to show only what's live, sitting inline in the topbar on desktop with no trigger at all, collapsing to the same (now much smaller) drawer only below 900px. Team has since launched into the nav alongside About Us (see `src/components/site/SiteHeader.tsx`); the mechanism is unchanged, and any future page launch adds one more `<Link>` the same way. See Layout and Components → Navigation.\n\nThis pass replaced the landing page's locked \"Premiering soon\" trailer placeholder with a live one: `.trailer__frame` now shows the real YouTube thumbnail as its poster (`.trailer__poster`, an `<img>` with a JPG-fallback `error` listener) under a scrim gradient reused from the hero's own device, and clicking it opens `#trailer-modal` — a lightbox that injects a `youtube-nocookie.com` iframe, autoplays muted, traps focus by marking `<header>` and `<main>` `inert` for the duration, restores focus to the trigger and clears `inert` on close (Escape, backdrop click, or the close button), and locks background scroll via `html.has-trailer-open`. A same-pass critique found the trailer sitting *inside* `.section--cta` diluted that section's documented single-purpose intent (video-watching and newsletter-joining as one conversion ask); the trailer now gets its own hairline-bounded beat, `.section--trailer`, immediately above `.section--cta`, so the newsletter closes the page alone as originally designed. See Components → Trailer and Trailer Lightbox.\n\nSmaller fixes folded into this pass: the footer's \"Navigate\" column heading was dropped since it only ever holds one link (About Us) — it now sits headerless like the Brand column, growing its heading back once a second page launches; the quick-facts band's \"Days of Fun\" label was renamed to \"Days of Programming\" on both the landing page and About, matching the register of its sibling stats; About's photo carousel gained keyboard Left/Right-arrow navigation, a visible \"X / 7\" slide counter, and a live-region announcement of slide changes for screen-reader users (previously the counter was `aria-hidden`); and About's dead \"Continue exploring\" crosslink strip (pointing to the Team and Agenda routes, unreachable at the time since those pages weren't launched yet) was removed outright rather than left dangling. Both those pages have since launched, and About's crosslink (and equivalent strips on most other live pages) now link to real, working destinations again.",
     "keyCharacteristics": [
-      "Landing page now runs Hero → Theme moment → Venue → Quick facts (dark band) → 'More information coming soon' → Newsletter CTA → Footer; the old equal-weight quick-facts row and six-tile TOC grid are both retired.",
-      "Theme Display (clamp(3.25rem, 8vw, 6rem)) is the system's one intentionally oversized Display variant, reserved solely for the landing page's Mahiwagahan heading.",
-      "Quick facts moved from a parchment row to a full-bleed ink-900 dark stat band — the day band's second deliberate dark passage besides the footer.",
-      "The seal icon device now also anchors the Newsletter CTA, with an added drop-shadow glow and a one-shot scroll-triggered 'seal-stamp' entrance animation, reduced-motion-safe.",
-      "Every launch-gated control (nav links and pills alike) now announces its 'coming soon' reason to screen readers on activation, not just visually.",
-      "Seven pages, one template family, unchanged from the prior pass: Home (full hero) and six interior pages (compact hero + content + crosslink + footer).",
-      ".vendor__card remains the one confirmed, user-chosen exception to the No-Card Rule, scoped to the Palengke vendor grid — unchanged by this pass.",
-      "All placeholder content stays explicitly disclosed in-page, never presented as real."
+      "Landing page now runs Hero → Theme moment → Venue → Quick facts (dark band) → \"More information coming soon\" → Newsletter CTA → Footer; the old equal-weight quick-facts row and the six-tile TOC grid are both retired.",
+      "The Theme moment (`Mahiwagahan` at `clamp(2.75rem, 8vw, 6rem)`, its own dedicated centered beat) is the system's one intentionally oversized Display variant — bigger than the standard Display role used for every other page's `<h1>`/section heading, reserved for this one identity-defining moment.",
+      "Quick facts moved from a parchment three-column row to a full-bleed `ink-900` dark stat band (orchid-400 numerals, dimmed-white labels) — the day band's second dark passage besides the footer, used deliberately as a rhythm break rather than a color slip.",
+      "The seal icon (radial-gradient circle, orchid→violet→ink — the same device family as nav badge/footer mark/placeholder avatars) now also anchors the Newsletter CTA, with an added `drop-shadow` glow and a scroll-triggered \"seal-stamp\" entrance animation (`.js-seal-armed`/`.is-stamped`, IntersectionObserver-driven, progressive-enhancement-safe, honors `prefers-reduced-motion`).",
+      "Disabled/launch-gated controls (nav links, Login/Donate pills) now announce their reason to screen readers on activation, not just show it visually via `title`/`.sr-only` — closing a keyboard/AT gap the prior pass left silent.",
+      "All placeholder content stays explicitly disclosed in-page (Venue's \"Campus photos coming soon,\" the landing `.landing__soon` line, `.pastfacts__flag`, Palengke's vendor-list intro), never presented as real.",
+      "Seven pages, one template family, unchanged: Home (full hero, now with its own richer body) and six interior pages (compact hero + content + crosslink + footer).",
+      "The landing page's closing run is now Quick facts (dark band) → \"More information coming soon\" → **Trailer beat** (`.section--trailer`, its own hairline-bounded section) → Newsletter CTA → Footer; the trailer used to live inside the CTA section, which is now heading → rule → text → button only, restoring its single-purpose intent.",
+      "The trailer lightbox is the system's first true modal dialog and the first place `inert` is used to lock background interaction — a pattern any future modal should reuse rather than re-deriving."
     ],
     "rules": [
-      { "name": "The No-Card Rule", "body": "Content and controls sit directly on the photograph, a scrim gradient, the parchment ground, or the footer's flat ink-900 field — never inside a box-shadow-bordered container or opaque panel — with exactly one confirmed exception: a grid of distinct, comparable entities (first and so-far-only instance: the Palengke vendor grid, .vendor__card), where a flat white block with a soft diffuse shadow is permitted. The exception was proposed to and chosen by the user directly; it may never take a hard-offset shadow, a colored border, or a rounded corner — the binary shape law still applies, hard-edged only. Workshops rows, Team grids, and Past FACTs entries confirm the rule's default holds everywhere else.", "section": "colors" },
-      { "name": "The Hairline-Only Structure Rule", "body": "Every visual division between content outside the one confirmed card exception is a 1-2px tinted hairline or the short orchid accent rule under a heading. Never a card edge, never a filled divider block.", "section": "colors" },
-      { "name": "The Two-Ink Rule", "body": "On-light text uses exactly two ink roles: solid ink-900 for headings/primary text, and ink-900 at 72% alpha for secondary/dim text. Orchid and violet are reserved for accent/label/link roles, never large blocks of body copy.", "section": "colors" },
-      { "name": "The Display-Is-Headings-Only Rule", "body": "Fraunces appears solely in section headings, the compact header's h1, TOC titles, agenda date numerals, FAQ category headings, the About pulled quote, .groupheading, .workshop__title, .pastfacts__year, and .pastfacts__theme. It never sets body copy, labels, nav, or UI chrome — Palengke's vendor text stays in Jost.", "section": "typography" },
-      { "name": "The No-Kicker Rule", "body": "Section headings carry no eyebrow/kicker label above them, on any page, including .groupheading instances.", "section": "typography" },
-      { "name": "The No Hard Offset Rule", "body": "Every shadow in the system is soft and diffuse, including .pill--ink, the reused placeholder-circle shadow, and the new .vendor__card shadow.", "section": "elevation" },
-      { "name": "The Hairline-Not-Shadow Rule", "body": "On the day band, separation is done with hairlines, whitespace, and the paper-grain texture — not a manufactured shadow vocabulary — except for the one confirmed .vendor__card exception.", "section": "elevation" }
+      {
+        "name": "The No-Card Rule",
+        "body": "Content and controls sit directly on the photograph, a scrim gradient, the parchment ground, or a flat `ink-900` field — never inside a `box-shadow`-bordered container or opaque panel — with exactly one confirmed exception: a grid of distinct, comparable entities (first and so-far-only instance: the Palengke vendor grid, `.vendor__card`), where a flat white block with a soft diffuse shadow is permitted. This pass's `.section--quickfacts` dark band confirms the rule still holds under a color change: it is a full-bleed flat field, not a card or container, exactly like the footer it echoes. The exception was proposed to and chosen by the user directly, and it still may never take a hard-offset shadow, a colored border, or a rounded corner: the binary shape law (Shapes) still applies, hard-edged only, never round.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline-Only Structure Rule",
+        "body": "Every visual division between content outside the one confirmed card exception is a 1–2px tinted hairline or the short orchid accent rule under a heading. The CTA section is bounded top and bottom by a `1px solid rgba(179, 122, 212, 0.3)` hairline (orchid-400 at 30% alpha) — an orchid-tinted variant of the same hairline device, used because the CTA is a standalone section between two other sections and needed a visible seam without becoming a card.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Ink Rule",
+        "body": "On-light text uses exactly two ink roles: solid `ink-900` and `ink-900` at 72% alpha. Orchid/violet stay accent-only. Holds unchanged, including in the new Venue and CTA sections.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display-Is-Headings-Only Rule",
+        "body": "Fraunces still appears solely in heading/numeral/quote/title roles, now including Theme Display. `.venue__heading`, `.theme__definition`, and `.quickfacts__value` all extend the rule to their respective roles rather than introducing a new face.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Kicker Rule",
+        "body": "Section headings carry no eyebrow/kicker label above them. `.section--theme`, `.section--venue`, and `.section--cta` all confirm this — the Venue section's `.venue__label` is a value (\"Oct. 16–18, 2026\"), not an eyebrow above a heading of the same subject; it sits above the `<h2>` because it *is* the date fact, not a category tag.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Hard Offset Rule",
+        "body": "Unchanged; the CTA icon's glow and the seal-stamp entrance stay in the same soft/diffuse, non-hard-offset family as every other shadow/effect in the system.",
+        "section": "elevation"
+      }
     ],
     "dos": [
-      "Do treat every page — including Workshops, Team, Past FACTs, and Palengke — as the same three-band sequence and reuse the compact-hero + section + crosslink + footer template exactly.",
-      "Do use .pill--ink for any interactive pill placed directly on the parchment day band; reserve .pill--solid/.pill--ghost for pills on a photographic or dark surface.",
-      "Do reuse .groupheading for any new grouped-content heading pattern rather than inventing a fourth near-identical class.",
-      "Do reuse the existing radial-gradient circle device for any future placeholder-photo/avatar/logo need.",
-      "Do flag placeholder content explicitly in-page rather than presenting invented names, numbers, or copy as real.",
-      "Do keep hairline-topped rows as the pattern for any future list-of-entries content.",
-      "Do reserve .vendor__card's flat-white/soft-shadow/hard-edge treatment for grids of distinct, comparable entities like Palengke's vendors — not as a general-purpose container.",
-      "Do keep the nav's trigger-plus-drawer pattern identical at every breakpoint — a docked panel on desktop, a full-bleed sheet under 900px.",
-      "Do reserve the Theme Display type role for the landing page's Mahiwagahan heading alone.",
-      "Do treat the dark quick-facts band as an occasional rhythm break, not a signal that dark bands are now interchangeable with parchment.",
-      "Do keep the aria-disabled + title + sr-only + live-announcer pattern uniform across every launch-gated control.",
-      "Do reserve the CTA icon's glow and the seal-stamp entrance for a section's single deliberate focal icon, not a generic reveal utility."
+      "**Do** reserve the Theme Display type role (`clamp(2.75rem, 8vw, 6rem)`) for the landing page's `Mahiwagahan` heading alone; use the standard Display role for every other heading, including other large moments.",
+      "**Do** treat the dark `.section--quickfacts` band as a deliberate, occasional rhythm break (like the footer) — not a signal that dark bands are now interchangeable with the parchment day band throughout the site.",
+      "**Do** reuse the radial-gradient placeholder-circle/rectangle device for any future placeholder-photo need, including the Venue section's `.about__photo`-class reuse, rather than introducing a fifth placeholder visual.",
+      "**Do** keep the `aria-disabled` + `title` + `.sr-only` reason-span + live-announcer pattern uniform across every launch-gated control (nav links and pills alike) — any newly gated control should pick up all four automatically via the existing global selector and CSS class.",
+      "**Do** use `.pill--ink` for any interactive pill placed directly on the parchment day band; reserve `.pill--solid`/`.pill--ghost` for pills on a photographic or dark surface.",
+      "**Do** flag placeholder content explicitly in-page rather than presenting invented names, numbers, dates, or copy as real.",
+      "**Do** reserve the CTA icon's `drop-shadow` glow for a section's single, deliberate focal icon — not a treatment to apply to every placeholder circle or badge.",
+      "**Do** keep the seal-stamp entrance animation reserved for a section's own one-shot focal icon moment (currently `.cta__icon` and `.mahiwagahan__icon`); it is not a generic reveal-on-scroll utility for arbitrary content.",
+      "**Do** reuse the `inert`-on-background pattern (see Components → Trailer Lightbox) for any future modal, rather than hand-rolling Tab/Shift+Tab interception — it's the only approach that reliably holds when focus can move into a cross-origin iframe.",
+      "**Do** keep each section's conversion ask singular — a critique on the trailer's original placement (inside `.section--cta`) is the concrete lesson: a section documented as one standalone moment should not quietly grow a second ask."
     ],
     "donts": [
-      "Don't introduce a card, panel, or opaque-background container for grouping content outside the one confirmed exception (.vendor__card).",
-      "Don't add a kicker/eyebrow label above any heading, including .groupheading instances or the Venue section's date label.",
-      "Don't extend .pill--solid/.pill--ghost onto the parchment ground — use .pill--ink there instead.",
-      "Don't treat .groupheading and .faq__categoryheading as two intentionally different patterns going forward — the duplication is a build artifact, not a system decision to preserve.",
-      "Don't author a new placeholder-avatar/photo/logo visual device — reuse the existing radial-gradient circle/rectangle.",
-      "Don't add hard-offset/neobrutalist shadows anywhere, including on .vendor__card, the pill variants, placeholder circles, or the new CTA icon glow.",
-      "Don't give .vendor__card (or any future scoped card exception) a rounded corner — the binary shape law still applies.",
-      "Don't reintroduce a two-element, independently-positioned links/actions nav.",
-      "Don't add a page's link back into the nav before that page is actually live.",
-      "Don't reintroduce a TOC-style grid of disabled tiles for launch-gated pages — nav-link aria-disabled plus one in-context live button replaced it."
+      "**Don't** introduce a card, panel, or opaque-background container for grouping content outside the one confirmed exception (`.vendor__card`).",
+      "**Don't** add a kicker/eyebrow label above any heading, including the Venue section's date label (it's a fact, not a category tag).",
+      "**Don't** author a new placeholder-avatar/photo/logo visual device — reuse the existing radial-gradient circle/rectangle.",
+      "**Don't** add hard-offset/neobrutalist shadows anywhere, including the new CTA icon glow or the seal-stamp entrance.",
+      "**Don't** reintroduce a TOC-style grid of disabled tiles for launch-gated pages — nav links carrying `aria-disabled` directly, plus one clear live-link button in context (the Venue section's pattern), replaced it and should stay the pattern for any future \"not yet live\" surface.",
+      "**Don't** reintroduce a second class for the same Category Label style — `.groupheading` is the one name; a `.faq__categoryheading` selector existed in this document's history but not in the code, and shouldn't be recreated.",
+      "**Don't** reintroduce a two-element, independently-positioned links/actions nav (the retired `top: calc(100% + 168px)` pattern from two passes ago).",
+      "**Don't** add a page's link back into the nav before that page is actually live — the nav lists what's real, not what's planned; remove-then-re-add beats disabled-and-shown for this project's launch phase."
     ]
   }
 }

@@ -32,3 +32,5 @@ graphify-out/
 .env*
 
 certificates
+# Original Variety Show performer photos — web copies live in public/images/variety-show/
+vshow-performer-pics/

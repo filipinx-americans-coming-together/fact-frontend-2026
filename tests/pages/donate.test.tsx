@@ -15,6 +15,6 @@ describe('Donate page', () => {
 
     expect(document.getElementById('bbox-root')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Donate' })).toBeInTheDocument();
-    expect(screen.queryByText(/Enjoying what FACT is building/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Enjoying FACT\?/i)).not.toBeInTheDocument();
   });
 });
