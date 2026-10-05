@@ -48,6 +48,15 @@ function SearchableSelect<T>({
         }));
     }
 
+    function setSelectedOption(option: { label: string; value: string }) {
+        setShowOptions(false);
+        setState((prevState: Object) => ({
+            ...prevState,
+            [id]: option.value,
+        }));
+        setSelected(option.label);
+    }
+
     useEffect(() => {
         setState((prevState: Object) => ({
             ...prevState,
@@ -59,13 +68,23 @@ function SearchableSelect<T>({
         );
     }, [defaultValue, id, setState]);
 
+    function blurInput() {
+        setShowOptions(false);
+        const input = document.getElementById("text");
+        if (input instanceof HTMLInputElement) {
+            input.value = '';
+            input.blur();
+        }
+    }
+
     function handleClickOutside(event: MouseEvent) {
         if (
             containerRef.current &&
             !containerRef.current.contains(event.target as Node)
         ) {
-            setShowOptions(false);
+            blurInput();
         }
+        
     }
 
     useEffect(() => {
@@ -79,6 +98,31 @@ function SearchableSelect<T>({
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [showOptions]);
+
+    document.getElementById("text")?.addEventListener("keyup", function (event) {
+        if (event.key === "Escape") {
+            blurInput();
+        }
+    });
+
+    useEffect(() => { 
+        document.getElementById("text")?.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const firstOption = options.filter((option) =>
+                    new RegExp(query, "i").test(option.label)
+                );
+                console.log(firstOption);
+                if (firstOption.length > 0) {
+                    document.getElementById(firstOption[0].value)?.click();
+                    
+                }
+                else {
+                    blurInput();
+                }
+            }
+        });
+    }, [query]);
 
     return (
         <div ref={containerRef} className="relative flex flex-col w-full">
@@ -110,6 +154,8 @@ function SearchableSelect<T>({
                     onClick={handleInputFocused}
                     onFocus={handleInputFocused}
                     disabled={disabled}
+                    autoFocus={showOptions}
+                    id="text"
                 />
             )}
 
@@ -129,13 +175,9 @@ function SearchableSelect<T>({
                             <button
                                 className={`px-2 py-1 text-left ${option.disabled ? "bg-slate-50 text-slate-300" :"hover:bg-slate-100 bg-white hover:cursor-pointer"}`}
                                 key={option.value}
+                                id={option.value}
                                 onClick={() => {
-                                    setShowOptions(false);
-                                    setState((prevState: Object) => ({
-                                        ...prevState,
-                                        [id]: option.value,
-                                    }));
-                                    setSelected(option.label);
+                                    setSelectedOption(option);
                                 }}
                                 disabled={option.disabled}
                                 type="button"
