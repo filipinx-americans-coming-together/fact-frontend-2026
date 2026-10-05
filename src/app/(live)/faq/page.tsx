@@ -302,7 +302,7 @@ const CATEGORIES: FaqCategory[] = [
         a: (
           <p>
             Refunds can be requested via <ExternalLink href="https://forms.gle/VaKhgCyVUFjpuqwKA">this form</ExternalLink>{' '}
-            up until the end of the Early Registration dates. Please secure your availability and ensure that you will
+            up until October 11th, 2026. Please secure your availability and ensure that you will
             attend the events paid for prior to providing payment during registration.
           </p>
         ),

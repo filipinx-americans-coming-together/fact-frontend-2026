@@ -392,7 +392,7 @@ function RegisterForm() {
                                 conference.
                             </p>
                             <p>
-                                VI. If I would like to rescind my registration purposes for reasons of changed availability, I must submit a request for refund prior to the Early Registration deadline of October 27th.
+                                VI. If I would like to rescind my registration, I must submit a request for a refund by October 11th.
                             </p>
                             <p>
                                 VII. PSA does not associate with contraband
