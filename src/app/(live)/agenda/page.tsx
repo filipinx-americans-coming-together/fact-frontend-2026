@@ -2,22 +2,18 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { CrossLinks } from '@/components/site/CrossLinks';
+import { AgendaSchedule } from '@/components/site/AgendaSchedule';
+import { AGENDA, CONFERENCE_START } from './schedule';
 
 export const metadata: Metadata = {
   title: 'Agenda · FACT 2026',
   description: 'Three days at UIUC: the full FACT 2026 program.',
 };
 
-const DAYS = [
-  { date: '16', weekday: 'Friday · Oct 16', items: ['Delegate Day'], solo: true },
-  { date: '17', weekday: 'Saturday · Oct 17', items: ['Palenke Day 1', 'V-Show'], solo: false },
-  { date: '18', weekday: 'Sunday · Oct 18', items: ['Palenke Day 2', 'Bye-Bye Brunch'], solo: false },
-];
-
 export default function AgendaPage() {
   return (
     <>
-      <SiteHeader compact pageTitle="Agenda" pageSubtitle="Three days at UIUC: the full program." />
+      <SiteHeader compact active="agenda" pageTitle="Agenda" pageSubtitle="Three days at UIUC: the full program." />
 
       <main id="below">
         <section className="section section--agenda">
@@ -39,21 +35,7 @@ export default function AgendaPage() {
             <circle cx="238" cy="30" r="18" fill="currentColor" />
           </svg>
           <div className="section__inner">
-            <div className="agenda__rows">
-              {DAYS.map((day) => (
-                <article className="agenda__day" key={day.date}>
-                  <div className="agenda__daymeta">
-                    <p className="agenda__date">{day.date}</p>
-                    <p className="agenda__weekday">{day.weekday}</p>
-                  </div>
-                  <ul className={day.solo ? 'agenda__list agenda__list--solo' : 'agenda__list'}>
-                    {day.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
+            <AgendaSchedule days={AGENDA} liveFrom={CONFERENCE_START} />
           </div>
         </section>
 

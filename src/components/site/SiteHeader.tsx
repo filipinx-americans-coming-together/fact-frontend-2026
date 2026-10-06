@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { InstagramIcon } from './SocialIcon';
 
-type NavActive = 'about' | 'workshops' | 'team' | 'past-facts' | 'variety-show' | 'faq' | null;
+type NavActive = 'about' | 'agenda' |'workshops' | 'team' | 'past-facts' | 'variety-show' | 'faq' | null;
 
 type SiteHeaderProps =
   | { compact?: false; pageTitle?: never; pageSubtitle?: never; active?: NavActive }
@@ -60,6 +60,11 @@ export function SiteHeader(props: SiteHeaderProps) {
             <li>
               <Link href="/about" aria-current={active === 'about' ? 'page' : undefined}>
                 About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/agenda" aria-current={active === 'agenda' ? 'page' : undefined}>
+                Agenda
               </Link>
             </li>
             <li>

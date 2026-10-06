@@ -9,6 +9,7 @@ import { InstagramIcon } from './SocialIcon';
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
+  { href: '/agenda', label: 'Agenda' },
   { href: '/workshops', label: 'Workshops' },
   { href: '/team', label: 'Team' },
   { href: '/past-facts', label: 'Past FACTs' },

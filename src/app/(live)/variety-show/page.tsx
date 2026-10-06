@@ -15,7 +15,7 @@ import EventbriteCheckout from '@/components/ui/EventbriteCheckout';
 export const metadata: Metadata = {
     title: 'Variety Show · FACT 2026',
     description:
-        'Saturday, Oct. 17 at Foellinger Auditorium. Doors open 5:30 PM, show 6–9 PM. Get tickets and meet the lineup.',
+        'Saturday, Oct. 17 at Foellinger Auditorium. Doors open 5:30 PM, show 6:30–9:45 PM. Get tickets and meet the lineup.',
 };
 
 const EVENTBRITE_EVENT_ID = '2001120979719';
@@ -176,7 +176,7 @@ export default function VarietyShow() {
                                     <div>
                                         <dt>Show</dt>
                                         <dd>
-                                            <time dateTime="2026-10-17T18:00">6</time>–<time dateTime="2026-10-17T21:00">9 PM</time>
+                                            <time dateTime="2026-10-17T18:30">6:30</time>–<time dateTime="2026-10-17T21:45">9:45 PM</time>
                                         </dd>
                                     </div>
                                 </dl>
