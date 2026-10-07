@@ -95,7 +95,7 @@ img {
 
 .hero {
   position: relative;
-  z-index: 20;
+  z-index: 60;
   min-height: 100svh;
   min-height: 100vh;
   display: flex;
@@ -227,7 +227,7 @@ img {
    that grows to a full-bleed sheet under 900px. */
 .hero__menu {
   position: absolute;
-  z-index: 6;
+  z-index: 100;
   top: calc(100% + 0.6rem);
   right: clamp(1.25rem, 3vw, 2.5rem);
   display: flex;
