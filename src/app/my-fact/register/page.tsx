@@ -35,6 +35,7 @@ import EmailHelpNote from "@/components/ui/EmailHelpNote";
 import ExistingOrderPanel, { DifferentEmailOrderLink } from "@/components/ui/ExistingOrderPanel";
 import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
 import { NO_WORKSHOPS_TICKET_TYPE, wrongTicketMessage } from "@/util/tickets";
+import { useRegistrationFlag } from "@/hooks/api/useRegistrationFlag";
 
 export default function Register() {
     return (
@@ -72,6 +73,7 @@ const performerOptions = [
 function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
     const { user, isLoading, error : userError } = useUser();
+    const { flag: workshop3Full, isLoading : flagLoading, error : flagError } = useRegistrationFlag("workshop-3-full");
     const { verifyPaymentAsync, isPending: verifyPending } = useVerifyPayment();
     const { status: delegateStatus, isLoading: delegateStatusLoading } = useDelegateStatus();
     const {
@@ -338,11 +340,13 @@ function RegisterForm() {
                         label="Session 3 (Performer)"
                         setState={setFormData}
                         placeholder=""
-                        options={techTimes.filter((wks) => wks.session === 3).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : <WorkshopSelect
+                        options={techTimes.filter((wks) => wks.session === 3).map((wks) => ({ value: wks.id.toString(), label: "Performer Tech Time" })) } /> : 
+                delegateStatus?.payment_status === "paid" && workshop3Full?.value === false ?     
+                    <WorkshopSelect
                     session={3}
                     id="workshop_3_id"
                     setState={setFormData}
-                />}
+                    /> : <p className="text-sm">Session 3 workshops are full. Registration for Session 1 & 2 workshops is available at a discounted price.</p>}
 
                 
                 <div className="static flex items-start gap-1">
