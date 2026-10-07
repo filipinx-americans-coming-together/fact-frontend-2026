@@ -15,7 +15,7 @@ import EventbriteCheckout from '@/components/ui/EventbriteCheckout';
 export const metadata: Metadata = {
     title: 'Variety Show · FACT 2026',
     description:
-        'Saturday, Oct. 17 at Foellinger Auditorium. Doors open 5:30 PM, show 6:30–9:45 PM. Get tickets and meet the lineup.',
+        'Saturday, Oct. 17 at Foellinger Auditorium. Doors open 5:30 PM, show 6:30–9:45 PM. Get tickets and meet the performers.',
 };
 
 const EVENTBRITE_EVENT_ID = '2001120979719';
@@ -29,9 +29,14 @@ const instagram = (handle: string): ActLink => ({
     href: `https://www.instagram.com/${handle}/`,
 });
 
-// Swap in the real act once announced; the page reveals it with no layout
-// change.
-const HEADLINER: Act | null = null;
+// Set to null to fall back to the "to be revealed" teaser. Add `blurb` once
+// it comes in; the block shows name, photo, and links without one.
+const HEADLINER: Act | null = {
+    slug: 'lyn-lapid',
+    photo: '/images/variety-show/lyn-lapid.jpg',
+    name: 'Lyn Lapid',
+    links: [instagram('_lynlapid')],
+};
 
 // Performance order.
 const ACTS: Act[] = [
@@ -233,7 +238,7 @@ export default function VarietyShow() {
                 <section className="section section--lineup" aria-labelledby="vshow-lineup-heading">
                     <div className="section__inner">
                         <h2 className="section__heading vshow__heading" id="vshow-lineup-heading">
-                            Lineup
+                            Performers
                         </h2>
                         <VarietyShowLineup headliner={HEADLINER} acts={ACTS} />
                     </div>

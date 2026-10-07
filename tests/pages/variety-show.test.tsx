@@ -41,7 +41,20 @@ describe('Variety Show page', () => {
     );
   });
 
-  it('lists all eleven acts in performance order with the headliner still veiled', () => {
+  it('crowns Lyn Lapid as headliner with her photo and Instagram, no toggle', () => {
+    render(<VarietyShow />);
+
+    expect(screen.getByRole('heading', { level: 3, name: /Headliner\s+Lyn Lapid/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /@_lynlapid/ })).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/_lynlapid/',
+    );
+    expect(screen.getByRole('img', { name: 'Lyn Lapid' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /about Lyn Lapid/ })).not.toBeInTheDocument();
+    expect(screen.queryByText('to be revealed')).not.toBeInTheDocument();
+  });
+
+  it('lists all eleven acts in performance order', () => {
     render(<VarietyShow />);
 
     expect(screen.getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual([
@@ -57,7 +70,6 @@ describe('Variety Show page', () => {
       'FIA Modern',
       'PSA Barkada',
     ]);
-    expect(screen.getByText('to be revealed')).toBeInTheDocument();
   });
 
   it('opens an act blurb and its links from the toggle', () => {
@@ -69,6 +81,10 @@ describe('Variety Show page', () => {
     fireEvent.click(toggle);
 
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    // The details region lives inside a plain list item, so the acts list
+    // keeps valid list semantics while it is open.
+    const region = screen.getByRole('region', { name: 'About Kumantayo' });
+    expect(region.closest('li')).not.toHaveAttribute('role');
     expect(screen.getByText(/first and only Filipinx American music performance group/)).toBeVisible();
     expect(screen.getByRole('link', { name: /@kumantayo/ })).toHaveAttribute(
       'href',

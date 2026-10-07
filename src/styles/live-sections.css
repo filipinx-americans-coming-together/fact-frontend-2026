@@ -1686,6 +1686,8 @@ html.has-trailer-open {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  /* 44px tap target, matching every other control on the site. */
+  min-height: 44px;
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink-900);
@@ -2336,6 +2338,20 @@ html.has-trailer-open {
   font-weight: 700;
   font-variant-numeric: lining-nums tabular-nums;
   color: var(--ink-900);
+  /* Keep "6:30–9:45 PM" on one line so both cells stay level. */
+  white-space: nowrap;
+}
+
+/* Narrow phones: the "Doors open" cell hugs its short time so the show
+   range gets the remaining width at full Category Label size. */
+@media (max-width: 420px) {
+  .vshow__times {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .vshow__times > div:first-child {
+    padding-right: 1.25rem;
+  }
 }
 
 .vshow__paths {
@@ -2388,6 +2404,19 @@ html.has-trailer-open {
   color: var(--ink-on-light-dim);
 }
 
+/* EventbriteCheckout's own loading / load-failed lines ship Tailwind colours
+   (opacity-75, red-600); on this page they take the day-band palette.
+   Scoped here so the register flow's checkout is untouched. */
+.vshow__checkout [role='status'] {
+  opacity: 1;
+  color: var(--ink-on-light-dim);
+}
+
+.vshow__checkout [role='alert'] {
+  color: var(--accent-on-light);
+  font-weight: 500;
+}
+
 .vshow__fallback {
   margin: 1rem 0 0;
   font-size: 0.85rem;
@@ -2419,17 +2448,161 @@ html.has-trailer-open {
   margin: clamp(2rem, 4vw, 2.75rem) auto 0;
 }
 
+/* Revealed: the star act gets its own row above the grid, closed off from
+   the acts by a hairline. By default (no blurb yet) it is a centred stack —
+   a large 4/5 portrait with the name directly beneath — so nothing sits
+   beside the photo with empty space. Once a blurb exists and the screen is
+   900px+, it becomes two columns (.headliner--with-blurb) with the text
+   bottom-aligned beside the photo. */
+.headliner--revealed {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(1.75rem, 3.5vw, 2.25rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.75rem);
+  border-bottom: 1px solid var(--hairline-on-light);
+  text-align: center;
+}
+
+.headliner__frame {
+  width: clamp(220px, 70vw, 360px);
+}
+
 .headliner .act__photo {
   position: relative;
-  width: clamp(200px, 26vw, 280px);
+  width: 100%;
   aspect-ratio: 4 / 5;
+  margin: 0;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(14, 21, 94, 0.28);
 }
 
+.headliner__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 32rem;
+}
+
+.headliner--revealed .headliner__teaser {
+  align-items: center;
+}
+
+.headliner--revealed .act__links {
+  justify-content: center;
+}
+
+.headliner__blurb {
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  max-width: 65ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  text-align: left;
+  color: var(--ink-on-light-dim);
+}
+
+@media (min-width: 900px) {
+  .headliner--with-blurb {
+    /* Text column hugs its content (capped at 32rem) so photo + text
+       centre as a pair. */
+    grid-template-columns: minmax(0, 420px) minmax(0, max-content);
+    justify-content: center;
+    justify-items: stretch;
+    align-items: end;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    text-align: left;
+  }
+
+  .headliner--with-blurb .headliner__frame {
+    width: auto;
+  }
+
+  .headliner--with-blurb .headliner__text,
+  .headliner--with-blurb .headliner__teaser {
+    align-items: flex-start;
+  }
+
+  .headliner--with-blurb .act__links {
+    justify-content: flex-start;
+  }
+}
+
+/* Hugs the heading so the sparkles sit around the name itself. */
+.headliner__stage {
+  position: relative;
+  display: inline-block;
+}
+
+.headliner__sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.headliner__sparkle {
+  position: absolute;
+  color: var(--orchid-400);
+  opacity: 0;
+}
+
+.headliner__sparkle:nth-child(1) { top: -0.6rem; left: 60%; width: 18px; height: 18px; }
+.headliner__sparkle:nth-child(2) { top: 48%; left: calc(100% + 0.6rem); width: 26px; height: 26px; }
+.headliner__sparkle:nth-child(3) { bottom: -0.2rem; left: -1.6rem; width: 14px; height: 14px; }
+
+/* Reveal (armed by useHeadlinerReveal only while still below the fold):
+   the label, name, blurb, and links wait 14px low and rise in on the expo
+   ease-out; the photo itself is never hidden. */
+.headliner.is-armed .headliner__label,
+.headliner.is-armed .headliner__teaser strong,
+.headliner.is-armed .headliner__blurb,
+.headliner.is-armed .act__links {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.headliner.is-armed.is-revealed .headliner__label,
+.headliner.is-armed.is-revealed .headliner__teaser strong,
+.headliner.is-armed.is-revealed .headliner__blurb,
+.headliner.is-armed.is-revealed .act__links {
+  animation: headliner-rise 0.7s var(--ease-out-expo) both;
+}
+
+.headliner.is-armed.is-revealed .headliner__label { animation-delay: 0.05s; }
+.headliner.is-armed.is-revealed .headliner__teaser strong { animation-delay: 0.17s; }
+.headliner.is-armed.is-revealed .headliner__blurb { animation-delay: 0.3s; }
+.headliner.is-armed.is-revealed .act__links { animation-delay: 0.38s; }
+
+/* Sparkles light up once the name has landed, then twinkle only while the
+   block is on screen. */
+.headliner.is-revealed .headliner__sparkle {
+  animation: theme-twinkle 2.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.headliner.is-revealed.is-onstage .headliner__sparkle {
+  animation-play-state: running;
+}
+
+.headliner.is-revealed .headliner__sparkle:nth-child(1) { animation-delay: 0.6s; }
+.headliner.is-revealed .headliner__sparkle:nth-child(2) { animation-delay: 0.85s; }
+.headliner.is-revealed .headliner__sparkle:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes headliner-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Reduced motion: no rise (never armed), sparkles hold still. */
+@media (prefers-reduced-motion: reduce) {
+  .headliner.is-revealed .headliner__sparkle {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
 /* Headliner slot: the slot name in the Title role, the payload ("to be
-   revealed", later the act's name) at Display size. It answers the Lineup
+   revealed", later the act's name) at Display size. It answers the Performers
    heading by style and colour (italic violet / heavy violet) rather than
    repeating its upright ink weight. */
 .headliner__teaser {
@@ -2466,10 +2639,6 @@ html.has-trailer-open {
 
 .headliner__teaser strong {
   font-weight: 900;
-}
-
-.headliner .act__photo + .headliner__teaser {
-  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 /* Act lineup: no-card photo grid; an opened act steps out to a full row. */
@@ -2715,20 +2884,6 @@ html.has-trailer-open {
   font-size: 1.02rem;
   line-height: 1.7;
   color: var(--ink-on-light-dim);
-}
-
-/* Revealed headliner reuses the act details, centred under the name. */
-.headliner .act__toggle {
-  margin-top: 0.5rem;
-}
-
-.headliner .act__about p {
-  margin-inline: auto;
-  text-align: left;
-}
-
-.headliner .act__links {
-  justify-content: center;
 }
 
 @keyframes act-about-in {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-05T18:14:57.320Z",
+  "generatedAt": "2026-10-07T20:50:44.161Z",
   "title": "Design System: FACT 2026 — Mahiwagahan",
   "extensions": {
     "colorMeta": {
@@ -238,7 +238,7 @@
       {
         "name": "headliner-photo-shadow",
         "value": "0 18px 40px rgba(14, 21, 94, 0.28)",
-        "purpose": "The revealed Variety Show headliner photo frame only — a deeper lift than act frames because it is the lineup's single focal object."
+        "purpose": "Deep navy drop under the Variety Show headliner portrait (4/5, 8px radius) — heavier than act frames so the star act reads lifted above the grid."
       }
     ],
     "motion": [
@@ -261,6 +261,11 @@
         "name": "act-about-in",
         "value": "@keyframes, 0.45s var(--ease-out-expo), opacity 0 + translateY(6px) -> rest",
         "purpose": "Variety Show act details appearing when an act's More toggle opens; off under prefers-reduced-motion."
+      },
+      {
+        "name": "headliner-rise",
+        "value": "0.7s cubic-bezier(0.16, 1, 0.3, 1); translateY(14px)→0, opacity 0→1; staggered 0.05s / 0.17s / 0.3s / 0.38s (label, name, blurb, links)",
+        "purpose": "One-shot reveal of the headliner text when the block clears the bottom fifth of the viewport. Armed by JS only while still below that line; the photo is never hidden. Sparkles beside the name then reuse theme-twinkle (0.6s / 0.85s / 1.2s delays), paused off screen. Reduced motion: no rise, sparkles held at 0.6 opacity."
       }
     ],
     "breakpoints": [
@@ -401,6 +406,14 @@
       "description": "Native <details>/<summary> disclosure. Unchanged by this pass.",
       "html": "<details class=\"ds-faq-item\"><summary>I am a minor, can I go to FACT?</summary><p>Due to university policies, minors unattended by guardians are not permitted.</p></details>",
       "css": ".ds-faq-item { border-top: 1px solid rgba(14,21,94,0.14); padding: 1.15rem 0; } .ds-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; font-size: 1.02rem; font-weight: 500; color: #0e155e; } .ds-faq-item summary::-webkit-details-marker { display: none; } .ds-faq-item summary::after { content: ''; flex: none; width: 12px; height: 12px; background-color: #0e155e; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); -webkit-mask: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2v20M2 12h20' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>\") center / contain no-repeat; mask: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2v20M2 12h20' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>\") center / contain no-repeat; } .ds-faq-item[open] summary::after { transform: rotate(45deg); } .ds-faq-item p { margin: 0.9rem 0 0; max-width: 68ch; color: rgba(14,21,94,0.72); font-size: 0.98rem; line-height: 1.7; }"
+    },
+    {
+      "name": "Variety Show Headliner",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The star act, its own row above the act grid, closed off by a hairline. Without a blurb: a centred stack — 4/5 portrait (clamp(220px, 70vw, 360px), 8px radius, deep navy shadow), then \"Headliner\" in the Title role (ink), the name at Display size (violet-800, 900), and links. With a blurb and from 900px (.headliner--with-blurb): photo up to 420px beside the text, bottom-aligned. Three orchid sparkles twinkle around the name. No More toggle; null HEADLINER falls back to the italic \"to be revealed\" teaser.",
+      "html": "<div class=\"ds-headliner\"><div class=\"ds-headliner-photo\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/></svg></div><div class=\"ds-headliner-stage\"><h3 class=\"ds-headliner-teaser\"><span class=\"ds-headliner-label\">Headliner</span> <strong>Lyn Lapid</strong></h3><svg class=\"ds-headliner-sparkle\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 3l2.1 5.9L20 11l-5.9 2.1L12 19l-2.1-5.9L4 11l5.9-2.1Z\"/></svg></div><a class=\"ds-headliner-link\" href=\"#\">@_lynlapid</a></div>",
+      "css": ".ds-headliner { display: grid; justify-items: center; gap: 1.75rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(14, 21, 94, 0.14); text-align: center; font-family: var(--font-ui, 'Jost', 'Trebuchet MS', sans-serif); } .ds-headliner-photo { width: 220px; aspect-ratio: 4 / 5; border-radius: 8px; display: grid; place-items: center; background: rgba(14, 21, 94, 0.14); box-shadow: 0 18px 40px rgba(14, 21, 94, 0.28); color: #4b1c71; } .ds-headliner-photo svg { width: 24%; height: 24%; } .ds-headliner-stage { position: relative; display: inline-block; } .ds-headliner-teaser { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; margin: 0; font-family: var(--font-display, 'Fraunces', Georgia, serif); font-variation-settings: 'SOFT' 40, 'WONK' 1; } .ds-headliner-label { font-size: clamp(1.6rem, 3.2vw, 2.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; color: #0e155e; } .ds-headliner-teaser strong { font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.01em; color: #4b1c71; } .ds-headliner-sparkle { position: absolute; top: 48%; left: calc(100% + 0.6rem); width: 20px; height: 20px; color: #b37ad4; animation: ds-twinkle 2.6s ease-in-out infinite; } .ds-headliner-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.92rem; font-weight: 600; color: #4b1c71; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.2em; transition: text-decoration-color 0.2s ease; } .ds-headliner-link:hover, .ds-headliner-link:focus-visible { text-decoration-color: currentColor; } .ds-headliner-link:focus-visible { outline: 2px solid #4b1c71; outline-offset: 2px; } @keyframes ds-twinkle { 0%, 100% { opacity: 0.18; transform: scale(0.75); } 50% { opacity: 0.85; transform: scale(1.15); } } @media (prefers-reduced-motion: reduce) { .ds-headliner-sparkle { animation: none; opacity: 0.6; } }"
     },
     {
       "name": "Variety Show Act",
