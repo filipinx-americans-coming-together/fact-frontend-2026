@@ -20,7 +20,10 @@ export default function Schools() {
     const { uploadSchools, error, isPending } = useUploadSchools();
     const { approveSchool, isPending: approvePending } = useApproveSchool();
 
-    const [schoolData, setSchoolData] = useState<Object>({ approved_name: "" });
+    // keyed per requested school so rows don't share one approved name
+    const [schoolData, setSchoolData] = useState<{ [key: string]: any }>(
+        {}
+    );
 
     if (isLoading) {
         return (
@@ -70,7 +73,7 @@ export default function Schools() {
                                     </p>
                                     <TextInput
                                         label="Approved Name"
-                                        id="approved_name"
+                                        id={`approved_name_${school.id}`}
                                         setState={setSchoolData}
                                         placeholder={school.name}
                                     />
@@ -81,11 +84,10 @@ export default function Schools() {
                                             <Button
                                                 text="Approve"
                                                 onClick={() => {
-                                                    let approved_name = (
-                                                        schoolData as {
-                                                            approved_name: string;
-                                                        }
-                                                    ).approved_name;
+                                                    let approved_name =
+                                                        schoolData[
+                                                            `approved_name_${school.id}`
+                                                        ]?.trim();
 
                                                     if (!approved_name) {
                                                         approved_name =

@@ -1,7 +1,6 @@
 import FormContainer from "./FormContainer";
 import { useCreateLocation } from "../hooks/useCreateLocation";
 import { useState } from "react";
-import { LocationData } from "@/util/types";
 import TextInput from "@/components/ui/TextInput";
 import Select from "@/components/ui/Select";
 
@@ -11,23 +10,38 @@ export default function AddLocationForm() {
         error: createError,
         isPending: createPending,
     } = useCreateLocation();
-    const [addLocationData, setAddLocationData] = useState<Object>({
-        index: 0,
+    const [addLocationData, setAddLocationData] = useState<{
+        [key: string]: any;
+    }>({
         room_num: "",
         building: "",
-        capacity: 0,
-        session: "",
+        capacity: "",
+        session: "1",
     });
+    const [clientError, setClientError] = useState<string>();
 
     return (
         <FormContainer
             formName="newLocationItem"
             submitText="Add"
             onSubmit={() => {
-                createLocation(addLocationData as LocationData);
+                const capacity = Number(addLocationData.capacity);
+
+                if (!Number.isInteger(capacity) || capacity < 0) {
+                    setClientError("Capacity must be a whole number");
+                    return;
+                }
+
+                setClientError(undefined);
+                createLocation({
+                    building: addLocationData.building.trim(),
+                    room_num: addLocationData.room_num.trim(),
+                    capacity: capacity,
+                    session: Number(addLocationData.session),
+                });
             }}
             isLoading={createPending}
-            errorMessage={createError?.message}
+            errorMessage={clientError ?? createError?.message}
         >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 text-left">
                 <TextInput

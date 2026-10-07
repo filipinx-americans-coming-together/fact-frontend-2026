@@ -178,7 +178,7 @@ export default function Agenda() {
                                 agendaItems
                                     ? agendaItems.filter((item) => {
                                           const asDate = item.start_time;
-                                          return asDate.getDay() === 7;
+                                          return asDate.getDay() === 0;
                                       })
                                     : []
                             }

@@ -64,9 +64,9 @@ export function useUpdateLocation() {
             return fetchUpdateLocation(props);
         },
 
-        onSuccess: (data) =>
+        onSuccess: () =>
             queryClient.refetchQueries({
-                queryKey: ["location", data.id],
+                queryKey: ["locations"],
                 type: "active",
             }),
     });

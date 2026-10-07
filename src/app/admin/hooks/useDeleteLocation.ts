@@ -45,7 +45,7 @@ export function useDeleteLocation() {
 
         onSuccess: () =>
             queryClient.refetchQueries({
-                queryKey: ["location"],
+                queryKey: ["locations"],
                 type: "active",
             }),
     });

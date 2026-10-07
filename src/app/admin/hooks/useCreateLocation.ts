@@ -63,9 +63,9 @@ export function useCreateLocation() {
             return fetchCreateLocation(props);
         },
 
-        onSuccess: (data) =>
+        onSuccess: () =>
             queryClient.refetchQueries({
-                queryKey: ["location", data.id],
+                queryKey: ["locations"],
                 type: "active",
             }),
     });

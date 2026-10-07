@@ -8,9 +8,11 @@ export default function DangerZone() {
     const { flag: workshopsChangeable } =
         useRegistrationFlag("workshop-changes");
 
-    const { flag: matchLocations } = useRegistrationFlag("location-matching");
+    // "location-matching" has no row in the backend DB yet, so its toggle
+    // always read DISABLED and failed on save. Re-enable once the flag exists.
+    // const { flag: matchLocations } = useRegistrationFlag("location-matching");
 
-    const { updateFlag } = useUpdateFlag();
+    const { updateFlag, error: updateError } = useUpdateFlag();
 
     const toggleableFlags = [
         // {
@@ -37,18 +39,18 @@ export default function DangerZone() {
                 });
             },
         },
-        {
-            title: "Automatic Workshop Locations",
-            isEnabled: matchLocations?.value,
-            description:
-                "When matching is enabled, workshops are automatically matched to locations based on popularity at 3:00AM CST every Sunday. When matching is disabled, workshop locations will not be changed",
-            toggle: () => {
-                updateFlag({
-                    label: "location-matching",
-                    value: !matchLocations?.value,
-                });
-            },
-        },
+        // {
+        //     title: "Automatic Workshop Locations",
+        //     isEnabled: matchLocations?.value,
+        //     description:
+        //         "When matching is enabled, workshops are automatically matched to locations based on popularity at 3:00AM CST every Sunday. When matching is disabled, workshop locations will not be changed",
+        //     toggle: () => {
+        //         updateFlag({
+        //             label: "location-matching",
+        //             value: !matchLocations?.value,
+        //         });
+        //     },
+        // },
     ];
 
     return (
@@ -69,13 +71,16 @@ export default function DangerZone() {
                         }
                         confirmText={
                             flag.isEnabled
-                                ? `enable ${flag.title.toLowerCase()}`
-                                : `disable ${flag.title.toLowerCase()}`
+                                ? `disable ${flag.title.toLowerCase()}`
+                                : `enable ${flag.title.toLowerCase()}`
                         }
                         changePermission={flag.toggle}
                     />
                 );
             })}
+            {updateError && (
+                <p className="p-4 text-red-600">{updateError.message}</p>
+            )}
             {/* <DangerZoneAction
                 title="Reset Database"
                 description="By resetting the database you will remove all workshop, location, facilitator information. Only do this after FACT is over. Account information will not be removed. Resetting the database will require an access key from FACT IT."
