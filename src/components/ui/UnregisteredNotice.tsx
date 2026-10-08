@@ -6,6 +6,7 @@ import { orderEnding } from "@/components/ui/ExistingOrderPanel";
 import { useDelegateStatus } from "@/hooks/api/useDelegateStatus";
 import { useFindMyOrder } from "@/hooks/api/useFindMyOrder";
 import { NO_WORKSHOPS_TICKET_TYPE, wrongTicketMessage } from "@/util/tickets";
+import { useRegistrationFlag } from "@/hooks/api/useRegistrationFlag";
 
 const PANEL_STYLE = { border: "1px solid var(--hairline-on-light)" };
 const PANEL = "w-full max-w-md mx-auto flex flex-col items-center gap-3 text-center p-4 rounded-lg";
@@ -23,6 +24,7 @@ export default function UnregisteredNotice({ email }: { email?: string }) {
     const { status, isLoading: statusLoading } = useDelegateStatus();
     const isPaid = status?.payment_status === "paid";
     const { orders, isLoading: ordersLoading } = useFindMyOrder(!statusLoading && !isPaid);
+    const { flag: newReg } = useRegistrationFlag("new-registration");
 
     if (statusLoading || (!isPaid && ordersLoading)) {
         return <div className="w-fit mx-auto"><LoadingCircle /></div>;
@@ -69,11 +71,15 @@ export default function UnregisteredNotice({ email }: { email?: string }) {
     }
 
     return (
-        <div className="flex flex-col gap-4 items-center">
-            <Link href="/my-fact/register" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
+        <>
+            {newReg?.value === false ? <div className={PANEL} style={PANEL_STYLE}>Registration is temporarily closed while we work on making more tickets available. Please try again later.</div> :  
+            <div className="flex flex-col gap-4 items-center">
+            <Link href="/my-fact/regi<div className={PANEL} style={PANEL_STYLE}>Registration is temporarily closed while we work on making more tickets available. Please try again later.</div>ster" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
             <p className="text-sm text-[var(--ink-on-light-dim)] text-center">
                 Already bought a ticket? Enter your order number on the Register page.
             </p>
-        </div>
+            </div> }
+        </>
+            
     );
 }

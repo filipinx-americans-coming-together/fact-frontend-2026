@@ -73,7 +73,8 @@ const performerOptions = [
 function RegisterForm() {
     const { register, isSuccess, isPending, error } = useRegister();
     const { user, isLoading, error : userError } = useUser();
-    const { flag: workshop3Full, isLoading : flagLoading, error : flagError } = useRegistrationFlag("workshop-3-full");
+    const { flag: workshop3Full } = useRegistrationFlag("workshop-3-full");
+    const { flag: newReg } = useRegistrationFlag("new-registration");
     const { verifyPaymentAsync, isPending: verifyPending } = useVerifyPayment();
     const { status: delegateStatus, isLoading: delegateStatusLoading } = useDelegateStatus();
     const {
@@ -236,6 +237,12 @@ function RegisterForm() {
             router.push("/my-fact/dashboard")
         }
     }, [userError, user])
+    
+    useEffect(() => {
+        if (newReg?.value === false && delegateStatus?.payment_status !== "paid") {
+            router.push("/my-fact/dashboard")
+        }
+    }, [newReg, delegateStatus])
 
     return (
         <RegPageContainer pageTitle="Register for FACT">
