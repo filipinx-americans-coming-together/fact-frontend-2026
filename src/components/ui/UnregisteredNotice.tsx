@@ -74,7 +74,7 @@ export default function UnregisteredNotice({ email }: { email?: string }) {
         <>
             {newReg?.value === false ? <div className={PANEL} style={PANEL_STYLE}>Registration is temporarily closed while we work on making more tickets available. Please try again later.</div> :  
             <div className="flex flex-col gap-4 items-center">
-            <Link href="/my-fact/regi<div className={PANEL} style={PANEL_STYLE}>Registration is temporarily closed while we work on making more tickets available. Please try again later.</div>ster" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
+            <Link href="/my-fact/register" className="pill pill--ink w-fit mx-auto text-xl">Register for FACT 2026</Link>
             <p className="text-sm text-[var(--ink-on-light-dim)] text-center">
                 Already bought a ticket? Enter your order number on the Register page.
             </p>
