@@ -169,6 +169,7 @@ function RegisterForm() {
     // failure shows the backend's reason next to the order-number input.
     const verifyOrder = async (id: string, linking = false): Promise<boolean> => {
         try {
+            console.log(id)
             const result = await verifyPaymentAsync(id);
             if (linking) setOrderId(id);
             setPaymentVerified(true);
