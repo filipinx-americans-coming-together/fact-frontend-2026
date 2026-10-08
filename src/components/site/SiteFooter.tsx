@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: '/team', label: 'Team' },
   { href: '/past-facts', label: 'Past FACTs' },
   { href: '/variety-show', label: 'Variety Show' },
+  { href: '/palengke', label: 'Palengke' },
 ];
 
 export function SiteFooter() {

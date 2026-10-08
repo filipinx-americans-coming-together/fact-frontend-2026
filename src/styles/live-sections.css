@@ -3633,80 +3633,556 @@ html.has-team-open {
 
 /* ---------- Palengke ---------- */
 
-.palengke__groups {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 3.5rem);
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+/* When & where: the two market days set like an almanac entry (big date
+   numeral, then the facts), beside the one real Palengke photo. */
+.market__intro {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
 }
 
-.vendor__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2rem);
+@media (min-width: 900px) {
+  .market__intro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.market__days {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Hard-edged, not rounded — the system's binary shape language stays
-   round-or-hard-edged; the soft ambient shadow (reused from the avatar/
-   photo device) is what earns this its "card" reading, not a radius. */
-.vendor__card {
+.market__day {
+  display: grid;
+  grid-template-columns: clamp(4.25rem, 9vw, 6rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  padding: clamp(1.25rem, 3vw, 1.75rem) 0;
+  border-top: 1px solid var(--hairline-on-light);
+}
+
+.market__day:last-child {
+  border-bottom: 1px solid var(--hairline-on-light);
+}
+
+.market__numeral {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: 0.9;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-variant-numeric: lining-nums;
+  color: var(--ink-900);
+}
+
+.market__daybody {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.85rem;
-  padding: clamp(1.5rem, 3vw, 1.85rem);
-  background: var(--white);
-  box-shadow: 0 10px 28px rgba(14, 21, 94, 0.12), inset 0 0 0 1px var(--hairline-on-light);
+  gap: 0.2rem;
 }
 
-.vendor__logo {
-  flex: none;
-  width: 56px;
-  height: 56px;
+.market__weekday {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+
+.market__time {
+  margin: 0.1rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--ink-900);
+}
+
+.market__place {
+  margin: 0.25rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink-on-light-dim);
+}
+
+.market__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+/* Full 44px tap targets: these are the two actions people take standing
+   outside the building. */
+.market__links a,
+.market__links button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid rgba(75, 28, 113, 0.35);
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent-on-light);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.market__links a:hover,
+.market__links button:hover {
+  border-color: var(--accent-on-light);
+  background: rgba(179, 122, 212, 0.14);
+}
+
+.market__links a:focus-visible,
+.market__links button:focus-visible {
+  outline: 2px solid var(--accent-on-light);
+  outline-offset: 2px;
+}
+
+.market__count {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-on-light-dim);
+}
+
+.market__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.market__status--open {
+  background: linear-gradient(180deg, var(--violet-800) 0%, var(--ink-900) 100%);
+  color: var(--cream-100);
+}
+
+.market__status--open::before {
+  content: '';
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 32% 28%, var(--orchid-400), var(--violet-800) 55%, var(--ink-900) 100%);
-  box-shadow: 0 6px 16px rgba(6, 4, 30, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--orchid-400);
+  animation: market-live 2.4s var(--ease-out-expo) infinite;
 }
 
-.vendor__logo svg {
-  width: 46%;
-  height: 46%;
+@keyframes market-live {
+  0% {
+    box-shadow: 0 0 0 0 rgba(179, 122, 212, 0.75);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 9px rgba(179, 122, 212, 0);
+  }
+}
+
+.market__status--today {
+  border: 1px solid rgba(75, 28, 113, 0.45);
+  color: var(--accent-on-light);
+}
+
+.market__status--closed {
+  padding-left: 0;
+  font-weight: 500;
+  color: var(--ink-on-light-dim);
+}
+
+.market__day--closed .market__numeral,
+.market__day--closed .market__time {
+  color: var(--ink-on-light-dim);
+}
+
+.market__photo {
+  aspect-ratio: auto;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.market__photo img {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-position: 50% 62%;
+  box-shadow: 0 10px 28px rgba(14, 21, 94, 0.18);
+}
+
+/* .section clips overflow for its motifs; clip (not hidden) keeps that
+   without creating a scroll container, so the filter can stick. */
+.section--palengke {
+  overflow: clip;
+}
+
+/* Day filter (the solid pills shared with Workshops) plus a running
+   "Friday · 8 vendors" so the chosen day stays visible. */
+.market__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+}
+
+.market__filter .workshops__sessionpill {
+  min-height: 44px;
+}
+
+.market__summary {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-on-light-dim);
+}
+
+@media (max-width: 899px) {
+  .market__controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    /* Bleed to the .section side padding so the bar spans the screen. */
+    margin-inline: calc(-1 * clamp(1.25rem, 6vw, 5rem));
+    padding: 0.6rem clamp(1.25rem, 6vw, 5rem);
+    background: var(--cream-100);
+    box-shadow: 0 1px 0 var(--hairline-on-light);
+  }
+}
+
+/* Floor maps: both days side by side, or just the chosen day full width.
+   Booth numbers on the cards below match the maps. */
+.market__maps {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  scroll-margin-top: 6.5rem;
+}
+
+.market__mapgrid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-top: 0.85rem;
+}
+
+@media (min-width: 900px) {
+  .market__mapgrid--both {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.market__map {
+  margin: 0;
+}
+
+.market__map > a {
+  display: block;
+}
+
+.market__map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 10px 28px rgba(14, 21, 94, 0.18);
+}
+
+.market__map > a:focus-visible {
+  outline: 2px solid var(--accent-on-light);
+  outline-offset: 3px;
+}
+
+.market__map figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--ink-on-light-dim);
+}
+
+.market__map figcaption a {
+  color: var(--accent-on-light);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+.market__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.palengke__groups {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+/* Row-ordered grid so alphabetical order reads left to right. Cards in a
+   row share a height and the day/booth line is pinned to each card's foot,
+   so rows read as tidy bands rather than ragged stacks. 320px minimum
+   gives three columns at full width: wide enough that names rarely wrap
+   and long descriptions stay short. */
+.vendor__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+/* Three things only: who, what they sell, which day. Hard-edged, with the
+   system's white/soft-shadow/hairline card recipe and nothing else. */
+.vendor__card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2.5vw, 1.6rem);
+  background: var(--white);
+  box-shadow: 0 10px 28px rgba(14, 21, 94, 0.1), inset 0 0 0 1px var(--hairline-on-light);
+}
+
+/* The booth number hangs in the corner so a one-line name doesn't get
+   pushed apart from its description by the taller numeral. */
+.vendor__head {
+  position: relative;
+}
+
+.vendor__head:has(.vendor__booth) .vendor__name {
+  padding-right: 3.75rem;
+}
+
+/* Booth number, matching the numbers on the floor map. */
+.vendor__booth {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-variant-numeric: lining-nums;
+  color: var(--accent-on-light);
+}
+
+.vendor__booth span {
+  margin-bottom: 0.2rem;
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-on-light-dim);
 }
 
 .vendor__name {
   margin: 0;
-  font-size: 1.02rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
   color: var(--ink-900);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .vendor__theme {
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.55;
+  margin: 0.5rem 0 0;
+  max-width: 62ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-on-light-dim);
+  text-wrap: pretty;
+}
+
+.vendor__days {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: auto 0 0;
+  padding-top: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+
+/* An open menu takes the whole row instead of stretching its neighbours. */
+.vendor__card:has(.vendor__menu[open]) {
+  grid-column: 1 / -1;
+}
+
+.vendor__menu {
+  margin-top: 1rem;
+  border-top: 1px solid var(--hairline-on-light);
+}
+
+.vendor__menu summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0 0;
+  list-style: none;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-on-light);
+  cursor: pointer;
+}
+
+.vendor__menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.vendor__menu summary::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.vendor__menu[open] summary::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.vendor__menu summary:focus-visible {
+  outline: 2px solid var(--accent-on-light);
+  outline-offset: 3px;
+}
+
+.vendor__menunote {
+  margin: 0.75rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
   color: var(--ink-on-light-dim);
 }
 
-.vendor__handle {
-  display: inline-flex;
+.vendor__menuitems {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+/* Spanning the row, the menu has room for two items side by side. */
+@media (min-width: 760px) {
+  .vendor__menuitems {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+  }
+}
+
+.vendor__menuitems li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--hairline-on-light);
+}
+
+.vendor__menuname {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 0.15rem;
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.vendor__menutag {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(179, 122, 212, 0.18);
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--accent-on-light);
 }
 
-.vendor__handle svg {
-  width: 14px;
-  height: 14px;
+.vendor__menudetail {
+  margin: 0.25rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-on-light-dim);
+}
+
+.vendor__menucontains {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--accent-on-light);
+}
+
+.vendor__menucombos {
+  margin: 0.7rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-on-light-dim);
+}
+
+.vendor__menucombos span {
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+/* Phones: when, where, then straight to the filter and vendors; the past
+   photo moves below the list instead of sitting between them. */
+@media (max-width: 899px) {
+  .section--palengke .section__inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .market__intro {
+    display: contents;
+  }
+
+  .market__photo {
+    order: 1;
+    margin-top: clamp(2.5rem, 8vw, 3.5rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .market__photo img {
+    aspect-ratio: 21 / 10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .market__status--open::before {
+    animation: none;
+  }
+
+  .vendor__menu summary::after {
+    transition: none;
+  }
 }
 
 /* ---------- Auth (login / create account / forgot password) ---------- */
