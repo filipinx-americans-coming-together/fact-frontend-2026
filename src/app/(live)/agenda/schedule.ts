@@ -54,7 +54,7 @@ export const AGENDA: AgendaDay[] = [
     events: [
       {
         id: 'check-in',
-        title: 'Delegate Check-In',
+        title: 'Delegate Check-In / Late Registration',
         start: '2026-10-16T17:00:00-05:00',
         end: '2026-10-16T22:00:00-05:00',
         place: SCD,
@@ -82,7 +82,7 @@ export const AGENDA: AgendaDay[] = [
     events: [
       {
         id: 'late-check-in',
-        title: 'Late Delegate Check-In',
+        title: 'Late Registration',
         start: '2026-10-17T08:00:00-05:00',
         end: '2026-10-17T09:00:00-05:00',
         place: AACC,
