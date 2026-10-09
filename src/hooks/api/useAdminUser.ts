@@ -38,7 +38,7 @@ export function useAdminUser(): {
         error,
         isLoading,
     } = useQuery({
-        queryKey: ["active-user"],
+        queryKey: ["active-admin"],
         queryFn: () => fetchUser(),
         retry: 0,
     });

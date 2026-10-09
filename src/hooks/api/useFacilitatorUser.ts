@@ -88,7 +88,7 @@ export function useFacilitatorUser(): {
         error,
         isLoading,
     } = useQuery({
-        queryKey: ["active-user"],
+        queryKey: ["active-facilitator"],
         queryFn: () => fetchUser(),
         retry: 0,
     });

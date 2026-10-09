@@ -17,6 +17,7 @@ export default function FacilitatorRegistration({
     facilitators,
     facilitatedSessions,
     registrations,
+    disabled=true,
 }: {
     facilitators: string[];
     facilitatedSessions: { session: number; title: string }[];
@@ -26,10 +27,10 @@ export default function FacilitatorRegistration({
               workshop: number;
               session: number;
           }[];
+    disabled?: boolean;
 }) {
     // const [formData, setFormData] = useState<Object>({});
-    // const { registerFacilitators, isPending, isSuccess, error } =
-    //     useRegisterFacilitators();
+    // const { registerFacilitators, isPending, isSuccess, error } = useRegisterFacilitators();
 
     const [activeFacilitator, setActiveFacilitator] = useState<Object>({facilitator: facilitators[0]});
 
@@ -41,6 +42,8 @@ export default function FacilitatorRegistration({
                 <span className="font-bold">not</span> required for facilitators
             </p>
             <br />
+            {disabled ? <div className="rounded-lg p-6 bg-[rgba(250,250,250,0.3)] shadow-xl mb-6 grow text-center text-sm text-slate-700">Facilitator registration is not available at this time</div> : 
+            <>
             <div className="flex flex-col lg:flex-row gap-6">
             
             {facilitators.length > 1 ? 
@@ -70,6 +73,8 @@ export default function FacilitatorRegistration({
             />
             </div>
             <div className="text-sm text-slate-700 text-center flex flex-col md:flex-row gap-1 items-center w-fit mx-auto mt-2 lg:mt-4">Just made a change but don&#39;t see it? Refresh the page <div className="text-lg"><IoMdRefresh /></div></div>
+            </>}
+            
             {/* facilitator list */}
             {/* <div className="">
                 {facilitators.map((facilitator) => {
