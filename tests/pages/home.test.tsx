@@ -23,6 +23,20 @@ describe('Home page', () => {
     expect(await screen.findByText(/Enjoying FACT\?/i)).toBeInTheDocument();
   });
 
+  it('features the keynote speaker', () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(jsonResponse([]))));
+
+    renderWithQueryClient(<Home />);
+
+    expect(screen.getByRole('heading', { name: 'Keynote Speaker' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Stephanie Vivit Lehmann' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Stephanie Vivit Lehmann' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /stephanievivitlehmann\.com/ })).toHaveAttribute(
+      'href',
+      'https://www.stephanievivitlehmann.com/',
+    );
+  });
+
   it('explains how to join instead of "registration opens soon"', () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(jsonResponse([]))));
 

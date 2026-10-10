@@ -219,7 +219,7 @@ const SPARKLE_PATH = 'M12 3l2.1 5.9L20 11l-5.9 2.1L12 19l-2.1-5.9L4 11l5.9-2.1Z'
  * so no-JS, already-in-view, and reduced-motion visitors simply see it.
  * Sparkles only twinkle while the block is on screen (is-onstage).
  */
-function useHeadlinerReveal(ref: React.RefObject<HTMLDivElement>) {
+export function useHeadlinerReveal(ref: React.RefObject<HTMLDivElement>) {
     useIsoLayoutEffect(() => {
         const el = ref.current;
         if (!el) return;

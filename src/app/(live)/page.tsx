@@ -4,8 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { KeynoteSpotlight, type Keynote } from '@/components/site/KeynoteSpotlight';
 import NotificationsManager from '@/components/ui/NotificationManager';
 import { useNotifications } from '@/hooks/api/useNotifications';
+
+const KEYNOTE: Keynote = {
+  name: 'Stephanie Vivit Lehmann',
+  photo: '/images/keynote/stephanie-vivit-lehmann-hq.jpg',
+  photoFocus: '47% 50%',
+  bio: [
+    'As the daughter of Filipino immigrants and mother of six children, Stephanie writes stories that connect generations to promote a sense of worth and belonging. Her public health background combined with her love for children uniquely propels her to take action to reverse the devastating mental health effects of assimilation and colonial mentality one story at a time. She believes telling these stories can spark much-needed discussion in countless struggling families and communities, having the potential to become a source of healing and hope for current and future generations of Filipino families in the diaspora.',
+    '“Time to Shine – A Filipino American Story” is her debut picture book, published through her publishing company, Pamilya Press. She has two children’s books scheduled for publication in 2027. Stephanie is also a multi-award-winning author, and her book was selected to be featured in Kirkus Reviews Magazine.',
+  ],
+  website: { label: 'stephanievivitlehmann.com', href: 'https://www.stephanievivitlehmann.com/' },
+};
 
 export default function Home() {
   const { notifications } = useNotifications();
@@ -100,6 +112,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <KeynoteSpotlight keynote={KEYNOTE} />
 
         <section className="section section--trailer" aria-label="Watch the FACT 2026 teaser trailer">
           <div className="section__inner">

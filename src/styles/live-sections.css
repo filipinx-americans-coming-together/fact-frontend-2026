@@ -1041,6 +1041,146 @@
   background: linear-gradient(90deg, rgba(179, 122, 212, 0), var(--orchid-400) 50%, rgba(179, 122, 212, 0));
 }
 
+/* ---------- Keynote speaker (landing page) ----------
+   Section heading centred like the trailer below it; the spread beneath is
+   portrait-left so it mirrors the text-left Venue block above Quick facts. */
+
+.section--keynote {
+  text-align: center;
+  padding-top: clamp(3.5rem, 8vw, 6rem);
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section--keynote .section__rule {
+  width: 120px;
+  height: 3px;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(90deg, rgba(179, 122, 212, 0), var(--orchid-400) 50%, rgba(179, 122, 212, 0));
+}
+
+.keynote {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.keynote__portrait {
+  position: relative;
+  width: clamp(220px, 70vw, 360px);
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(14, 21, 94, 0.28);
+}
+
+/* The source is a wide street shot; a 4/5 cover crop keeps its full height,
+   so zoom in toward her to lose the trees overhead. */
+.keynote__portrait img {
+  object-fit: cover;
+  transform: scale(1.3);
+  transform-origin: 47% 62%;
+}
+
+.keynote__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 36rem;
+}
+
+.keynote__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--violet-800);
+  text-wrap: balance;
+}
+
+.keynote__session {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent-on-light);
+}
+
+.keynote__bio {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--hairline-on-light);
+  text-align: left;
+}
+
+.keynote__bio p {
+  margin: 0;
+  max-width: 65ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-on-light-dim);
+}
+
+.keynote__bio p + p {
+  margin-top: 1rem;
+}
+
+.keynote__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.75rem;
+  margin-top: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+@media (min-width: 900px) {
+  .keynote {
+    grid-template-columns: minmax(0, 400px) minmax(0, 36rem);
+    justify-content: center;
+    justify-items: stretch;
+    align-items: center;
+    gap: clamp(3rem, 5vw, 4.5rem);
+    text-align: left;
+  }
+
+  .keynote__portrait {
+    width: auto;
+  }
+
+  .keynote__text {
+    align-items: flex-start;
+  }
+
+  .keynote__actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Same rise as the Variety Show headliner, armed by useHeadlinerReveal only
+   while the block is below the fold. The portrait never hides. */
+.keynote.is-armed .keynote__name,
+.keynote.is-armed .keynote__bio,
+.keynote.is-armed .keynote__actions {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.keynote.is-armed.is-revealed .keynote__name,
+.keynote.is-armed.is-revealed .keynote__bio,
+.keynote.is-armed.is-revealed .keynote__actions {
+  animation: headliner-rise 0.7s var(--ease-out-expo) both;
+}
+
+.keynote.is-armed.is-revealed .keynote__name { animation-delay: 0.05s; }
+.keynote.is-armed.is-revealed .keynote__bio { animation-delay: 0.27s; }
+.keynote.is-armed.is-revealed .keynote__actions { animation-delay: 0.37s; }
+
 /* ---------- Newsletter CTA (landing page, own section) ---------- */
 
 .section--cta {
