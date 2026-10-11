@@ -9,8 +9,10 @@ const BLACKBAUD_FORM_ID = '799cd906-9cc4-401c-bf98-a0de4daac6c6';
 
 const TOP_DONORS = [
   { name: 'Rose Ann Maneevese', tier: 'Gold', amount: '$500' },
+  { name: 'So Gong Dong', tier: 'Gold', amount: 'In-Kind' },
   { name: 'MAFA', tier: 'Silver', amount: '$300' },
-  { name: 'Philippine Consulate (Ella Karina Mitra-Yeager)', tier: 'Bronze', amount: '$200' },
+  { name: 'Asian Student Achievement (Shane)', tier: 'Silver', amount: '$300' },
+  { name: 'CG Atty. Melanie Rita B. Diano', tier: 'Bronze', amount: '$200' },
 ];
 
 const TIER_COLORS: Record<string, string> = {
