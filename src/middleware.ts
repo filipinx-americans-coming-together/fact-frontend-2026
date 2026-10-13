@@ -37,6 +37,18 @@ export async function middleware(request: NextRequest) {
             }
         }
 
+
+        if (request.nextUrl.pathname.startsWith("/my-fact/register")) {
+            const registration = flags.find(
+                (flag) => flag.fields.label === "registration-closed"
+            );
+
+            if (registration && registration?.fields.value) {
+                return NextResponse.redirect(new URL('/my-fact/dashboard', request.url));
+            }
+
+        }
+
         // // hide registration related pages
         // if (request.nextUrl.pathname == "/my-fact"){
         //     return NextResponse.redirect(new URL('/', request.url));

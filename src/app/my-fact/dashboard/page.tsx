@@ -23,6 +23,7 @@ export default function Dashboard() {
     const { logout, isSuccess, isPending: logoutLoading } = useLogout();
     const { notifications } = useNotifications();
     const { flag } = useRegistrationFlag("workshop-changes");
+    const { flag: regFlag } = useRegistrationFlag("registration-closed");
     const router = useRouter();
 
 
@@ -98,7 +99,10 @@ export default function Dashboard() {
                     </div>
                     </div>
                     <UserAgenda/>
-                    </div> : <UnregisteredNotice email={user.user.email}  /> 
+                    </div> : regFlag?.value ? <div className="w-full max-w-md mx-auto flex flex-col items-center gap-3 text-center p-4 rounded-lg border-1 border-[var(--hairline-on-light)]">
+                            Registration is closed at this time.
+                    </div> : 
+                    <UnregisteredNotice email={user.user.email}  /> 
                      }
                     <div className="mx-auto my-6 w-fit">
                 <InteractiveButton
